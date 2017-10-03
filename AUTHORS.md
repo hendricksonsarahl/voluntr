@@ -2,4 +2,7 @@
 
 * Sarah Hendrickson <hendricksonsarahl@gmail.com> | [hendricksonsarahl](https://github.com/hendricksonsarahl)
 
-* Ryland Bell <ryland.bell@gmail.com> | [rylandbell]
+* Ryland Bell <ryland.bell@gmail.com> | [rylandbell](https://github.com/rylandbell)
+
+* Rachel Wilson <rwilson.or@gmail.com> | [razzlepdx](https://github.com/razzlepdx)
+
