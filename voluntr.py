@@ -18,7 +18,7 @@ def index():
 # projects to look in for ideas: (web-caesar, user-signup, hello-flask, flicklist-flask)
 # Routes to build:
 # =======================
-# 1- /signup - form for volunteers to indicate their interests
+# 1- /filters - form for volunteers to indicate their interests
 # 2- /opportunities - display search results to volunteer
 # 3- /matches - lists all volunteer opportunities that a volunteer user saved/marked as "interesting"
 # 4- /org/login - form for organizations to signup or login to Voluntr
