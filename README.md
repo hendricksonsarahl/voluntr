@@ -5,6 +5,7 @@
 1. [Elevator Pitch](#elevator-pitch)
 2. [Brief](#brief)
 3. [Wireframes and Page Flows](#wireframes-and-page-flows)
+4. [User Stories](user-stories)
 
 ## Elevator Pitch
 <div>
@@ -45,4 +46,42 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 
 ![First Sprint Wireframe](https://raw.githubusercontent.com/hendricksonsarahl/voluntr/assets/voluntr_wireframe.jpg)
 
-![First Sprint Pageflow Diagram](https://placeholderurl.com)
+[First Sprint Pageflow Diagram](https://placeholderurl.com)
+
+## User Stories
+<div>
+
+| As a new visitor, I can... | Goal |
+| --- | --- |
+| discover the app and learn about it's purpose and options | MVP |
+| easily find the relevant half of the app to use (volunteer vs organization). | MVP |
+
+</div>
+
+<div>
+
+| As a Nonprofit, I can... | Goal |
+| --- | --- |
+| register my organization on Voluntr. | MVP |
+| easily submit open volunteer opportunities. | MVP |
+| edit or delete a posted opportunity  | MVP  |
+| view the list of posted opportunities that are open  | MVP  |
+| view and edit profile settings for my organization, including name, contact email, and any other profile data  | MVP  |
+| log in to my existing account and logout when I'm done  | MVP  |
+
+</div>
+
+<div>
+
+| As a Volunteer, I can... | Goal |
+| --- | --- |
+| see volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | MVP  |
+| set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | MVP  |
+| see that the results list includes opportunities that match my preferences  | MVP  |
+| get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP  |
+
+</div>
+
+
+
+
