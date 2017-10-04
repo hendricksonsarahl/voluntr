@@ -7,10 +7,7 @@
 3. [Wireframes and Page Flows](#wireframes-and-page-flows)
 
 ## Elevator Pitch
-<<<<<<< HEAD
 <div>
-=======
->>>>>>> 660f0cc71169acd25f978d44a52096ed54fda865
 <p>This app serves two customers with complementary needs - Nonprofit Organizations and people who want to volunteer their time. </p>
 <b> A Platform for Nonprofits </b>
 <p>Many Nonprofit organizations have needs for an increased volunteer base and traditional outreach can often be too costly and time consuming with their limited resources. Voluntr provides a simple platform where a nonprofit can post a volunteer opportunity in seconds while the app takes care of the rest! </p>
