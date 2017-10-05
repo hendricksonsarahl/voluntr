@@ -21,46 +21,46 @@ def index():
 # potentially on /org/opportunity (if editing an opportunity takes place there)
 # projects to look in for ideas: (web-caesar, user-signup, hello-flask, flicklist-flask)
 
-@app.route("/filters", method=['GET'])
+@app.route("/filters", methods=['GET'])
 def set_filters():
     '''displays a form for volunteers to select their interests and availability'''
     message = "<h1>Volunteers set search parameters here</h1>"
     return message
 
-@app.route("/opportunities", method=['GET'])
+@app.route("/opportunities", methods=['GET'])
 def opportunities():
     '''display search results to volunteer'''
     message = "<h1>Volunteers can view opportunities that match their interests here</h1>"
     return message
 
-@app.route("/matches", method=['GET'])
+@app.route("/matches", methods=['GET'])
 def display_matches():
     '''lists all opportunities that a volunteer user saved'''
     message = "<h1>Volunteers can view their list of saved opportunities here</h1>"
     return message
 
-@app.route("/org/login", method =['GET'])
+@app.route("/org/login", methods=['GET'])
 def org_login():
     '''displays a form for organizations to signup or login to Voluntr'''
     message = "<h1>Organizations can click a button to signup or login here</h1>"
     return message
 
-@app.route("/org/opportunities", method=['GET'])
+@app.route("/org/opportunities", methods=['GET'])
 def manage_opportunities():
     '''displays all volunteer opportunities associated with an organization, with options to create
      new opportunities, view/edit details, and delete available opportunities'''
-     message = "<h1>Organizations can manage their available opportunities here</h1>"
-     return message
+    message = "<h1>Organizations can manage their available opportunities here</h1>"
+    return message
 
-@app.route("/org/add", method=['GET'])
+@app.route("/org/add", methods=['GET'])
 def new_opportunity():
     '''displays a form for organizations to add a new volunteer opportunity'''
     message = "<h1>Organizations can add a new volunteer opportunity to the app here</h1>"
     return message
 
-@app.route("/org/opportunity", method=['GET'])
+@app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
-     '''displays details about a specific volunteer opportunity, with option to edit fields, 
+    '''displays details about a specific volunteer opportunity, with option to edit fields, 
      and a list volunteers interested in helping''' 
     message = "<h1>Organizations can view details of a volunteer opportunity, as well as a list of volunteers interested in the opportunity here</h1>"
     return message
