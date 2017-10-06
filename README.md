@@ -46,7 +46,7 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 
 ![First Sprint Wireframe](./assets/voluntr_wireframe.jpg)
 
-[First Sprint Pageflow Diagram](https://placeholderurl.com)
+[First Sprint Pageflow Diagram - coming soon!](https://placeholderurl.com)
 
 ## User Stories
 <div>
