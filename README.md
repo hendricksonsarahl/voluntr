@@ -44,7 +44,7 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 
 ## Wireframes and Page Flows
 
-![First Sprint Wireframe](https://raw.githubusercontent.com/hendricksonsarahl/voluntr/assets/voluntr_wireframe.jpg)
+![First Sprint Wireframe](./assets/voluntr_wireframe.jpg)
 
 [First Sprint Pageflow Diagram](https://placeholderurl.com)
 
