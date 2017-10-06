@@ -25,7 +25,7 @@ class Opportunity(db.Model):
     startTime = db.Column(db.String(20))
     endTime = db.Column(db.String(20))
     category = db.Column(db.String(35))
-    owner_id = db.Column(db.Integer, db.ForeignKey('organitation.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey('organization.id'))
 
     def __init__(self, title, owner, location, description, nextSteps, date, startTime, endTime, category):
         self.title = title
