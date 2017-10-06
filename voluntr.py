@@ -66,6 +66,13 @@ def show_opportunity():
     message = "<h1>Organizations can view details of a volunteer opportunity, as well as a list of volunteers interested in the opportunity here</h1>"
     return message
 
+
+@app.route("/drop/create", methods=['GET'])
+def dropCreate():
+    db.drop_all()
+    db.create_all()
+    return redirect('/')
+
 # runs the app, always the last line
 if __name__ == '__main__':
     app.run()
