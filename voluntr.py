@@ -1,8 +1,7 @@
 from flask import Flask, request, redirect, render_template, flash, url_for
+from app import app, db
+from models.org import Organization, Opportunity
 
-# app setup
-app = Flask(__name__)
-app.config['DEBUG'] = True
 
 # Voluntr landing page - accessed at localhost:5000 for now
 @app.route("/", methods=['GET'])
@@ -18,7 +17,7 @@ def index():
 # /filters 
 # /org/login
 # /org/add
-# potentially on /org/opportunity (if editing an opportunity takes place there)
+# /org/edit
 # projects to look in for ideas: (web-caesar, user-signup, hello-flask, flicklist-flask)
 
 @app.route("/filters", methods=['GET'])
@@ -48,7 +47,7 @@ def org_login():
 @app.route("/org/opportunities", methods=['GET'])
 def manage_opportunities():
     '''displays all volunteer opportunities associated with an organization, with options to create
-     new opportunities, view/edit details, and delete available opportunities'''
+     new opportunities, or view an individual opportunity'''
     message = "<h1>Organizations can manage their available opportunities here</h1>"
     return message
 
@@ -58,12 +57,27 @@ def new_opportunity():
     message = "<h1>Organizations can add a new volunteer opportunity to the app here</h1>"
     return message
 
+@app.route("/org/edit", methods=['GET'])
+def edit_opportunity():
+    ''' displays a form pre-populated with data for a single opportunity, so the user can 
+    either edit individual fields and repost the opportunity, or remove the opportunity 
+    from the app '''
+    message = "<h1>Organizations can edit an individual opportunity, or remove it from the app here</h1>"
+    return message
+
+
 @app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
-    '''displays details about a specific volunteer opportunity, with option to edit fields, 
-     and a list volunteers interested in helping''' 
-    message = "<h1>Organizations can view details of a volunteer opportunity, as well as a list of volunteers interested in the opportunity here</h1>"
+    '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
+    message = "<h1>Organizations can view details of a volunteer opportunity here</h1>"
     return message
+
+
+@app.route("/drop_create", methods=['GET'])
+def dropCreate():
+    db.drop_all()
+    db.create_all()
+    return redirect('/')
 
 # runs the app, always the last line
 if __name__ == '__main__':
