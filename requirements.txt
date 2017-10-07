@@ -1,0 +1,8 @@
+# To generate a new / updated requirements.txt:
+# Make sure you are in your development environment and the project directory
+# Delete the existing requirements.txt file to be replaced
+# Install pipreqs by running $ pip install pipreqs
+# Once installed, run $ pipreqs ~/path/to/project
+
+Flask==0.12.2
+flask_sqlalchemy==2.3.1
