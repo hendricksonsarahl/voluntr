@@ -1,8 +1,7 @@
 from flask import Flask, request, redirect, render_template, flash, url_for
+from app import app, db
+from models.org import Organization, Opportunity
 
-# app setup
-app = Flask(__name__)
-app.config['DEBUG'] = True
 
 # Voluntr landing page - accessed at localhost:5000 for now
 @app.route("/", methods=['GET'])
@@ -64,6 +63,13 @@ def show_opportunity():
      and a list volunteers interested in helping''' 
     message = "<h1>Organizations can view details of a volunteer opportunity, as well as a list of volunteers interested in the opportunity here</h1>"
     return message
+
+
+@app.route("/drop_create", methods=['GET'])
+def dropCreate():
+    db.drop_all()
+    db.create_all()
+    return redirect('/')
 
 # runs the app, always the last line
 if __name__ == '__main__':
