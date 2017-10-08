@@ -90,7 +90,7 @@ Follow these steps to successfully run this app on your machine!
 
     - Create a new user account and database through phpMyAdmin
 
-        ![MAMP new user](./assets/mamp_new_user.jpg)
+        ![MAMP new user](./assets/mamp_new_user.png)
 
     - Make sure your username and password are exactly:
 
