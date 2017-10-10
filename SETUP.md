@@ -87,15 +87,17 @@ Follow these steps to successfully run this app on your machine!
 3. Setup a local mySQL database using [MAMP](https://www.mamp.info/en/downloads/)
 
     - Select the download for your OS (MAMP, <b>not</b> MAMP Pro)
+  
+    - Open MAMP, and press the Start Servers button. This should open the MAMP WebStart page in your web browser. 
 
-    - Create a new user account and database through phpMyAdmin
+    - Create a new user account and database through phpMyAdmin, found in the Tools menu.
 
         ![MAMP new user](./assets/mamp_new_user.png)
 
     - Make sure your username and password are exactly:
 
-		- username: voluntr
-		- password: voluntr
+    	- username: voluntr
+    	- password: voluntr
 
 ## 4. Run the app.
 
@@ -105,7 +107,7 @@ Follow these steps to successfully run this app on your machine!
     python voluntr.py
     ```
 
-    The app will now be running in your browser at [http://localhost:8000/](http://localhost:8000/)
+    The app will now be running in your browser at [http://localhost:5000/](http://localhost:5000/)
 
 
 ---
