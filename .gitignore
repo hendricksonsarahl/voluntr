@@ -102,3 +102,6 @@ ENV/
 
 # vs-code
 .vscode
+
+#misc
+.DS_Store

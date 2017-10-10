@@ -1,0 +1,40 @@
+body {
+  padding-bottom: 15px;
+}
+
+.panel .btn {
+  margin-right: 5px;
+}
+
+.bg-overlay-index {
+  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url("../images/diego-ph-254975.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  height: 450px;
+  padding: 30px 15px;
+}
+
+.opp-header {
+  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/full-group-volunteer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  height: 300px;
+  padding: 0px 15px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-outer {
+    margin: 0 10px;
+  }
+}
