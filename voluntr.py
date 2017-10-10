@@ -21,8 +21,7 @@ def index():
 @app.route("/filters", methods=['GET'])
 def set_filters():
     '''displays a form for volunteers to select their interests and availability'''
-    message = "<h1>Volunteers set search parameters here</h1>"
-    return message
+    return render_template('filters.html', title="Voluntr | Filters")
 
 @app.route("/opportunities", methods=['GET'])
 def opportunities():
