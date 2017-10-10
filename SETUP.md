@@ -96,8 +96,8 @@ Follow these steps to successfully run this app on your machine!
 
     - Make sure your username and password are exactly:
 
-    	- username: voluntr
-    	- password: voluntr
+      - username: voluntr
+      - password: voluntr
 
 ## 4. Run the app.
 
