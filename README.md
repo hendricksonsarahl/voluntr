@@ -4,7 +4,8 @@
 # Table of Contents
 1. [Elevator Pitch](#elevator-pitch)
 2. [Brief](#brief)
-3. [Wireframes and Page Flows](#wireframes-and-page-flows)
+3. [Wireframes](#wireframes)
+4. [Pageflow Diagrams](#pageflow-diagrams)
 4. [User Stories](user-stories)
 
 ## Elevator Pitch
@@ -42,11 +43,15 @@ We are targetting both Nonprofit Organizations and potential volunteers.
   </ul>
 </div>
 
-## Wireframes and Page Flows
+## Wireframes
 
 ![First Sprint Wireframe](./assets/voluntr_wireframe.jpg)
 
-[First Sprint Pageflow Diagram - coming soon!](https://placeholderurl.com)
+## Pageflow Diagrams
+
+![First Sprint Pageflow Diagrams page1](./assets/voluntr_page_flows.png)
+![First Sprint Pageflow Diagrams page2](./assets/voluntr_page_flows2.png)
+![First Sprint Pageflow Diagrams page3](./assets/voluntr_page_flows3.png)
 
 ## User Stories
 <div>
@@ -60,28 +65,25 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 
 <div>
 
-| As a Nonprofit, I can... | Goal |
+| As a Volunteer, I can... | Goal |
 | --- | --- |
-| register my organization on Voluntr. | MVP |
-| easily submit open volunteer opportunities. | MVP |
-| edit or delete a posted opportunity  | MVP  |
-| view the list of posted opportunities that are open  | MVP  |
-| view and edit profile settings for my organization, including name, contact email, and any other profile data  | MVP  |
-| log in to my existing account and logout when I'm done  | MVP  |
+| view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | MVP  |
+| set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | MVP  |
+| see that the results list includes opportunities that match my preferences  | MVP  |
+| get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP  |
+| remove a saved opportunity from my list  | MVP  |
 
 </div>
 
 <div>
 
-| As a Volunteer, I can... | Goal |
+| As a Nonprofit, I can... | Goal |
 | --- | --- |
-| see volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | MVP  |
-| set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | MVP  |
-| see that the results list includes opportunities that match my preferences  | MVP  |
-| get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP  |
+| register my organization on Voluntr. | MVP |
+| easily submit open volunteer opportunities. | MVP |
+| edit or remove a posted opportunity  | MVP  |
+| view the list of posted opportunities that are open  | MVP  |
+| view and edit profile settings for my organization, including name, contact email, and any other profile data  | MVP  |
+| log in to my existing account and logout when I'm done  | MVP  |
 
 </div>
-
-
-
-
