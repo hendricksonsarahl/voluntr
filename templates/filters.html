@@ -1,0 +1,62 @@
+{% extends "layouts/vol-layout.html" %}
+
+{% block contentInner %}
+  <div class="container-outer">
+    <div class="container">
+      <h2>My Search Preferences</h2>
+      <form>
+        <div class="form-group">
+          <label for="zipcode">Zip Code</label>
+          <input class="form-control" id="zipcode" type="text" placeholder="Zip Code" maxlength="5">
+        </div>
+        <div class="form-group">
+          <label for="distance">Distance (miles)</label>
+          <input id="distance" type="range" min="1" max="50" value="10">
+        </div>
+        <div class="form-group">
+          <label for="category">Show me opportunities related to:</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="education">Education
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="environment">Environment
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="poverty">Poverty
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="available">Available Days:&nbsp;</label>
+          <label class="checkbox-inline">
+            <input id="sun" type="checkbox" value="sunday"> Sun
+          </label>
+          <label class="checkbox-inline">
+            <input id="mon" type="checkbox" value="monday"> Mon
+          </label>
+          <label class="checkbox-inline">
+            <input id="tue" type="checkbox" value="tuesday"> Tue
+          </label>
+          <label class="checkbox-inline">
+            <input id="wed" type="checkbox" value="wednesday"> Wed
+          </label>
+          <label class="checkbox-inline">
+            <input id="thu" type="checkbox" value="thursday"> Thu
+          </label>
+          <label class="checkbox-inline">
+            <input id="fri" type="checkbox" value="friday"> Fri
+          </label>
+          <label class="checkbox-inline">
+            <input id="sat" type="checkbox" value="saturday"> Sat
+          </label>
+        </div>
+        <div class="text-center"><a class="btn btn-primary" href="./opportunities" role="button">Browse Opportunities</a></div>
+      </form>
+    </div>
+  </div>
+{% endblock %}     

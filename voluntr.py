@@ -9,9 +9,7 @@ def index():
     ''' displays a landing page that invites the user to interact 
     with the app as either a individual volunteer or an organization/non-profit 
     representative '''
-    # TODO - replace message with landing page template
-    message = "<h1>Welcome to Voluntr!</h1>"
-    return message
+    return render_template('index.html', title="Voluntr")
 
 # TODO - post methods to handle form data are needed on the following routes: 
 # /filters 
@@ -23,8 +21,7 @@ def index():
 @app.route("/filters", methods=['GET'])
 def set_filters():
     '''displays a form for volunteers to select their interests and availability'''
-    message = "<h1>Volunteers set search parameters here</h1>"
-    return message
+    return render_template('filters.html', title="Voluntr | Filters")
 
 @app.route("/opportunities", methods=['GET'])
 def opportunities():
