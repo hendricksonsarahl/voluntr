@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <div class="container-outer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <a class="pull-right" href="./index.html">Return to homepage</a>
+        </div>
+      </div>
+      <div class="row">
+        <h2>Organization Sign-Up</h2>
+      </div>
+      <div class="row">
+        <form>
+          <div class="form-group">
+            <label for="name">Organization Name</label>
+            <input class="form-control" id="name" type="text" maxlength="120">
+          </div>
+          <div class="form-group">
+            <label for="contactName">Contact Name</label>
+            <input class="form-control" id="name" type="text" maxlength="120">
+          </div>
+          <div class="form-group">
+            <label for="email">Contact Email</label>
+            <p class="help-block">This email is for your interactions with Voluntr, and won't be posted publicly.</p>
+            <input class="form-control" id="email" type="email" maxlength="120">
+          </div>
+          <div class="text-center">
+            <a class="btn btn-primary" href="./opportunities" role="button">Submit</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %} 

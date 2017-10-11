@@ -36,15 +36,13 @@ def display_matches():
 @app.route("/org/login", methods=['GET'])
 def org_login():
     '''displays a form for organizations to signup or login to Voluntr'''
-    message = "<h1>Organizations can click a button to signup or login here</h1>"
-    return message
+    return render_template('organization/login.html', title="Voluntr | Log In")
 
 @app.route("/org/opportunities", methods=['GET'])
 def manage_opportunities():
     '''displays all volunteer opportunities associated with an organization, with options to create
      new opportunities, or view an individual opportunity'''
-    message = "<h1>Organizations can manage their available opportunities here</h1>"
-    return message
+    return render_template('organization/opportunities.html', title="Voluntr | Opportunities")
 
 @app.route("/org/add", methods=['GET'])
 def new_opportunity():
