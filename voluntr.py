@@ -31,8 +31,7 @@ def opportunities():
 @app.route("/matches", methods=['GET'])
 def display_matches():
     '''lists all opportunities that a volunteer user saved'''
-    message = "<h1>Volunteers can view their list of saved opportunities here</h1>"
-    return message
+    return render_template('matches.html', title="Voluntr | Saved Opportunities")
 
 @app.route("/org/login", methods=['GET'])
 def org_login():
