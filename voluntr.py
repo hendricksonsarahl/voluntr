@@ -21,17 +21,17 @@ def index():
 @app.route("/filters", methods=['GET'])
 def set_filters():
     '''displays a form for volunteers to select their interests and availability'''
-    return render_template('filters.html', title="Voluntr | Filters")
+    return render_template('volunteer/filters.html', title="Voluntr | Filters")
 
 @app.route("/opportunities", methods=['GET'])
 def opportunities():
     '''display search results to volunteer'''
-    return render_template('opportunities.html', title="Voluntr | Browse Opportunities")
+    return render_template('volunteer/opportunities.html', title="Voluntr | Browse Opportunities")
 
 @app.route("/matches", methods=['GET'])
 def display_matches():
     '''lists all opportunities that a volunteer user saved'''
-    return render_template('matches.html', title="Voluntr | Saved Opportunities")
+    return render_template('volunteer/matches.html', title="Voluntr | Saved Opportunities")
 
 @app.route("/org/login", methods=['GET'])
 def org_login():
