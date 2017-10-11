@@ -2,6 +2,13 @@ from flask import Flask, request, redirect, render_template, flash, url_for
 from app import app, db
 from models.org import Organization, Opportunity
 
+# TODO - post methods to handle form data are needed on the following routes: 
+# /filters 
+# /org/login
+# /org/add
+# /org/edit
+# projects to look in for ideas: (web-caesar, user-signup, hello-flask, flicklist-flask)
+
 
 # Voluntr landing page - accessed at localhost:5000 for now
 @app.route("/", methods=['GET'])
@@ -10,13 +17,6 @@ def index():
     with the app as either a individual volunteer or an organization/non-profit 
     representative '''
     return render_template('index.html', title="Voluntr")
-
-# TODO - post methods to handle form data are needed on the following routes: 
-# /filters 
-# /org/login
-# /org/add
-# /org/edit
-# projects to look in for ideas: (web-caesar, user-signup, hello-flask, flicklist-flask)
 
 @app.route("/filters", methods=['GET'])
 def set_filters():
