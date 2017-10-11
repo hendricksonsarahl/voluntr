@@ -47,8 +47,7 @@ def manage_opportunities():
 @app.route("/org/add", methods=['GET'])
 def new_opportunity():
     '''displays a form for organizations to add a new volunteer opportunity'''
-    message = "<h1>Organizations can add a new volunteer opportunity to the app here</h1>"
-    return message
+    return render_template('organization/add.html', title="Voluntr | Add Opportunity")
 
 @app.route("/org/edit", methods=['GET'])
 def edit_opportunity():

@@ -1,0 +1,89 @@
+{% extends "layouts/org-layout.html" %}
+
+{% block contentInner %}
+  <div class="container-outer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="row">
+            <h2>Post a New Opportunity</h2>
+          </div>
+          <div class="row">
+            <form>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" id="title" type="text" maxlength="120">
+              </div>
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input class="form-control" id="date" type="date">
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label for="startTime">Start Time</label>
+                    <input class="form-control" id="startTime" type="time" value="12:00">
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label for="endTime">End Time</label>
+                    <input class="form-control" id="endTime" type="time" value="12:30">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="address">Street Address</label>
+                <input class="form-control" id="address" type="text" maxlength="120">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <label for="city">City</label>
+                    <input class="form-control" id="city" type="text" maxlength="120">
+                  </div>
+                  <div class="col-xs-4">
+                    <label for="state">State</label>
+                    <input class="form-control" id="state" type="text" maxlength="2">
+                  </div>
+                  <div class="col-xs-4">
+                    <label for="zipCode">Zip Code</label>
+                    <input class="form-control" id="zipCode" type="text" maxlength="5">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <p class="help-block">Choose the one category that best fits this opportunity.</p>
+                <div class="radio">
+                  <label>
+                    <input id="education" type="radio" name="category" value="education" checked="">Education
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input id="environment" type="radio" name="category" value="environment">Environment
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input id="poverty" type="radio" name="category" value="poverty">Poverty
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" maxlength="1000" rows="5"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="nextSteps">Next Steps</label>
+                <textarea class="form-control" id="nextSteps" maxlength="1000" rows="5"></textarea>
+              </div>
+              <div class="text-center">
+                <a class="btn btn-primary" href="./opportunities" role="button">Submit</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %} 
