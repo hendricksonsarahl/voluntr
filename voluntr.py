@@ -26,8 +26,7 @@ def set_filters():
 @app.route("/opportunities", methods=['GET'])
 def opportunities():
     '''display search results to volunteer'''
-    message = "<h1>Volunteers can view opportunities that match their interests here</h1>"
-    return message
+    return render_template('opportunities.html', title="Voluntr | Browse Opportunities")
 
 @app.route("/matches", methods=['GET'])
 def display_matches():
