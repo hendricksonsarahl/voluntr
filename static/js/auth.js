@@ -1,4 +1,52 @@
+// TODO: display meaningful feedback for errors outside of the console
+function handleError(err) {
+  console.log("There's been an error: ", err);
+}
+
+// TODO: Finish this function and call it on successful sign-in.
 function onSignIn(googleUser) {
+
+  // Build an object with the data we wish to send to server
+  var profile = googleUser.getBasicProfile();
+  var id_token = googleUser.getAuthResponse().id_token;
+  var userDataToSend = {
+    contactName: profile.getName(),
+    email: profile.getEmail(),
+    idtoken: id_token
+  }
+
+  // build a fetch request to POST user's Google data to server for verification:
+  var requestOptions = {
+    method: 'POST',
+    body: JSON.stringify(userDataToSend)
+  };
+
+  requestOptions.headers = new Headers;
+  requestOptions.headers.append('Content-Type', 'application/json');
+
+  // TODO: set this:
+  var authUrl = '';
+
+  // Send the request, and respond to both successful and failure outcomes:
+  fetch(authUrl, requestOptions)
+    .then(function(response) {
+      if (response.status >= 300) {
+        handleError(response);
+      } else {
+        response.json()
+          .then(function(responseData) {
+
+            // TODO: Create an actual response here. Should request more data from new users, and redirect to logged-in view for returning users.
+            console.log('Success! Server responded with: ', responseData);
+          })
+          .catch(handleError);
+      }
+    })
+    .catch(handleError);
+}
+
+// TODO: remove this once the above function works
+function onSignInTemp(googleUser) {
 
   // Useful data for client-side scripts:
   var profile = googleUser.getBasicProfile();
@@ -11,7 +59,7 @@ function onSignIn(googleUser) {
   console.log("ID Token: " + id_token);
 }
 
-//This function isn't actually being called at the moment
+//TODO: This function isn't actually being called at the moment. Do we need it?
 function signinCallback(authResult) {
   if (authResult['access_token']) {
 
