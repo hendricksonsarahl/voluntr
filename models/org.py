@@ -3,7 +3,7 @@ from datetime import datetime
 
 class Organization(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    orgName = db.Column(db.String(120) unique=True)
+    orgName = db.Column(db.String(120), unique=True)
     email = db.Column(db.String(120), unique=True)
     url = db.Column(db.String(200))
     contactName = db.Column(db.String(50))
