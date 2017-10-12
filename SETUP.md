@@ -110,6 +110,8 @@ Follow these steps to successfully run this app on your machine!
     The app will now be running in your browser at [http://localhost:5000/](http://localhost:5000/)
 
 
+### Once you are ready to code, please see our [guidelines for contributing](https://github.com/hendricksonsarahl/voluntr/blob/master/CONTRIBUTING.md)
+
 ---
 
 For problems related to these instructions or bugs in our code, please [open a new issue](https://github.com/hendricksonsarahl/voluntr/issues/new)

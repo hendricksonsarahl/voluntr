@@ -2,6 +2,8 @@
 
 When contributing to the [Voluntr repository](https://github.com/hendricksonsarahl/voluntr), please discuss the change and track your notes and progress via [issues](https://github.com/hendricksonsarahl/voluntr/issues). Please assign yourself to any issue you are working on, whether created by you or someone else.
 
+If you need to get the project running on your machine, first see our [setup documentation](https://github.com/hendricksonsarahl/voluntr/blob/master/SETUP.md).
+
 Please see the [Code of Conduct](#code-of-conduct) included therein and follow it in all interactions with the Voluntr team.
 
 # Table of Contents
