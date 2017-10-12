@@ -1,42 +1,47 @@
 from app import db
+from datetime import datetime
 
 class Organization(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
+    orgName = db.Column(db.String(120) unique=True)
     email = db.Column(db.String(120), unique=True)
-    address = db.Column(db.String(200))
-    Opportunities = db.relationship('Opportunity', backref='owner')
+    url = db.Column(db.String(200))
+    contactName = db.Column(db.String(50))
+    opportunities = db.relationship('Opportunity', backref='owner')
 
-    def __init__(self, name, email, address):
+    def __init__(self, orgName, email, url, contactName):
+        self.orgName = orgName
         self.email = email
-        self.address = address
-        self.name = name
+        self.url = url
+        self.contactName = contactName
 
     def __repr__(self):
-        return '<Organization %r>' % self.email
+        return '<Organization %r>' % self.orgName
 
 class Opportunity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
-    location = db.Column(db.String(200))
+    address = db.Column(db.String(50))
+    city = db.Column(db.String(25))
+    state = db.Column(db.String(2))
+    zipcode = db.Column(db.String(5))
     description = db.Column(db.String(1000))
-    nextSteps = db.Column(db.String(1000))
-    date = db.Column(db.String(20))
-    startTime = db.Column(db.String(20))
-    endTime = db.Column(db.String(20))
+    startDateTime = db.Column(db.DateTime)
     category = db.Column(db.String(35))
+    nextSteps = db.Column(db.String(1000))
     owner_id = db.Column(db.Integer, db.ForeignKey('organization.id'))
 
-    def __init__(self, title, owner, location, description, nextSteps, date, startTime, endTime, category):
+    def __init__(self, title, address, city, state, zipcode, description, startDateTime, category, nextSteps, owner):
         self.title = title
-        self.owner = owner
-        self.location = location
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zipcode = zipcode
         self.description = description
-        self.nextSteps = nextSteps
-        self.date = date
-        self.startTime =startTime
-        self.endTime = endTime
+        self.startDateTime = startDateTime
         self.category = category
+        self.nextSteps = nextSteps
+        self.owner = owner
 
     def __repr__(self):
         return '<Opportunity %r>' % self.title
