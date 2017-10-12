@@ -1,11 +1,12 @@
 {% extends "layouts/base.html" %}
 
+{% block headContent %}
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+{% endblock %}
+
 {% block content %}
-<head>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-</head>
 <body>
   <div class="container-outer">
     <div class="container">
@@ -56,3 +57,7 @@
 
 </body>
 {% endblock %} 
+
+{% block scriptContent %}
+  <script src="/static/js/auth.js"></script>
+{% endblock %}
