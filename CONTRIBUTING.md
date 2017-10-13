@@ -61,6 +61,10 @@ In example version **1.2.3**: 3 is the Patch Number, 2 is the Minor Number and 1
 
 * Increment the **major version number** when you significantly overhaul the user interface, or rewrite all internals. E.g.: “Toolbars use too much screen estate. The UI is now provided through touch gestures only” – such a change would break existing workflows.
 
+Note that incrementing the minor or major version numbers will reset the numbers that follow to 0. 
+
+For example:
+If our version is 0.3.0 and patch #25 is added, our version number changes from 0.3.0 -> 0.3.1. Once minor update #28 is added, the version number changes from 0.3.1 -> 0.4.0.
 
 ## Code of Conduct
 
