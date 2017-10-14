@@ -1,0 +1,93 @@
+{% extends "layouts/org-layout.html" %}
+
+{% block contentInner %}
+  <div class="container-outer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="row">
+            <h2>Edit Opportunity Post</h2>
+          </div>
+          <div class="row">
+            <form>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" id="title" type="text" maxlength="120" value="Existing title">
+              </div>
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input class="form-control" id="date" type="date" value="1900-01-01">
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label for="startTime">Start Time</label>
+                    <input class="form-control" id="startTime" type="time" value="12:00">
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="form-group">
+                    <label for="endTime">End Time</label>
+                    <input class="form-control" id="endTime" type="time" value="12:30">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="address">Street Address</label>
+                <input class="form-control" id="address" type="text" maxlength="120" value="Existing address">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <label for="city">City</label>
+                    <input class="form-control" id="city" type="text" maxlength="120" value="Existing City">
+                  </div>
+                  <div class="col-xs-4">
+                    <label for="state">State</label>
+                    <input class="form-control" id="state" type="text" maxlength="2" value="XX">
+                  </div>
+                  <div class="col-xs-4">
+                    <label for="zipCode">Zip Code</label>
+                    <input class="form-control" id="zipCode" type="text" maxlength="5" value="00000">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <p class="help-block">Choose the one category that best fits this opportunity.</p>
+                <div class="radio">
+                  <label>
+                    <input id="education" type="radio" name="category" value="education">Education
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input id="environment" type="radio" name="category" value="environment" checked="">Environment
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input id="poverty" type="radio" name="category" value="poverty">Poverty
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" maxlength="1000" rows="5">Existing description</textarea>
+              </div>
+              <div class="form-group">
+                <label for="nextSteps">Next Steps</label>
+                <textarea class="form-control" id="nextSteps" maxlength="1000" rows="5" >Existing next steps</textarea>
+              </div>
+              <div class="text-center">
+                <a class="btn btn-primary" href="./opportunities" role="button">Update</a>
+                <a class="btn btn-danger" href="./opportunities" role="button">Delete Post&nbsp;
+                  <div class="glyphicon glyphicon-remove-sign"></div>
+                </a>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %} 
