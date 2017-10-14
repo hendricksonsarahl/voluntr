@@ -1,36 +1,33 @@
 {% extends "layouts/base.html" %}
 
+{% block headContent %}
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+{% endblock %}
+
 {% block content %}
-  <div class="container-outer">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <a class="pull-right" href="./index.html">Return to homepage</a>
-        </div>
-      </div>
-      <div class="row">
-        <h2>Organization Sign-Up</h2>
-      </div>
-      <div class="row">
-        <form>
-          <div class="form-group">
-            <label for="name">Organization Name</label>
-            <input class="form-control" id="name" type="text" maxlength="120">
-          </div>
-          <div class="form-group">
-            <label for="contactName">Contact Name</label>
-            <input class="form-control" id="name" type="text" maxlength="120">
-          </div>
-          <div class="form-group">
-            <label for="email">Contact Email</label>
-            <p class="help-block">This email is for your interactions with Voluntr, and won't be posted publicly.</p>
-            <input class="form-control" id="email" type="email" maxlength="120">
-          </div>
-          <div class="text-center">
-            <a class="btn btn-primary" href="./opportunities" role="button">Submit</a>
-          </div>
-        </form>
+
+<div class="container-outer">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <a class="pull-right" href="/">Return to homepage</a>
       </div>
     </div>
+    <div class="row">
+      <h2>Organization Sign-Up</h2>
+    </div>
+
+    <!-- Google Sign-In button, controlled from Google's platform.js script -->
+    <div class="g-signin2" data-onsuccess="onSignInTemp" redirect-uri="signinCallback" data-theme="dark"></div>
+    <a href="/" id="signOut">Sign out</a>
   </div>
+</div>
+
+</body>
 {% endblock %} 
+
+{% block scriptContent %}
+  <script src="/static/js/auth.js"></script>
+{% endblock %}
