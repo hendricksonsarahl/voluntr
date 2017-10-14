@@ -26,20 +26,20 @@ We are using a Feature Branch Workflow as defined in this [Atlassian Guide](http
 - Make sure your local Master branch is up to date with the remote Master branch
 
 ```sh
-  	git pull
+  	$ git pull
 ```
 - Create a new branch for the feature or issue you are working on OR switch to your development branch
 
 ```sh
-	git branch landingpage
+	$ git branch landingpage
 ```
 ```sh
-	git checkout landingpage
+	$ git checkout landingpage
 ```
 - Commit your changes as you make progress and when your feature is complete, push your branch to the remote repository
 
 ```sh
-	git push origin landingpage
+	$ git push origin landingpage
 ```
 - Go to the [pull requests](https://github.com/hendricksonsarahl/voluntr/pulls) page in the Voluntr repo and create a new pull request by selecting your newly updated remote branch
 
@@ -70,9 +70,48 @@ If our version is 0.3.0 and patch #25 is added, our version number changes from 
 ### Semantic Tagging with Git
 **Why tag?:** to mark specific points in history as being important. Using this process, we will be able to give a specific tag to a reviewer and they will be able to check out the code at the time of that commit. We will be able to continue working on the next release and it won't alter the reviewer's copy.
 
-**How to tag:** Git uses two main types of tags and we will be using annotated tags. Annotated tags contain the tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG).
+**How to tag:** Git uses two main types of tags and we will be using annotated tags. Annotated tags contain the tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG). To create a new annotated tag:
 
-**When to tag:** We will not be tagging every commit as we go while in the build phase. Prior to releasing our code for review, we will have a brief standup as a team to review our commit history and determine which commit best represents our release
+```sh
+	$ git tag -a v1.4 -m "my version 1.4"
+```
+To list all tags:
+
+```sh
+	$ git tag
+v0.1
+v1.3
+v1.4
+```
+To show the full annotations associated with tags:
+
+```sh
+	$ git show v1.4
+tag v1.4
+Tagger: Ben Straub <ben@straub.cc>
+Date:   Sat May 3 20:19:12 2014 -0700
+
+my version 1.4
+
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+```
+
+**When to tag:** We will not be tagging every commit as we go while in the build phase. Prior to releasing our code for review, we will have a brief standup as a team to review our commit history and determine which commit best represents our release.
+
+To go back and tag the project at v1.2, the “updated testplan” commit, you specify the commit checksum (or part of it) at the end of the command:
+
+```sh
+	$ git tag -a v1.2 9fceb02
+```
+**How to share:** By default, the git push command doesn’t transfer tags to remote servers. You will have to explicitly push tags to a shared server after you have created them. This process is just like sharing remote branches – you can run:
+
+```sh
+	$ git push origin <tagname>
+```
 
 Please refer to the [gitscm.com documentation](https://git-scm.com/book/en/v2/Git-Basics-Tagging) for more information. 
 
@@ -147,6 +186,3 @@ members of the project's leadership.
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
 available at [http://contributor-covenant.org/version/1/4][version]
-
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/4/
