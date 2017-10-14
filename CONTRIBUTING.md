@@ -52,6 +52,7 @@ We are using a Feature Branch Workflow as defined in this [Atlassian Guide](http
 
 
 The versioning scheme we use is [SemVer](http://semver.org/).
+Semantic tagging in git based on [gitscm.com documentation](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
 
 In example version **1.2.3**: 3 is the Patch Number, 2 is the Minor Number and 1 is the Major Number
 
@@ -65,6 +66,15 @@ Note that incrementing the minor or major version numbers will reset the numbers
 
 For example:
 If our version is 0.3.0 and patch #25 is added, our version number changes from 0.3.0 -> 0.3.1. Once minor update #28 is added, the version number changes from 0.3.1 -> 0.4.0.
+
+### Semantic Tagging with Git
+**Why tag?:** to mark specific points in history as being important. Using this process, we will be able to give a specific tag to a reviewer and they will be able to check out the code at the time of that commit. We will be able to continue working on the next release and it won't alter the reviewer's copy.
+
+**How to tag:** Git uses two main types of tags and we will be using annotated tags. Annotated tags contain the tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG).
+
+**When to tag:** We will not be tagging every commit as we go while in the build phase. Prior to releasing our code for review, we will have a brief standup as a team to review our commit history and determine which commit best represents our release
+
+Please refer to the [gitscm.com documentation](https://git-scm.com/book/en/v2/Git-Basics-Tagging) for more information. 
 
 ## Code of Conduct
 
