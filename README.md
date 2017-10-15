@@ -95,11 +95,16 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 We will use manual testing to verify our scenarios, and document the results here:
 
 <div>
+
 | As a new visitor, I can... | Status |
 | --- | --- |
 | discover the app and learn about it's purpose and options | Passing :white_check_mark: |
 | easily find the relevant half of the app to use (volunteer vs organization). | Passing :white_check_mark: |
-| --- | --- |
+
+</div>
+
+<div>
+
 | As a Volunteer, I can... | Status |
 | --- | --- |
 | view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | Not Passing :red_circle: |
@@ -107,7 +112,11 @@ We will use manual testing to verify our scenarios, and document the results her
 | see that the results list includes opportunities that match my preferences  | Not Passing :red_circle: |
 | get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | Not Passing :red_circle: |
 | remove a saved opportunity from my list  | Not Passing :red_circle: |
-| --- | --- |
+
+</div>
+
+<div>
+
 | As a Nonprofit, I can... | Status |
 | --- | --- |
 | register my organization on Voluntr. | Not Passing :red_circle: |
@@ -116,6 +125,7 @@ We will use manual testing to verify our scenarios, and document the results her
 | view the list of posted opportunities that are open  | Not Passing :red_circle: |
 | view and edit profile settings for my organization, including name, contact email, and any other profile data  | Not Passing :red_circle: |
 | log in to my existing account and logout when I'm done  | Not Passing :red_circle: |
+
 </div>
 
-Our stretch goal will be to include some unit tests for key elements of the project.  
+Our stretch goal will be to include some unit and acceptance tests using pytest and pytest-BDD.  
