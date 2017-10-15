@@ -105,3 +105,6 @@ ENV/
 
 #misc
 .DS_Store
+
+#node stuff
+node_modules/
