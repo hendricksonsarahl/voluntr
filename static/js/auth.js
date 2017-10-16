@@ -91,10 +91,24 @@ function signOut(event) {
   );
 }
 
-// Code in this anonymous function is immediately invoked once this script loads:
-(function() {
+//don't run this outside of a browser environment (e.g., when testing in Node)
+if(typeof window !== 'undefined') {
 
-  //when the sign-out link is clicked, the signOut function is executed
-  var signOutLink = document.getElementById('signOut');
-  signOutLink.addEventListener('click', signOut);
-}());
+  // Code in this anonymous function is immediately invoked once this script loads:
+  (function() {
+
+    //when the sign-out link is clicked, the signOut function is executed
+    var signOutLink = document.getElementById('signOut');
+    signOutLink.addEventListener('click', signOut);
+  }());
+}
+  
+// Export all named, top-level functions for use in unit tests.
+// The leading if statement should prevent this block from running in the browser.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    handleError: handleError,
+    onSignIn: onSignIn,
+    signOut: signOut
+  };
+}

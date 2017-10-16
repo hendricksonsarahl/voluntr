@@ -1,11 +1,4 @@
-var test = require('tape-catch');
+// Trivial test to check testing environment
 
-function returnHello() {
-  return 'hello';
-}
-
-test('sample test', function (t) {  
-  var expected = 'hello'
-  t.equal(expected, returnHello());
-  t.end();
-});
+var tap = require('tap');
+tap.pass('The sample test passed!');
