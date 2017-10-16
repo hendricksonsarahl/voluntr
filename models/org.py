@@ -43,7 +43,7 @@ class Opportunity(db.Model):
         self.duration = duration
         self.category = category
         self.nextSteps = nextSteps
-        self.owner = owner
+        self.owner_id = owner
 
     def __repr__(self):
         return '<Opportunity %r>' % self.title

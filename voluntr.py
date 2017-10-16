@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template, flash, url_for
 from app import app, db
 from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
+from csvdata.oppscsv import add_opportunities
 
 # TODO - post methods to handle form data are needed on the following routes: 
 # /filters 
@@ -67,7 +68,8 @@ def dropCreate():
     db.drop_all()
     db.create_all()
     add_orgs()
-
+    add_opportunities()
+    
     return redirect('/')
 
 # runs the app, always the last line
