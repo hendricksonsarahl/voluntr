@@ -3,7 +3,7 @@ var jsdom = require("jsdom");
 var JSDOM = jsdom.JSDOM;
 
 // import browser code to be tested
-var auth = require("../../static/js/auth.js");
+var frontEndCode = require("../../static/js/base.js");
 var sourceUrl = "http://localhost:5000/org/login";
 
 //collect tests that require DOM access here:
@@ -25,7 +25,7 @@ tap.test("Log-in page", function(test) {
 
     //invoke function being tested
     var stringInput = 'test string input';
-    auth.displayError(stringInput);
+    frontEndCode.displayError(stringInput);
 
     test.ok(document.querySelector('.alert'),
       'After invoking displayError with string, DOM includes an alert div'
@@ -43,7 +43,7 @@ tap.test("Log-in page", function(test) {
 
     //invoke function being tested
     var errorInput = new Error('test error object input');
-    auth.displayError(errorInput);
+    frontEndCode.displayError(errorInput);
 
     test.ok(document.querySelector('.alert'),
       'After invoking displayError with error object, DOM includes an alert div'

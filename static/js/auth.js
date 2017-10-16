@@ -1,23 +1,3 @@
-// display error messages as alert elements in browser
-function displayError(message) {
-
-  //allow for direct input of error objects:
-  if (message instanceof Error) {
-    message = message.message;
-  }
-
-  //select a container for the alert
-  var alertContainer = document.querySelector(".alert-container");
-
-  //build a new DOM element
-  var alert = document.createElement("div");
-  alert.className = `alert alert-danger alert-dismissible fade in`;
-  alert.innerHTML = `<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Error: </strong>${message}`;
-
-  //append the new DOM element to the container
-  alertContainer.appendChild(alert);
-}
-
 // TODO: Finish this function and call it on successful sign-in.
 function onSignIn(googleUser) {
   // Build an object with the data we wish to send to server
@@ -113,7 +93,6 @@ if (typeof window !== "undefined") {
 // The leading if statement should prevent this block from running in the browser.
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
-    displayError: displayError,
     onSignIn: onSignIn,
     signOut: signOut
   };
