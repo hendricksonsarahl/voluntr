@@ -1,0 +1,24 @@
+{
+  "name": "voluntr",
+  "version": "0.0.1",
+  "description": "A web app that provides a simple platform for nonprofits to connect with potential volunteers",
+  "scripts": {
+    "test": "tape 'tests/**/*.test.js' | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hendricksonsarahl/voluntr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/hendricksonsarahl/voluntr/issues"
+  },
+  "homepage": "https://github.com/hendricksonsarahl/voluntr#readme",
+  "devDependencies": {
+    "jsdom": "^11.3.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0",
+    "tape-catch": "^1.0.6"
+  }
+}
