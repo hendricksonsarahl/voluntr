@@ -116,31 +116,25 @@ To run the JavaScript unit tests,
 
 1. Install Node.js. Installer files are available for many platforms at [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
-2. Install [Tape](https://github.com/substack/tape), a simple JavaScript-testing command line utility. From the command line, run:
-
-	```
-	npm install -g tape
-	```
-
-3. From the `voluntr` project directory, locally install the project dependencies with:
+2. From the `voluntr` project directory, locally install the project dependencies with:
 
 	```
 	npm install
 	```
 
-4. If it isn't already running, run the app with: 
+3. If it isn't already running, run the app with: 
 
   ```sh
   python voluntr.py
   ```
 
-5.  Run the existing unit tests with:
+4.  Run the existing unit tests with:
 
 	```
 	npm test
 	```
 
-6.  Write new test files in the `tests/js` folder.	
+5.  Write new test files in the `tests/js` folder.	
 
 
 ### Once you are ready to code, please see our [guidelines for contributing](https://github.com/hendricksonsarahl/voluntr/blob/master/CONTRIBUTING.md)

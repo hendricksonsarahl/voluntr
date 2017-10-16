@@ -103,7 +103,7 @@ if(typeof window !== 'undefined') {
   }());
 }
   
-// Export all functions for use in unit tests.
+// Export all named, top-level functions for use in unit tests.
 // The leading if statement should prevent this block from running in the browser.
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
