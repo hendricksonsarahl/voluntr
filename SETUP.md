@@ -127,12 +127,20 @@ To run the JavaScript unit tests,
 	```
 	npm install
 	```
-4.  Run the existing unit tests with:
+
+4. If it isn't already running, run the app with: 
+
+  ```sh
+  python voluntr.py
+  ```
+
+5.  Run the existing unit tests with:
 
 	```
 	npm test
 	```
-5.  Write new test files in the `tests/js` folder.	
+
+6.  Write new test files in the `tests/js` folder.	
 
 
 ### Once you are ready to code, please see our [guidelines for contributing](https://github.com/hendricksonsarahl/voluntr/blob/master/CONTRIBUTING.md)
