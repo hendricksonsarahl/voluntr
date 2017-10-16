@@ -41,4 +41,6 @@ body {
   position: relative;
 }
 
-
+.alert-container .alert {
+  margin: 10px;
+}

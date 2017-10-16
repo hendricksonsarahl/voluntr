@@ -109,6 +109,33 @@ Follow these steps to successfully run this app on your machine!
 
     The app will now be running in your browser at [http://localhost:5000/](http://localhost:5000/)
 
+## 5. Testing.
+### JavaScript
+
+To run the JavaScript unit tests, 
+
+1. Install Node.js. Installer files are available for many platforms at [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+
+2. From the `voluntr` project directory, locally install the project dependencies with:
+
+	```
+	npm install
+	```
+
+3. If it isn't already running, run the app with: 
+
+  ```sh
+  python voluntr.py
+  ```
+
+4.  Run the existing unit tests with:
+
+	```
+	npm test
+	```
+
+5.  Write new test files in the `tests/js` folder.	
+
 
 ### Once you are ready to code, please see our [guidelines for contributing](https://github.com/hendricksonsarahl/voluntr/blob/master/CONTRIBUTING.md)
 
