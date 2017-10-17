@@ -73,7 +73,7 @@ def login():
 @app.route("/org/signup", methods=['POST'])
 def signup():
     '''process a sign-up attempt with an Oauth token and some form data'''
-    print (']nSignup route received data: ', request)
+    print ('\nSignup route received data: ', request)
     return redirect('/')
 
 @app.route("/drop_create", methods=['GET'])
