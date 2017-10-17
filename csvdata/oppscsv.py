@@ -18,14 +18,18 @@ def add_opportunities():
         state = row[3]
         zip_code = row[4]
         description = row[5]
-        start_time = datetime.datetime(2017, 10, 31, 23, 30)
-        if row[7] == "null":
+        if row[6] == "null":
+            start_time = datetime.datetime(2100, 1, 1, 23, 30)
+        else:
+            start_time = datetime.datetime(int(row[6]), int(row[7]), int(row[8]), int(row[9]), int(row[10]))
+        if row[11] == "null":
             duration = 0
         else:
-            duration = int(row[7])
-        category = row[8]
-        next_steps = row[9]
-        owner = int(row[10])
+            duration = int(row[11])
+        cat_class = row[12]
+        category = row[13]
+        next_steps = row[14]
+        owner = int(row[15])
         new_opp = Opportunity(title, 
                                 address, 
                                 city, 
@@ -34,6 +38,7 @@ def add_opportunities():
                                 description, 
                                 start_time, 
                                 duration, 
+                                cat_class,
                                 category, 
                                 next_steps, 
                                 owner)
