@@ -7,7 +7,7 @@ var frontEndCode = require("../../static/js/base.js");
 var sourceUrl = "http://localhost:5000/org/login";
 
 //collect tests that require DOM access here:
-tap.test("Log-in page", function(test) {
+tap.test("displayError function", function(test) {
 
   // JSDOM will create a DOM object from the HTML at the provided URL.
   // This allows us to simulate a browser environment.
@@ -33,9 +33,7 @@ tap.test("Log-in page", function(test) {
 
     var displayedMessage = document.querySelector('.alert').lastChild.nodeValue;
     test.equal(stringInput, displayedMessage, 'Alert div displays message passed as string to displayError');
-    
-    //always include t.end() in a collection of child tests
-    // test.end();
+
   });
 
   JSDOM.fromURL(sourceUrl).then(dom => {

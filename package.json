@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A web app that provides a simple platform for nonprofits to connect with potential volunteers",
   "scripts": {
-    "test": "tap 'tests/**/*.test.js' | tap-mocha-reporter spec"
+    "test": "tap 'tests/**/*.test.js' --cov | tap-mocha-reporter spec"
   },
   "repository": {
     "type": "git",
