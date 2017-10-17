@@ -63,6 +63,19 @@ def show_opportunity():
     '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
     return render_template('organization/preview.html', title="Voluntr | Preview Post")
 
+@app.route("/org/login", methods=['POST'])
+def login():
+    '''process a login attempt via OAuth token'''
+    print ('\nLogin route received data: ', request.get_json())
+    print ('\nOAuth token to parse: ', request.get_json()["authToken"])
+    return redirect('/')
+
+@app.route("/org/signup", methods=['POST'])
+def signup():
+    '''process a sign-up attempt with an Oauth token and some form data'''
+    print ('Signup route received data: ', request)
+    return redirect('/')
+
 @app.route("/drop_create", methods=['GET'])
 def dropCreate():
     db.drop_all()
