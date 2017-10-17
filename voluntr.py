@@ -66,9 +66,10 @@ def show_opportunity():
 @app.route("/org/login", methods=['POST'])
 def login():
     '''process a login attempt via OAuth token'''
+    token = request.get_json()["authToken"]
     print ('\nLogin route received data: ', request.get_json())
-    print ('\nOAuth token to parse: ', request.get_json()["authToken"])
-    return json.jsonify({"message": "All is well.", "token": request.get_json()["authToken"]})
+    print ('\nOAuth token to parse: ', token)
+    return json.jsonify({"message": "All is well.", "token": token})
 
 @app.route("/org/signup", methods=['POST'])
 def signup():
