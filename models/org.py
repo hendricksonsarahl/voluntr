@@ -28,11 +28,12 @@ class Opportunity(db.Model):
     description = db.Column(db.String(1000))
     startDateTime = db.Column(db.DateTime)
     duration = db.Column(db.Integer)
+    category_class = db.Column(db.String(20))
     category = db.Column(db.String(35))
     nextSteps = db.Column(db.String(1000))
     owner_id = db.Column(db.Integer, db.ForeignKey('organization.id'))
 
-    def __init__(self, title, address, city, state, zipcode, description, startDateTime, duration, category, nextSteps, owner):
+    def __init__(self, title, address, city, state, zipcode, description, startDateTime, duration, category_class, category, nextSteps, owner):
         self.title = title
         self.address = address
         self.city = city
@@ -41,6 +42,7 @@ class Opportunity(db.Model):
         self.description = description
         self.startDateTime = startDateTime
         self.duration = duration
+        self.category_class = category_class
         self.category = category
         self.nextSteps = nextSteps
         self.owner_id = owner
