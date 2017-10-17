@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, flash, url_for
+from flask import Flask, request, redirect, render_template, flash, url_for, json
 from app import app, db
 from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
@@ -68,12 +68,12 @@ def login():
     '''process a login attempt via OAuth token'''
     print ('\nLogin route received data: ', request.get_json())
     print ('\nOAuth token to parse: ', request.get_json()["authToken"])
-    return redirect('/')
+    return json.jsonify({"message": "All is well.", "token": request.get_json()["authToken"]})
 
 @app.route("/org/signup", methods=['POST'])
 def signup():
     '''process a sign-up attempt with an Oauth token and some form data'''
-    print ('Signup route received data: ', request)
+    print (']nSignup route received data: ', request)
     return redirect('/')
 
 @app.route("/drop_create", methods=['GET'])
