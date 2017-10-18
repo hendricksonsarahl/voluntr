@@ -9,7 +9,9 @@ class Filters():
         self.index = 0
 
 
-    def search(self):
+    def search(self, index=0):
+        if index != 0:
+            self.index = index
         if self.category == "all":
             opps = Opportunity.query.all()
 
@@ -17,5 +19,8 @@ class Filters():
             opps = Opportunity.query.filter_by(category=self.category).all()
             
         opp = opps[self.index]
-        self.index += 1
+        if len(opps) > self.index:
+            self.index += 1
+        else: 
+            self.index = 0
         return opp
