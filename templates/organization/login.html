@@ -23,6 +23,31 @@
     <!-- Google Sign-In button, controlled from Google's platform.js script -->
     <div class="g-signin2" data-onsuccess="onSignIn" redirect-uri="signinCallback" data-theme="dark"></div>
     <a href="/" id="signOut">Sign out</a>
+
+    <br />
+    <br />
+    <div class="row signup-row fade in hidden">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4>Successfully connected to Google! We just need to know a few more things to create your account.</h4>
+            <form action="/org/signup" method="post" id="signup-form">
+              <div class="form-group">
+                <label for="orgName">Organization Name</label>
+                <input class="form-control" id="orgName" name="orgName" type="text" maxlength="120" required="required">
+              </div>
+              <div class="form-group">
+                <label for="url">Website</label>
+                <input class="form-control" id="url" name="url" type="text" maxlength="200" required="required">
+              </div>
+              <div class="text-center">
+                <button type="submit" form="signup-form" value="Sign Up" class="btn btn-primary">Sign Up</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
