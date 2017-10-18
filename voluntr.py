@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, flash, url_for
+from flask import Flask, request, redirect, render_template, flash, url_for, json
 from app import app, db
 from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
@@ -69,6 +69,20 @@ def edit_opportunity():
 def show_opportunity():
     '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
     return render_template('organization/preview.html', title="Voluntr | Preview Post")
+
+@app.route("/org/login", methods=['POST'])
+def login():
+    '''process a login attempt via OAuth token'''
+    token = request.get_json()["authToken"]
+    print ('\nLogin route received data: ', request.get_json())
+    print ('\nOAuth token to parse: ', token)
+    return json.jsonify({"message": "All is well.", "token": token})
+
+@app.route("/org/signup", methods=['POST'])
+def signup():
+    '''process a sign-up attempt with an Oauth token and some form data'''
+    print ('\nSignup route received data: ', request)
+    return redirect('/')
 
 @app.route("/drop_create", methods=['GET'])
 def dropCreate():

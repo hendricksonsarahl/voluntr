@@ -2,14 +2,15 @@
 function onSignIn(googleUser) {
   // Build an object with the data we wish to send to server
   var profile = googleUser.getBasicProfile();
-  var id_token = googleUser.getAuthResponse().id_token;
+  var authToken = googleUser.getAuthResponse().id_token;
   var userDataToSend = {
     contactName: profile.getName(),
     email: profile.getEmail(),
-    idtoken: id_token
+    authToken: authToken
   };
 
   // build a fetch request to POST user's Google data to server for verification:
+  var authUrl = "/org/login";
   var requestOptions = {
     method: "POST",
     body: JSON.stringify(userDataToSend)
@@ -17,9 +18,6 @@ function onSignIn(googleUser) {
 
   requestOptions.headers = new Headers();
   requestOptions.headers.append("Content-Type", "application/json");
-
-  // TODO: set this:
-  var authUrl = "";
 
   // Send the request, and respond to both successful and failure outcomes:
   fetch(authUrl, requestOptions)
