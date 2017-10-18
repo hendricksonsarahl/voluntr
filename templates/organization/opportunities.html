@@ -18,7 +18,11 @@
       {% for opp in opportunities %}
         <div class="panel panel-default">
           <div class="panel-body">
-            <h4 class="pull-left">{{opp.title}} | {{opp.startDateTime}}</h4>
+            <h4>
+              {{opp.title}}
+              <br/>
+              <small>{{opp.startDateTime}}</small>
+            </h4>
             <div class="pull-right">
               <a class="btn btn-primary" href="./edit" role="button">Edit&nbsp;
                 <div class="glyphicon glyphicon-pencil"></div>
