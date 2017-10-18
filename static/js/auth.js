@@ -28,8 +28,9 @@ function onSignIn(googleUser) {
         response
           .json()
           .then(function(responseData) {
-            // TODO: Create an actual response here. Should request more data from new users, and redirect to logged-in view for returning users.
+            // TODO: Should request more data from new users, and redirect to logged-in view for returning users.
             console.log("Success! Server responded with: ", responseData);
+            showSignUpForm();
           })
           .catch(displayError);
       }
@@ -77,6 +78,11 @@ function signOut(event) {
   });
 }
 
+function showSignUpForm() {
+  var signUpForm = document.querySelector('.signup-row');
+  signUpForm.classList.remove("hidden");
+}
+
 //don't run this outside of a browser environment (e.g., when testing in Node)
 if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
@@ -92,6 +98,7 @@ if (typeof window !== "undefined") {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     onSignIn: onSignIn,
-    signOut: signOut
+    signOut: signOut,
+    showSignUpForm: showSignUpForm
   };
 }
