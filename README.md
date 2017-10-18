@@ -1,5 +1,5 @@
 # Voluntr
-## Current Version: 0.11.0
+## Current Version: 0.15.1
 <b> A web app that provides a simple platform for nonprofits to connect with potential volunteers</b>
 
 # Table of Contents
@@ -7,7 +7,8 @@
 2. [Brief](#brief)
 3. [Wireframes](#wireframes)
 4. [Pageflow Diagrams](#pageflow-diagrams)
-4. [User Stories](user-stories)
+5. [User Stories](#user-stories)
+6. [Testing Plan](#testing-plan)
 
 ## Elevator Pitch
 <div>
@@ -88,3 +89,43 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 | log in to my existing account and logout when I'm done  | MVP  |
 
 </div>
+
+## Testing Plan
+
+We will use manual testing to verify our scenarios, and document the results here:
+
+<div>
+
+| As a new visitor, I can... | Status |
+| --- | --- |
+| discover the app and learn about it's purpose and options | Passing :white_check_mark: |
+| easily find the relevant half of the app to use (volunteer vs organization). | Passing :white_check_mark: |
+
+</div>
+
+<div>
+
+| As a Volunteer, I can... | Status |
+| --- | --- |
+| view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | Not Passing :red_circle: |
+| set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | Not Passing :red_circle: |
+| see that the results list includes opportunities that match my preferences  | Not Passing :red_circle: |
+| get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | Not Passing :red_circle: |
+| remove a saved opportunity from my list  | Not Passing :red_circle: |
+
+</div>
+
+<div>
+
+| As a Nonprofit, I can... | Status |
+| --- | --- |
+| register my organization on Voluntr. | Not Passing :red_circle: |
+| easily submit open volunteer opportunities. | Not Passing :red_circle: |
+| edit or remove a posted opportunity  | Not Passing :red_circle: |
+| view the list of posted opportunities that are open  | Not Passing :red_circle: |
+| view and edit profile settings for my organization, including name, contact email, and any other profile data  | Not Passing :red_circle: |
+| log in to my existing account and logout when I'm done  | Not Passing :red_circle: |
+
+</div>
+
+Our stretch goal will be to include some unit and acceptance tests using pytest and pytest-BDD.  

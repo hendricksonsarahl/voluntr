@@ -1,6 +1,8 @@
 from flask import Flask, request, redirect, render_template, flash, url_for
 from app import app, db
 from models.org import Organization, Opportunity
+from csvdata.orgcsv import add_orgs
+from csvdata.oppscsv import add_opportunities
 
 # TODO - post methods to handle form data are needed on the following routes: 
 # /filters 
@@ -54,21 +56,20 @@ def edit_opportunity():
     ''' displays a form pre-populated with data for a single opportunity, so the user can 
     either edit individual fields and repost the opportunity, or remove the opportunity 
     from the app '''
-    message = "<h1>Organizations can edit an individual opportunity, or remove it from the app here</h1>"
-    return message
-
+    return render_template('organization/edit.html', title="Voluntr | Edit Opportunity")
 
 @app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
     '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
-    message = "<h1>Organizations can view details of a volunteer opportunity here</h1>"
-    return message
-
+    return render_template('organization/preview.html', title="Voluntr | Preview Post")
 
 @app.route("/drop_create", methods=['GET'])
 def dropCreate():
     db.drop_all()
     db.create_all()
+    add_orgs()
+    add_opportunities()
+    
     return redirect('/')
 
 # runs the app, always the last line
