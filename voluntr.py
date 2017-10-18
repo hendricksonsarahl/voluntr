@@ -44,7 +44,14 @@ def org_login():
 def manage_opportunities():
     '''displays all volunteer opportunities associated with an organization, with options to create
      new opportunities, or view an individual opportunity'''
-    return render_template('organization/opportunities.html', title="Voluntr | Opportunities")
+    # TODO: hard coding a single org id here for now. Eventually, this information will be passed to 
+    # this route by Oauth  
+    org_id = 3
+    org = Organization.query.filter_by(id=org_id).first()
+    # define variables to pass into the template
+    org_name = org.orgName
+    opps = Opportunity.query.filter_by(owner_id = org_id).all()
+    return render_template('organization/opportunities.html', title="Voluntr | Opportunities", headerName = org_name, opportunities = opps)
 
 @app.route("/org/add", methods=['GET'])
 def new_opportunity():

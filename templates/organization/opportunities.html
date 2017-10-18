@@ -3,26 +3,36 @@
 {% block contentInner %}
   <div class="container-outer">
     <div class="container">
-      <h2>[Organization Name] Home</h2>
+      <h2>{{headerName}} | Home</h2>
       <hr>
       <div class="text-center">
         <a class="btn btn-primary btn-lg" href="./add" role="button">Post a New Opportunity</a>
       </div>
       <hr>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h4>Opportunity 1</h4>
-          <div class="pull-right">
-            <a class="btn btn-primary" href="./edit" role="button">Edit&nbsp;
-              <div class="glyphicon glyphicon-pencil"></div>
-            </a>
-            <a class="btn btn-primary" href="./opportunity" role="button">View&nbsp;
-              <div class="glyphicon glyphicon-search"></div>
-            </a>
+    {% if opportunities|length == 0 %}
+      <p> To add your volunteer opportunity, click <a href='/add'> here!</a></p>
+    {% endif %}
+    
+    {% if opportunities|length > 0 %}
+      
+      {% for opp in opportunities %}
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4 class="pull-left">{{opp.title}} | {{opp.startDateTime}}</h4>
+            <div class="pull-right">
+              <a class="btn btn-primary" href="./edit" role="button">Edit&nbsp;
+                <div class="glyphicon glyphicon-pencil"></div>
+              </a>
+              <a class="btn btn-primary" href="./opportunity" role="button">View&nbsp;
+                <div class="glyphicon glyphicon-search"></div>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="panel panel-default">
+      {% endfor %}
+    
+    {% endif %}
+      <!--<div class="panel panel-default">
         <div class="panel-body">
           <h4>Opportunity 2</h4>
           <div class="pull-right">
@@ -47,7 +57,7 @@
             </a>
           </div>
         </div>
-      </div>
+      </div>-->
       </div>
     </div>
   </div>
