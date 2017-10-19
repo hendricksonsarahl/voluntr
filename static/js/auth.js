@@ -44,20 +44,6 @@ function onSignIn(googleUser) {
     .catch(displayError);
 }
 
-function signOut(event) {
-  //don't immediately redirect the user
-  event.preventDefault();
-
-  //send sign-out request to Google
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function() {
-    console.log("User signed out.");
-
-    //redirect user after confirmation of sign-out received
-    window.location.href = "/";
-  });
-}
-
 // Executed after successful Google sign-in, with no existing Voluntr account:
 function showSignUpForm() {
   var signUpForm = document.querySelector('.signup-row');
@@ -88,7 +74,6 @@ if (typeof window !== "undefined") {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     onSignIn: onSignIn,
-    signOut: signOut,
     showSignUpForm: showSignUpForm,
     redirectToOrgHome: redirectToOrgHome
   };
