@@ -38,32 +38,6 @@ function onSignIn(googleUser) {
     .catch(displayError);
 }
 
-// TODO: remove this once the above function works
-function onSignInTemp(googleUser) {
-  // Useful data for client-side scripts:
-  var profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-  console.log("Full Name: " + profile.getName());
-  console.log("Email: " + profile.getEmail());
-
-  // The ID token you need to pass to your backend:
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
-}
-
-//TODO: This function isn't actually being called at the moment. Do we need it?
-function signinCallback(authResult) {
-  if (authResult["access_token"]) {
-    // The user is signed in
-    var loc = "index.jsp?GoogleAuthToken=" + authResult["access_token"];
-    window.location.href = loc;
-  } else if (authResult["error"]) {
-    // There was an error, which means the user is not signed in.
-    console.error(authResult);
-    return false;
-  }
-}
-
 function signOut(event) {
   //don't immediately redirect the user
   event.preventDefault();
