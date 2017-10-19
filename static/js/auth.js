@@ -1,4 +1,4 @@
-// TODO: Finish this function and call it on successful sign-in.
+// TODO: Finish this function
 function onSignIn(googleUser) {
   // Build an object with the data we wish to send to server
   var profile = googleUser.getBasicProfile();
