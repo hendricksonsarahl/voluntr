@@ -51,9 +51,12 @@ def opportunities():
         category = filters[1] # grabs category from list
 
         search = Filters(category=category) # creates filter with given category
-        opp = search.search(num) #finds an oppertunity using filter and index
-        num = num + 1 # increments index
-
+        opps = search.search() #grabs list of opportunities
+        opp = opps[num] # picks out the opp at index
+        if len(opps) > (num + 1): 
+            num = num + 1 # increments index if its not at the end of the list
+        else:
+            num = 0 # loops back around
         resp = make_response(render_template('volunteer/opportunities.html', 
                                             opp=opp, title="Voluntr | Browse Opportunities")
                                             ) # tells the cookie what to load while it sets itself
