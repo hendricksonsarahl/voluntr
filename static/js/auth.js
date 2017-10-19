@@ -28,9 +28,15 @@ function onSignIn(googleUser) {
         response
           .json()
           .then(function(responseData) {
-            // TODO: Should request more data from new users, and redirect to logged-in view for returning users.
             console.log("Success! Server responded with: ", responseData);
-            showSignUpForm();
+            
+            //TODO: Make this conditional actually depend on server response
+            // if(response.accountExists) {
+            if (false) {
+              redirectToOrgHome();
+            } else {
+              showSignUpForm();
+            }
           })
           .catch(displayError);
       }
@@ -52,9 +58,19 @@ function signOut(event) {
   });
 }
 
+// Executed after successful Google sign-in, with no existing Voluntr account:
 function showSignUpForm() {
   var signUpForm = document.querySelector('.signup-row');
   signUpForm.classList.remove("hidden");
+}
+
+// Executed after successful Google sign-in to an existing Voluntr account:
+function redirectToOrgHome() {
+  var redirectRow = document.querySelector('.redirect-row');
+  redirectRow.classList.remove("hidden");
+  setTimeout(function() {
+    window.location.href="/org/opportunities";    
+  }, 1200);
 }
 
 //don't run this outside of a browser environment (e.g., when testing in Node)
@@ -73,6 +89,7 @@ if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     onSignIn: onSignIn,
     signOut: signOut,
-    showSignUpForm: showSignUpForm
+    showSignUpForm: showSignUpForm,
+    redirectToOrgHome: redirectToOrgHome
   };
 }
