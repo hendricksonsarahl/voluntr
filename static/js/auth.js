@@ -1,4 +1,4 @@
-// TODO: Finish this function and call it on successful sign-in.
+// TODO: Finish this function
 function onSignIn(googleUser) {
   // Build an object with the data we wish to send to server
   var profile = googleUser.getBasicProfile();
@@ -28,9 +28,15 @@ function onSignIn(googleUser) {
         response
           .json()
           .then(function(responseData) {
-            // TODO: Should request more data from new users, and redirect to logged-in view for returning users.
             console.log("Success! Server responded with: ", responseData);
-            showSignUpForm();
+            
+            //TODO: Make this conditional actually depend on server response
+            // if(response.accountExists) {
+            if (false) {
+              redirectToOrgHome();
+            } else {
+              showSignUpForm();
+            }
           })
           .catch(displayError);
       }
@@ -38,49 +44,19 @@ function onSignIn(googleUser) {
     .catch(displayError);
 }
 
-// TODO: remove this once the above function works
-function onSignInTemp(googleUser) {
-  // Useful data for client-side scripts:
-  var profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-  console.log("Full Name: " + profile.getName());
-  console.log("Email: " + profile.getEmail());
-
-  // The ID token you need to pass to your backend:
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
-}
-
-//TODO: This function isn't actually being called at the moment. Do we need it?
-function signinCallback(authResult) {
-  if (authResult["access_token"]) {
-    // The user is signed in
-    var loc = "index.jsp?GoogleAuthToken=" + authResult["access_token"];
-    window.location.href = loc;
-  } else if (authResult["error"]) {
-    // There was an error, which means the user is not signed in.
-    console.error(authResult);
-    return false;
-  }
-}
-
-function signOut(event) {
-  //don't immediately redirect the user
-  event.preventDefault();
-
-  //send sign-out request to Google
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function() {
-    console.log("User signed out.");
-
-    //redirect user after confirmation of sign-out received
-    window.location.href = "/";
-  });
-}
-
+// Executed after successful Google sign-in, with no existing Voluntr account:
 function showSignUpForm() {
   var signUpForm = document.querySelector('.signup-row');
   signUpForm.classList.remove("hidden");
+}
+
+// Executed after successful Google sign-in to an existing Voluntr account:
+function redirectToOrgHome() {
+  var redirectRow = document.querySelector('.redirect-row');
+  redirectRow.classList.remove("hidden");
+  setTimeout(function() {
+    window.location.href="/org/opportunities";    
+  }, 1200);
 }
 
 //don't run this outside of a browser environment (e.g., when testing in Node)
@@ -98,7 +74,7 @@ if (typeof window !== "undefined") {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     onSignIn: onSignIn,
-    signOut: signOut,
-    showSignUpForm: showSignUpForm
+    showSignUpForm: showSignUpForm,
+    redirectToOrgHome: redirectToOrgHome
   };
 }
