@@ -2,14 +2,15 @@
 function onSignIn(googleUser) {
   // Build an object with the data we wish to send to server
   var profile = googleUser.getBasicProfile();
-  var id_token = googleUser.getAuthResponse().id_token;
+  var authToken = googleUser.getAuthResponse().id_token;
   var userDataToSend = {
     contactName: profile.getName(),
     email: profile.getEmail(),
-    idtoken: id_token
+    authToken: authToken
   };
 
   // build a fetch request to POST user's Google data to server for verification:
+  var authUrl = "/org/login";
   var requestOptions = {
     method: "POST",
     body: JSON.stringify(userDataToSend)
@@ -17,9 +18,6 @@ function onSignIn(googleUser) {
 
   requestOptions.headers = new Headers();
   requestOptions.headers.append("Content-Type", "application/json");
-
-  // TODO: set this:
-  var authUrl = "";
 
   // Send the request, and respond to both successful and failure outcomes:
   fetch(authUrl, requestOptions)
@@ -30,8 +28,9 @@ function onSignIn(googleUser) {
         response
           .json()
           .then(function(responseData) {
-            // TODO: Create an actual response here. Should request more data from new users, and redirect to logged-in view for returning users.
+            // TODO: Should request more data from new users, and redirect to logged-in view for returning users.
             console.log("Success! Server responded with: ", responseData);
+            showSignUpForm();
           })
           .catch(displayError);
       }
@@ -79,6 +78,11 @@ function signOut(event) {
   });
 }
 
+function showSignUpForm() {
+  var signUpForm = document.querySelector('.signup-row');
+  signUpForm.classList.remove("hidden");
+}
+
 //don't run this outside of a browser environment (e.g., when testing in Node)
 if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
@@ -94,6 +98,7 @@ if (typeof window !== "undefined") {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     onSignIn: onSignIn,
-    signOut: signOut
+    signOut: signOut,
+    showSignUpForm: showSignUpForm
   };
 }

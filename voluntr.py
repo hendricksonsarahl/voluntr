@@ -1,9 +1,12 @@
-from flask import Flask, request, redirect, render_template, flash, url_for, make_response
+from flask import Flask, request, redirect, render_template, flash, url_for, json, make_response
 from app import app, db
 from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
 from csvdata.oppscsv import add_opportunities
 from filters import Filters
+import datetime
+from helpers import readable_date
+
 # TODO - post methods to handle form data are needed on the following routes: 
 # /filters 
 # /org/login
@@ -73,7 +76,18 @@ def org_login():
 def manage_opportunities():
     '''displays all volunteer opportunities associated with an organization, with options to create
      new opportunities, or view an individual opportunity'''
-    return render_template('organization/opportunities.html', title="Voluntr | Opportunities")
+    # TODO: hard coding a single org id here for now. Eventually, this information will be passed to 
+    # this route by Oauth  
+    org_id = 6
+    org = Organization.query.filter_by(id=org_id).first()
+    # define variables to pass into the template
+    org_name = org.orgName
+    opps = Opportunity.query.filter_by(owner_id = org_id).all()
+    # format datetime into more readable strings
+    for opp in opps:
+        opp.startDateTime = readable_date(opp.startDateTime)
+    
+    return render_template('organization/opportunities.html', title="Voluntr | Opportunities", headerName = org_name, opportunities = opps)
 
 @app.route("/org/add", methods=['GET'])
 def new_opportunity():
@@ -91,6 +105,20 @@ def edit_opportunity():
 def show_opportunity():
     '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
     return render_template('organization/preview.html', title="Voluntr | Preview Post")
+
+@app.route("/org/login", methods=['POST'])
+def login():
+    '''process a login attempt via OAuth token'''
+    token = request.get_json()["authToken"]
+    print ('\nLogin route received data: ', request.get_json())
+    print ('\nOAuth token to parse: ', token)
+    return json.jsonify({"message": "All is well.", "token": token})
+
+@app.route("/org/signup", methods=['POST'])
+def signup():
+    '''process a sign-up attempt with an Oauth token and some form data'''
+    print ('\nSignup route received data: ', request)
+    return redirect('/')
 
 @app.route("/drop_create", methods=['GET'])
 def dropCreate():
