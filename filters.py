@@ -19,7 +19,7 @@ class Filters():
             opps = Opportunity.query.filter_by(category=self.category).all()
             
         opp = opps[self.index]
-        if len(opps) > self.index:
+        if len(opps) > (self.index + 1):
             self.index += 1
         else: 
             self.index = 0
