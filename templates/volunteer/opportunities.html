@@ -3,7 +3,7 @@
 {% block contentInner %}
   <div class="container-outer">
     <div class="container">
-      <div class="row opp-header opp-header--hunger">
+      <div class="row opp-header opp-header--{{ opp.category_class }}">
         <h1 class="text-center">{{ opp.title }}</h1>
         <h3 class="text-center">{{ opp.owner.orgName }}</h3><br><br><br>
         <div class="row">
