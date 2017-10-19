@@ -4,58 +4,95 @@
   <div class="container-outer">
     <div class="container">
       <h2>My Search Preferences</h2>
-      <form method="post">
+      <form action="/filters" method="post" id="filters-form">
         <div class="form-group">
           <label for="zipcode">Zip Code</label>
-          <input class="form-control" id="zipcode" type="text" placeholder="Zip Code" maxlength="5">
+          <input name="zipcode" class="form-control" id="zipcode" type="text" placeholder="Zip Code" maxlength="5">
         </div>
         <div class="form-group">
           <label for="distance">Distance (miles)</label>
-          <input id="distance" type="range" min="1" max="50" value="10">
+          <input name="distance" id="distance" type="range" min="1" max="50" value="10">
         </div>
         <div class="form-group">
           <label for="category">Show me opportunities related to:</label>
           <div class="checkbox">
             <label>
-              <input type="checkbox" value="education">Education
+              <input type="checkbox" name="category" value="animals">Animals
             </label>
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" value="environment">Environment
+              <input type="checkbox" name="category" value="arts_culture">Arts and Culture
             </label>
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" value="poverty">Poverty
+              <input type="checkbox" name="category" value="community">Community
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="category" value="disabilities">Disabilities
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="category" value="education_lit">Education and Literacy
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="category" value="environment">Environment
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="category" value="health_med">Health and Medicine
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="category" value="houseless">Homelessness and Housing
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="category" value="hunger">Hunger
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="category" value="kids_youth">Kids and Youth
             </label>
           </div>
         </div>
         <div class="form-group">
           <label for="available">Available Days:&nbsp;</label>
           <label class="checkbox-inline">
-            <input id="sun" type="checkbox" value="sunday"> Sun
+            <input id="sun" type="checkbox" name="availableDays" value="sunday"> Sun
           </label>
           <label class="checkbox-inline">
-            <input id="mon" type="checkbox" value="monday"> Mon
+            <input id="mon" type="checkbox" name="availableDays" value="monday"> Mon
           </label>
           <label class="checkbox-inline">
-            <input id="tue" type="checkbox" value="tuesday"> Tue
+            <input id="tue" type="checkbox" name="availableDays" value="tuesday"> Tue
           </label>
           <label class="checkbox-inline">
-            <input id="wed" type="checkbox" value="wednesday"> Wed
+            <input id="wed" type="checkbox" name="availableDays" value="wednesday"> Wed
           </label>
           <label class="checkbox-inline">
-            <input id="thu" type="checkbox" value="thursday"> Thu
+            <input id="thu" type="checkbox" name="availableDays" value="thursday"> Thu
           </label>
           <label class="checkbox-inline">
-            <input id="fri" type="checkbox" value="friday"> Fri
+            <input id="fri" type="checkbox" name="availableDays" value="friday"> Fri
           </label>
           <label class="checkbox-inline">
-            <input id="sat" type="checkbox" value="saturday"> Sat
+            <input id="sat" type="checkbox" name="availableDays" value="saturday"> Sat
           </label>
         </div>
-        <div class="text-center"><input class="btn btn-primary" type="submit" value="Browse Opportunities"/></div>
+        <div class="text-center">
+          <button type="submit" form="filters-form" value="Sign Up" class="btn btn-primary">Browse Opportunities</button>
+        </div>
       </form>
     </div>
   </div>
