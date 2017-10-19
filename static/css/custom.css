@@ -36,7 +36,7 @@ body {
 
 .opp-header {
   color: #fff;
-  height: 300px;
+  min-height: 300px;
   padding: 0px 15px;
   position: relative;
 }
