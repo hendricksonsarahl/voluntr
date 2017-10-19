@@ -1,8 +1,9 @@
-from flask import Flask, request, redirect, render_template, flash, url_for, json
+from flask import Flask, request, redirect, render_template, flash, url_for, json, make_response
 from app import app, db
 from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
 from csvdata.oppscsv import add_opportunities
+from filters import Filters
 import datetime
 from helpers import readable_date
 
@@ -22,15 +23,47 @@ def index():
     representative '''
     return render_template('index.html', title="Voluntr")
 
-@app.route("/filters", methods=['GET'])
+@app.route("/filters", methods=['GET', 'POST'])
 def set_filters():
     '''displays a form for volunteers to select their interests and availability'''
+
+    if request.method == 'POST':
+        if 'category' in request.form.values(): # if category was in form sent. assign it to var
+            category = request.form['category'] 
+        else:
+            category = "all" # if not set to "all"
+
+        resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
+        resp.set_cookie('filters', str("0 " + category)) # prepares cookie to be set with index of zero
+        return resp # sets cookie and redirects
+
     return render_template('volunteer/filters.html', title="Voluntr | Filters")
 
 @app.route("/opportunities", methods=['GET'])
 def opportunities():
     '''display search results to volunteer'''
-    return render_template('volunteer/opportunities.html', title="Voluntr | Browse Opportunities")
+
+    if 'filters' in request.cookies:
+        cookie = (request.cookies.get('filters')) #grabs cookie
+
+        filters = cookie.split(" ") # splits cookie into list
+        num = int(filters[0]) # grabs index from list
+        category = filters[1] # grabs category from list
+
+        search = Filters(category=category) # creates filter with given category
+        opps = search.search() #grabs list of opportunities
+        opp = opps[num] # picks out the opp at index
+        if len(opps) > (num + 1): 
+            num = num + 1 # increments index if its not at the end of the list
+        else:
+            num = 0 # loops back around
+        resp = make_response(render_template('volunteer/opportunities.html', 
+                                            opp=opp, title="Voluntr | Browse Opportunities")
+                                            ) # tells the cookie what to load while it sets itself
+        resp.set_cookie('filters', str(num) + " " + category) #preps cookie for setting
+        return resp # sets cookie and displays page
+    
+    return redirect("/filters") # redirects to filters if no cookie exists
 
 @app.route("/matches", methods=['GET'])
 def display_matches():
