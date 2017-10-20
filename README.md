@@ -1,5 +1,7 @@
 # Voluntr
-## Current Version: 0.20.2
+
+## Current Version: 0.20.3
+
 <b> A web app that provides a simple platform for nonprofits to connect with potential volunteers</b>
 
 # Table of Contents
