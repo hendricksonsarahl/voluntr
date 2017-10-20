@@ -13,9 +13,13 @@ function loadStore() {
   return store;
 }
 
+// map the opportunities found in localStorage to HTML panels, then append them to a container
 function showOpps(store, parentElt) {
+  var headerElt = document.createElement('h2');
+  headerElt.textContent = 'My Saved Posts';
+  parentElt.appendChild(headerElt);
+
   store.forEach(function(opp) {
-    console.log(opp.title);
     var oppElt = document.createElement('div');
     oppElt.innerHTML = `
     <div class="panel panel-default">
@@ -36,6 +40,11 @@ function showOpps(store, parentElt) {
   })
 }
 
+// Display message if no opportunities have been saved yet
+function showNoOppsMessage(parentElt) {
+  parentElt.innerHTML = '<h2>Nothing Saved Yet</h2><p><a href="/opportunities">Continue browsing opportunities</a></p>'
+}
+
 //don't run this outside of a browser environment (e.g., when testing in Node)
 if (typeof window !== "undefined") {
   
@@ -43,8 +52,13 @@ if (typeof window !== "undefined") {
   (function() {
     var store = loadStore();
     var oppListParent = document.getElementById('opp-container');
-    showOpps(store, oppListParent);
-
+    
+    // Show saved opps if they exist; otherwise show a message
+    if (store.length > 0) {
+      showOpps(store, oppListParent);
+    } else {
+      showNoOppsMessage(oppListParent);
+    }
   })();
 }
 
