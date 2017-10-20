@@ -4,32 +4,12 @@
   <div class="container-outer">
     <div class="container">
       <h2>My Saved Posts</h2>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h4>Opportunity 1</h4>
-          <div class="pull-right">
-            <a class="btn btn-primary" href="#" role="button">View&nbsp;
-              <div class="glyphicon glyphicon-play"></div>
-            </a>
-            <a class="btn btn-danger" href="#" role="button">Remove&nbsp;
-              <div class="glyphicon glyphicon-remove"></div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h4>Opportunity 2</h4>
-          <div class="pull-right">
-            <a class="btn btn-primary" href="#" role="button">View&nbsp;
-              <div class="glyphicon glyphicon-play"></div>
-            </a>
-            <a class="btn btn-danger" href="#" role="button">Remove&nbsp;
-              <div class="glyphicon glyphicon-remove"></div>
-            </a>
-          </div>
-        </div>
-      </div>
+      <div id="opp-container"></div>
     </div>
+
   </div>
-{% endblock %}     
+{% endblock %}   
+
+{% block scriptContent %}
+  <script src="/static/js/vol-save.js"></script>    
+{% endblock %}  
