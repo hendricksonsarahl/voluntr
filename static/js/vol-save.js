@@ -22,14 +22,14 @@ function showOpps(store, parentElt) {
   store.forEach(function(opp) {
     var oppElt = document.createElement('div');
     oppElt.innerHTML = `
-    <div class="panel panel-default">
+    <div class="panel panel-default" data-id="${opp.id}">
       <div class="panel-body">
         <h4>${opp.title}</h4>
         <div class="pull-right">
           <a class="btn btn-primary" href="#" role="button">View&nbsp;
             <div class="glyphicon glyphicon-play"></div>
           </a>
-          <a class="btn btn-danger" href="#" role="button">Remove&nbsp;
+          <a class="btn btn-danger remove-button" href="#" role="button">Remove&nbsp;
             <div class="glyphicon glyphicon-remove"></div>
           </a>
         </div>
@@ -45,6 +45,24 @@ function showNoOppsMessage(parentElt) {
   parentElt.innerHTML = '<h2>Nothing Saved Yet</h2><p><a href="/opportunities">Continue browsing opportunities</a></p>'
 }
 
+// Remove an opportunity from localStorage, and remove its panel on this page
+function removeOpp(oppPanel) {
+  var thisOppId = oppPanel.dataset.id;
+  var oppList = loadStore();
+
+  // Find the index of the target opportunity in the store:
+  var indexToRemove = oppList.findIndex(function(opp){
+    return opp.id == thisOppId;
+  });
+
+  // Remove the opportunity from the store and save to localStorage
+  oppList.splice(indexToRemove, 1);
+  localStorage.setItem('savedOpps', JSON.stringify(oppList));
+
+  //Remove the opportunity's panel from this page:
+  oppPanel.parentNode.removeChild(oppPanel);
+}
+
 //don't run this outside of a browser environment (e.g., when testing in Node)
 if (typeof window !== "undefined") {
   
@@ -58,6 +76,15 @@ if (typeof window !== "undefined") {
       showOpps(store, oppListParent);
     } else {
       showNoOppsMessage(oppListParent);
+    }
+
+    // Add event listeners to every remove button
+    var removeButtons = document.querySelectorAll('.remove-button');
+    for (var i = 0; i < removeButtons.length; i++) {
+      removeButtons[i].addEventListener('click', function(e) {
+
+        removeOpp(e.target.parentNode.parentNode.parentNode)
+      });
     }
   })();
 }
