@@ -2,7 +2,7 @@
 {% block contentInner %}
   <script>
     //set global variable with data about this opportunity, so that other scripts can access it
-    window.voluntrOpp = {{
+    window.currentOpp = {{
       {"title": opp.title,
       "id": opp.id} | tojson | safe
     }};
@@ -39,7 +39,7 @@
             <a class="btn btn-default" href="./filters" role="button">Update Search&nbsp;
               <div class="glyphicon glyphicon-search"></div>
             </a>
-            <a class="btn btn-success" href="" role="button">Save&nbsp;
+            <a id="save-button" class="btn btn-success" href="" role="button">Save&nbsp;
               <div class="glyphicon glyphicon-pushpin"></div>
             </a>
           </div>
