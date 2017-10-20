@@ -1,6 +1,6 @@
 {% extends "layouts/vol-layout.html" %}
-
 {% block contentInner %}
+
   <div class="container-outer">
     <div class="container">
       <div class="row opp-header opp-header--{{ opp.category_class }}">
@@ -41,5 +41,16 @@
       </div>
     </div>
   </div>
+  
 
-{% endblock %}     
+{% endblock %}   
+
+{% block scriptContent %}
+  <script>
+    //set global variable with data about this opportunity, so that other scripts can access it
+    window.voluntrOpp = {{
+      {"title": opp.title,
+      "id": opp.id} | tojson | safe
+    }};
+  </script>
+{% endblock %}  
