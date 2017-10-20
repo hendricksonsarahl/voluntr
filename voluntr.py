@@ -28,13 +28,15 @@ def set_filters():
     '''displays a form for volunteers to select their interests and availability'''
 
     if request.method == 'POST':
-        if 'category' in request.form.values(): # if category was in form sent. assign it to var
-            category = request.form['category'] 
+
+        if 'category' in request.form.keys(): # if category was in form sent. assign it to var
+            category = request.form['category']   
         else:
             category = "all" # if not set to "all"
-
+            
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
         resp.set_cookie('filters', str("0 " + category)) # prepares cookie to be set with index of zero
+        
         return resp # sets cookie and redirects
 
     return render_template('volunteer/filters.html', title="Voluntr | Filters")
