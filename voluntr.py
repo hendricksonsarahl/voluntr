@@ -5,15 +5,10 @@ from csvdata.orgcsv import add_orgs
 from csvdata.oppscsv import add_opportunities
 from filters import Filters
 import datetime
-from helpers import readable_date
+from helpers import *
 
 # TODO - post methods to handle form data are needed on the following routes: 
-# /filters 
-# /org/login
-# /org/add
 # /org/edit
-# projects to look in for ideas: (web-caesar, user-signup, hello-flask, flicklist-flask)
-
 
 # Voluntr landing page - accessed at localhost:5000 for now
 @app.route("/", methods=['GET'])
@@ -55,12 +50,14 @@ def opportunities():
         search = Filters(category=category) # creates filter with given category
         opps = search.search() #grabs list of opportunities
         opp = opps[num] # picks out the opp at index
+        event_date = readable_date(opp.startDateTime)
+        event_time = readable_times(opp.startDateTime, opp.duration)
         if len(opps) > (num + 1): 
             num = num + 1 # increments index if its not at the end of the list
         else:
             num = 0 # loops back around
         resp = make_response(render_template('volunteer/opportunities.html', 
-                                            opp=opp, json=json, title="Voluntr | Browse Opportunities")
+                                            opp=opp, event_date = event_date, event_time=event_time, json=json, title="Voluntr | Browse Opportunities")
                                             ) # tells the cookie what to load while it sets itself
         resp.set_cookie('filters', str(num) + " " + category) #preps cookie for setting
         return resp # sets cookie and displays page
@@ -83,7 +80,8 @@ def manage_opportunities():
      new opportunities, or view an individual opportunity'''
     # TODO: hard coding a single org id here for now. Eventually, this information will be passed to 
     # this route by Oauth  
-    org_id = 6
+    org_id = 4
+
     org = Organization.query.filter_by(id=org_id).first()
     # define variables to pass into the template
     org_name = org.orgName
@@ -92,19 +90,64 @@ def manage_opportunities():
     for opp in opps:
         opp.startDateTime = readable_date(opp.startDateTime)
     
-    return render_template('organization/opportunities.html', title="Voluntr | Opportunities", headerName = org_name, opportunities = opps)
+    return render_template('organization/opportunities.html', title='Voluntr | Opportunities', headerName = org_name, opportunities = opps)
 
-@app.route("/org/add", methods=['GET'])
+@app.route("/org/add", methods=['GET', 'POST'])
 def new_opportunity():
     '''displays a form for organizations to add a new volunteer opportunity'''
-    return render_template('organization/add.html', title="Voluntr | Add Opportunity")
+    
+    if request.method == 'POST':
+        # get all form data
+        title = validate_title(request.form["title"])
+        date = request.form["date"]
+        start_time = request.form["startTime"]
+        end_time = request.form["endTime"]
+        address = request.form["address"]
+        city = request.form["city"]
+        state = request.form["state"]
+        zip_code = request.form["zip"]
+        category = request.form["category"]
+        description = validate_description(request.form["description"])
+        next_steps = validate_next_steps(request.form["nextsteps"])
+        
+        # format dateStartTime
+        start_date_time = create_datetime(date, start_time)
+
+        # get duration as an int
+        duration = get_duration(start_time, end_time)
+        
+        # get category_class
+        category_class = get_category_class(category)
+
+        # temporary hard-coded owner ID - to be removed when Oauth signin/sessions are completed 
+        org_id = 4
+
+        # TODO: server-side validation will be added here soon. 
+        if validate_opp_data() == True:
+            # save new, opportunity to db.
+            new_opp = Opportunity(title, address, city, 
+                                    state, zip_code, description,
+                                    start_date_time, duration, 
+                                    category_class, category, 
+                                    next_steps, org_id)
+            #print("category is : " + category)
+            #print("category_class is : " + category_class)
+            db.session.add(new_opp)
+            db.session.commit()
+
+            return redirect('/org/opportunities')
+    
+    # response for GET requests:
+    categories = ["People With Disabilities", "Hunger", "Homeless & Housing", "Health & Medicine", "Environment & Nature", "Education & Literacy", "Community", "Children & Youth", "Arts & Culture", "Animals"]
+
+    return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
 
 @app.route("/org/edit", methods=['GET'])
 def edit_opportunity():
     ''' displays a form pre-populated with data for a single opportunity, so the user can 
     either edit individual fields and repost the opportunity, or remove the opportunity 
     from the app '''
-    return render_template('organization/edit.html', title="Voluntr | Edit Opportunity")
+    return render_template('organization/edit.html', title='Voluntr | Edit Opportunity')
 
 @app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
