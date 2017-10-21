@@ -76,6 +76,13 @@ body {
   background-position: center center;
 }
 
+.opp-header--environment {
+  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/environment.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
 .opp-header--health_med {
   background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/health_med.jpg");
   background-repeat: no-repeat;
