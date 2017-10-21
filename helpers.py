@@ -134,7 +134,7 @@ def get_category_class(category):
         return "houseless"
     elif category == "Hunger": 
         return "hunger"
-    elif category == "People with Disabilities": 
+    elif category == "People With Disabilities": 
         return "disabilities"
     else:
         return "unknown"
