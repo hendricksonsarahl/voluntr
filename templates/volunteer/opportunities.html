@@ -1,6 +1,12 @@
 {% extends "layouts/vol-layout.html" %}
-
 {% block contentInner %}
+  <script>
+    //set global variable with data about this opportunity, so that other scripts can access it
+    window.currentOpp = {{
+      {"title": opp.title,
+      "id": opp.id} | tojson | safe
+    }};
+  </script>
   <div class="container-outer">
     <div class="container">
       <div class="row opp-header opp-header--{{ opp.category_class }}">
@@ -27,19 +33,23 @@
       <div class="row">
         <div class="text-center">
           <div class="btn-group" role="group" aria-label="Navigate opportunity pages">
-            <a class="btn btn-default" href="" role="button">Skip&nbsp;
-              <div class="glyphicon glyphicon-forward"></div>
+            <a id="save-button" class="btn btn-default" href="" role="button">Save&nbsp;
+              <span class="glyphicon glyphicon-pushpin"></span>
             </a>
             <a class="btn btn-default" href="./filters" role="button">Update Search&nbsp;
               <div class="glyphicon glyphicon-search"></div>
             </a>
-            <a class="btn btn-success" href="" role="button">Save&nbsp;
-              <div class="glyphicon glyphicon-pushpin"></div>
+            <a class="btn btn-default" href="" role="button">Next&nbsp;
+              <div class="glyphicon glyphicon-play"></div>
             </a>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
+{% endblock %}   
 
-{% endblock %}     
+{% block scriptContent %}
+  <script src="/static/js/vol-browse.js"></script>    
+{% endblock %}
