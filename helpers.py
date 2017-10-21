@@ -31,14 +31,16 @@ def readable_times(opp_datetime, duration):
 
     #determine AM or PM
     if start_hour >= 12:
-        start_hour %= 12
         start_suffix = "PM"
+        if start_hour > 12:
+            start_hour %= 12
     else:
         start_suffix = "AM"
     
     if end_hour >= 12:
-        end_hour %= 12
         end_suffix = "PM"
+        if end_hour > 12:
+            end_hour %= 12     
     else:
         end_suffix = "AM"
     
@@ -48,7 +50,7 @@ def readable_times(opp_datetime, duration):
     if end_minutes < 10:
         end_minutes = "0" + str(end_minutes)
 
-    # get start time as a string
+    # convert times to string and reformat
     start_time = str(start_hour) + ":" + str(start_minutes) + " " + start_suffix
     end_time = str(end_hour) + ":" + str(end_minutes) + " " + end_suffix
 
