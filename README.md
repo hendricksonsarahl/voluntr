@@ -9,8 +9,7 @@
 2. [Brief](#brief)
 3. [Wireframes](#wireframes)
 4. [Pageflow Diagrams](#pageflow-diagrams)
-5. [User Stories](#user-stories)
-6. [Testing Plan](#testing-plan)
+5. [User Stories and Test Plan](#user-stories-and-test-plan)
 
 ## Elevator Pitch
 <div>
@@ -57,78 +56,40 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 ![First Sprint Pageflow Diagrams page2](./assets/voluntr_page_flows2.png)
 ![First Sprint Pageflow Diagrams page3](./assets/voluntr_page_flows3.png)
 
-## User Stories
+## User Stories and Test Plan
+### We will use manual testing to verify our scenarios and document the results alongside each userstory:
 <div>
 
-| As a new visitor, I can... | Goal |
-| --- | --- |
-| discover the app and learn about it's purpose and options | MVP |
-| easily find the relevant half of the app to use (volunteer vs organization). | MVP |
+| As a new visitor, I can... | Goal | Status |
+| --- | --- |--- |
+| discover the app and learn about it's purpose and options | MVP | Passing :white_check_mark: |
+| easily find the relevant half of the app to use (volunteer vs organization). | MVP | Passing :white_check_mark: |
 
 </div>
 
 <div>
 
-| As a Volunteer, I can... | Goal |
-| --- | --- |
-| view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | MVP  |
-| set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | MVP  |
-| see that the results list includes opportunities that match my preferences  | MVP  |
-| get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP  |
-| save an opportunity post to a local list so that I can re-visit it later  | MVP  |
-| remove a saved opportunity from my list  | MVP  |
+| As a Volunteer, I can... | Goal | Status |
+| --- | --- |--- |
+| view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | MVP  | Not Passing :red_circle: |
+| set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | MVP | Not Passing :red_circle: |
+| see that the results list includes opportunities that match my preferences  | MVP | Not Passing :red_circle: |
+| get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP | Not Passing :red_circle: |
+| save an opportunity post to a local list so that I can re-visit it later  | MVP | Passing :white_check_mark: |
+| remove a saved opportunity from my list  | MVP | Passing :white_check_mark: |
 
 </div>
 
 <div>
 
-| As a Nonprofit, I can... | Goal |
-| --- | --- |
-| register my organization on Voluntr. | MVP |
-| easily submit open volunteer opportunities. | MVP |
-| edit or remove a posted opportunity  | MVP  |
-| view the list of posted opportunities that are open  | MVP  |
-| view and edit profile settings for my organization, including name, contact email, and any other profile data  | MVP  |
-| log in to my existing account and logout when I'm done  | MVP  |
-
-</div>
-
-## Testing Plan
-
-We will use manual testing to verify our scenarios, and document the results here:
-
-<div>
-
-| As a new visitor, I can... | Status |
-| --- | --- |
-| discover the app and learn about it's purpose and options | Passing :white_check_mark: |
-| easily find the relevant half of the app to use (volunteer vs organization). | Passing :white_check_mark: |
-
-</div>
-
-<div>
-
-| As a Volunteer, I can... | Status |
-| --- | --- |
-| view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | Not Passing :red_circle: |
-| set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | Not Passing :red_circle: |
-| see that the results list includes opportunities that match my preferences  | Not Passing :red_circle: |
-| get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | Not Passing :red_circle: |
-| save an opportunity post to a local list so that I can re-visit it later  | Passing :white_check_mark: |
-| remove a saved opportunity from my list  | Passing :white_check_mark: |
-
-</div>
-
-<div>
-
-| As a Nonprofit, I can... | Status |
-| --- | --- |
-| register my organization on Voluntr. | Not Passing :red_circle: |
-| easily submit open volunteer opportunities. | Not Passing :red_circle: |
-| edit or remove a posted opportunity  | Not Passing :red_circle: |
-| view the list of posted opportunities that are open  | Not Passing :red_circle: |
-| view and edit profile settings for my organization, including name, contact email, and any other profile data  | Not Passing :red_circle: |
-| log in to my existing account and logout when I'm done  | Not Passing :red_circle: |
+| As a Nonprofit, I can... | Goal | Status |
+| --- | --- |--- |
+| register my organization on Voluntr. | MVP | Not Passing :red_circle: |
+| easily submit open volunteer opportunities. | MVP | Not Passing :red_circle: |
+| edit or remove a posted opportunity  | MVP  | Not Passing :red_circle: |
+| view the list of posted opportunities that are open  | MVP | Not Passing :red_circle: |
+| view and edit profile settings for my organization, including name, contact email, and any other profile data  | MVP | Not Passing :red_circle: |
+| log in to my existing account and logout when I'm done  | MVP | Not Passing :red_circle: |
 
 </div>
 
