@@ -34,7 +34,9 @@ def set_filters():
         
         return resp # sets cookie and redirects
 
-    return render_template('volunteer/filters.html', title="Voluntr | Filters")
+    categories = {"disabilities":"People With Disabilities", "hunger":"Hunger", "houseless":"Homeless & Housing", "health_med":"Health & Medicine", "environment":"Environment & Nature", "education_lit":"Education & Literacy", "community":"Community", "kids_youth":"Children & Youth", "arts_culture":"Arts & Culture", "animals":"Animals"}
+
+    return render_template('volunteer/filters.html', title="Voluntr | Filters", categories = categories)
 
 @app.route("/opportunities", methods=['GET'])
 def opportunities():
