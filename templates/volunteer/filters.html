@@ -4,6 +4,7 @@
   <div class="container-outer">
     <div class="container">
       <h2>My Search Preferences</h2>
+      <div class="alert alert-warning"> Filtering by category now works. Filtering by location and available days are stretch goals that will hopefully work someday soon. </div>
       <form action="/filters" method="post" id="filters-form">
         <div class="form-group">
           <label for="zipcode">Zip Code</label>
@@ -15,6 +16,7 @@
         </div>
         <div class="form-group">
           <label for="category">Show me opportunities related to:</label>
+            <p>(Or view opportunities from all categories by checking none.)</p>
             {% for key, value in categories.items() %}
             <div class="radio">
               <label>
@@ -23,6 +25,7 @@
             </div>
             {% endfor %}
           </div>
+
         <div class="form-group">
           <label for="available">Available Days:&nbsp;</label>
           <label class="checkbox-inline">
