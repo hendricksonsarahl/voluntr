@@ -12,6 +12,6 @@ class Filters():
             opps = Opportunity.query.all()
 
         else:
-            opps = Opportunity.query.filter_by(category=self.category).all()
+            opps = Opportunity.query.filter_by(category_class=self.category).all()
             
         return opps
