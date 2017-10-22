@@ -75,6 +75,7 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 | set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | MVP  |
 | see that the results list includes opportunities that match my preferences  | MVP  |
 | get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP  |
+| save an opportunity post to a local list so that I can re-visit it later  | MVP  |
 | remove a saved opportunity from my list  | MVP  |
 
 </div>
@@ -113,7 +114,8 @@ We will use manual testing to verify our scenarios, and document the results her
 | set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | Not Passing :red_circle: |
 | see that the results list includes opportunities that match my preferences  | Not Passing :red_circle: |
 | get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | Not Passing :red_circle: |
-| remove a saved opportunity from my list  | Not Passing :red_circle: |
+| save an opportunity post to a local list so that I can re-visit it later  | Passing :white_check_mark: |
+| remove a saved opportunity from my list  | Passing :white_check_mark: |
 
 </div>
 
@@ -130,4 +132,4 @@ We will use manual testing to verify our scenarios, and document the results her
 
 </div>
 
-Our stretch goal will be to include some unit and acceptance tests using pytest and pytest-BDD.  
+Our stretch goal will be to include some Python unit and acceptance tests using pytest and pytest-BDD, and some JavaScript unit tests with tap.  
