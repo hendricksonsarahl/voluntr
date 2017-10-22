@@ -24,10 +24,10 @@ function loadStore() {
 }
 
 // add opportunities to a JSON-encoded localStorage array
-function saveOpportunity(store){
+function saveOpportunity(store, opp){
 
     //add the page's currentOpp to the provided store, then save it to localStorage
-    store.push(window.currentOpp);
+    store.push(opp);
     localStorage.setItem("savedOpps", JSON.stringify(store));
 }
 
@@ -47,17 +47,17 @@ if (typeof window !== "undefined") {
     var saveButton = document.getElementById('save-button');
     //currentOpp is a global variable loaded in the HTML created by the Jinja template
     
-    // update the save button if the opp is already saved
+    // update the save button if the opp is already saved on page load
     if (idInArray(store, currentOpp)) {
       updateSaveButton.bind(saveButton)();
     }
 
-    // on Save click, add the opp to localStorage and change button appearance
+    // on Save Button click, add the opp to localStorage and change button appearance
     saveButton.addEventListener('click', function(){
 
       //check to see if the opportunity has already been saved:
       if(!idInArray(store, currentOpp)) {
-        saveOpportunity(store);
+        saveOpportunity(store, currentOpp);
         updateSaveButton.bind(this)();
       }
     });
