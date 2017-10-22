@@ -1,13 +1,12 @@
 // return the savedOpps value in localStorage. if it doesn't exist yet, create an empty array first
 function loadStore() {
+
   //get the current stored value for savedOpps
   var store = JSON.parse(localStorage.getItem("savedOpps"));
 
   //if no local store has been created for savedOpps, create an empty array to hold it
   if(!store) {
-    var newStore = JSON.stringify([])
-    localStorage.setItem("savedOpps", newStore);
-    store = JSON.parse(localStorage.getItem("savedOpps"));
+    store = JSON.stringify([])    
   }
 
   return store;
@@ -46,7 +45,7 @@ function showNoOppsMessage(parentElt) {
 }
 
 // Remove an opportunity from localStorage, and remove its panel on this page
-function removeOpp(oppPanel) {
+function removeOppFromStore(oppPanel) {
   var thisOppId = oppPanel.dataset.id;
   var oppList = loadStore();
 
@@ -58,6 +57,9 @@ function removeOpp(oppPanel) {
   // Remove the opportunity from the store and save to localStorage
   oppList.splice(indexToRemove, 1);
   localStorage.setItem('savedOpps', JSON.stringify(oppList));
+}
+
+function removeOppFromPage(oppPanel) {
 
   //Remove the opportunity's panel from this page:
   oppPanel.parentNode.removeChild(oppPanel);
@@ -83,7 +85,8 @@ if (typeof window !== "undefined") {
     for (var i = 0; i < removeButtons.length; i++) {
       removeButtons[i].addEventListener('click', function(e) {
 
-        removeOpp(e.target.parentNode.parentNode.parentNode)
+        removeOppFromStore(e.target.parentNode.parentNode.parentNode);
+        removeOppFromPage(e.target.parentNode.parentNode.parentNode);
       });
     }
   })();

@@ -15,57 +15,14 @@
         </div>
         <div class="form-group">
           <label for="category">Show me opportunities related to:</label>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="animals">Animals
-            </label>
+            {% for key, value in categories.items() %}
+            <div class="radio">
+              <label>
+                <input id="{{key}}" type="radio" name="category" value="{{key}}">{{value}}
+              </label>
+            </div>
+            {% endfor %}
           </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="arts_culture">Arts and Culture
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="community">Community
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="disabilities">Disabilities
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="education_lit">Education and Literacy
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="environment">Environment
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="health_med">Health and Medicine
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="houseless">Homelessness and Housing
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="hunger">Hunger
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="category" value="kids_youth">Kids and Youth
-            </label>
-          </div>
-        </div>
         <div class="form-group">
           <label for="available">Available Days:&nbsp;</label>
           <label class="checkbox-inline">
