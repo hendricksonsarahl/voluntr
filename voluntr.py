@@ -34,7 +34,7 @@ def set_filters():
         
         return resp # sets cookie and redirects
 
-    categories = {"disabilities":"People With Disabilities", "hunger":"Hunger", "houseless":"Homeless & Housing", "health_med":"Health & Medicine", "environment":"Environment & Nature", "education_lit":"Education & Literacy", "community":"Community", "kids_youth":"Children & Youth", "arts_culture":"Arts & Culture", "animals":"Animals"}
+    categories = {"disabilities":"People with Disabilities", "hunger":"Hunger", "houseless":"Homeless & Housing", "health_med":"Health & Medicine", "environment":"Environment & Nature", "education_lit":"Education & Literacy", "community":"Community", "kids_youth":"Children & Youth", "arts_culture":"Arts & Culture", "animals":"Animals"}
 
     return render_template('volunteer/filters.html', title="Voluntr | Filters", categories = categories)
 
@@ -140,7 +140,7 @@ def new_opportunity():
             return redirect('/org/opportunities')
     
     # response for GET requests:
-    categories = ["People With Disabilities", "Hunger", "Homeless & Housing", "Health & Medicine", "Environment & Nature", "Education & Literacy", "Community", "Children & Youth", "Arts & Culture", "Animals"]
+    categories = ["People with Disabilities", "Hunger", "Homeless & Housing", "Health & Medicine", "Environment & Nature", "Education & Literacy", "Community", "Children & Youth", "Arts & Culture", "Animals"]
 
     return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
 
