@@ -1,4 +1,6 @@
 from flask import Flask, request, redirect, render_template, flash, url_for, json, make_response
+from google.oauth2 import id_token
+from google.auth.transport import requests
 from app import app, db
 from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
@@ -160,8 +162,30 @@ def show_opportunity():
 def login():
     '''process a login attempt via OAuth token'''
     token = request.get_json()["authToken"]
+    
     print ('\nLogin route received data: ', request.get_json())
     print ('\nOAuth token to parse: ', token)
+
+
+
+    #~~~~~~This code is adapted from Google's example~~~~~~~~~
+    try:
+        CLIENT_ID = "649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com"
+        idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
+
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise ValueError('Wrong issuer.')
+
+        # ID token is valid. Get the user's Google Account ID from the decoded token.
+        userid = idinfo['sub']
+        print ('The userID for the OAuth token is %s'%(userid))
+    except ValueError:
+        # Invalid token
+        pass
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
     return json.jsonify({"message": "All is well.", "token": token})
 
 @app.route("/org/signup", methods=['POST'])
