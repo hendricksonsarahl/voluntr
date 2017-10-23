@@ -1,9 +1,9 @@
-// returns true if the page's opportunity is in the provided array
-function isSaved(arr) {
+// returns true iff target object's ID matches the ID of an element in the provided array
+function idInArray(arr, target) {
   function checkId(obj) {
 
     //window.currentOpp is a global variable loaded in the HTML created by the Jinja template
-    return obj.id === window.currentOpp.id;
+    return obj.id === target.id;
   }
 
   return arr.findIndex(checkId) > -1
@@ -11,29 +11,24 @@ function isSaved(arr) {
 
 // return the savedOpps value in localStorage. if it doesn't exist yet, create an empty array first
 function loadStore() {
+
   //get the current stored value for savedOpps
   var store = JSON.parse(localStorage.getItem("savedOpps"));
 
   //if no local store has been created for savedOpps, create an empty array to hold it
   if(!store) {
-    var newStore = JSON.stringify([])
-    localStorage.setItem("savedOpps", newStore);
-    store = JSON.parse(localStorage.getItem("savedOpps"));
+    store = JSON.stringify([])    
   }
 
   return store;
 }
 
 // add opportunities to a JSON-encoded localStorage array
-function saveOpportunity(store){
+function saveOpportunity(store, opp){
 
-  //check to see if the opportunity has already been saved:
-  if(!isSaved(store)) {
-
-    //add the page's currentOpp to the savedOpps store
-    store.push(window.currentOpp);
+    //add the page's currentOpp to the provided store, then save it to localStorage
+    store.push(opp);
     localStorage.setItem("savedOpps", JSON.stringify(store));
-  }
 }
 
 // change the appearance and text of the save button if the opp has been saved
@@ -50,17 +45,21 @@ if (typeof window !== "undefined") {
   (function() {
     var store = loadStore();
     var saveButton = document.getElementById('save-button');
+    //currentOpp is a global variable loaded in the HTML created by the Jinja template
     
-    // update the save button if the opp is already saved
-    if (isSaved(store)) {
+    // update the save button if the opp is already saved on page load
+    if (idInArray(store, currentOpp)) {
       updateSaveButton.bind(saveButton)();
     }
 
-    // on Save click, add the opp to localStorage and change button appearance
-    saveButton.addEventListener('click', function(e){
-      e.preventDefault();
-      saveOpportunity(store);
-      updateSaveButton.bind(this)();
+    // on Save Button click, add the opp to localStorage and change button appearance
+    saveButton.addEventListener('click', function(){
+
+      //check to see if the opportunity has already been saved:
+      if(!idInArray(store, currentOpp)) {
+        saveOpportunity(store, currentOpp);
+        updateSaveButton.bind(this)();
+      }
     });
 
   })();
@@ -70,6 +69,9 @@ if (typeof window !== "undefined") {
 // The leading if statement should prevent this block from running in the browser.
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
-    saveOpportunity: saveOpportunity
+    idInArray: idInArray,
+    loadStore: loadStore,
+    saveOpportunity: saveOpportunity,
+    updateSaveButton: updateSaveButton
   };
 }
