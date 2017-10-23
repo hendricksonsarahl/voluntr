@@ -1,4 +1,6 @@
 from flask import Flask, request, redirect, render_template, flash, url_for, json, make_response
+from google.oauth2 import id_token
+from google.auth.transport import requests
 from app import app, db
 from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
@@ -17,6 +19,7 @@ def index():
     with the app as either a individual volunteer or an organization/non-profit 
     representative '''
     return render_template('index.html', title="Voluntr")
+
 
 @app.route("/filters", methods=['GET', 'POST'])
 def set_filters():
@@ -37,6 +40,7 @@ def set_filters():
     categories = {"disabilities":"People with Disabilities", "hunger":"Hunger", "houseless":"Homeless & Housing", "health_med":"Health & Medicine", "environment":"Environment & Nature", "education_lit":"Education & Literacy", "community":"Community", "kids_youth":"Children & Youth", "arts_culture":"Arts & Culture", "animals":"Animals"}
 
     return render_template('volunteer/filters.html', title="Voluntr | Filters", categories = categories)
+
 
 @app.route("/opportunities", methods=['GET'])
 def opportunities():
@@ -66,15 +70,52 @@ def opportunities():
     
     return redirect("/filters") # redirects to filters if no cookie exists
 
+
 @app.route("/matches", methods=['GET'])
 def display_matches():
     '''lists all opportunities that a volunteer user saved'''
     return render_template('volunteer/matches.html', title="Voluntr | Saved Opportunities")
 
+
 @app.route("/org/login", methods=['GET'])
 def org_login():
     '''displays a form for organizations to signup or login to Voluntr'''
     return render_template('organization/login.html', title="Voluntr | Log In")
+
+
+
+@app.route("/org/login", methods=['POST'])
+def login():
+    '''process a login attempt via OAuth token'''
+    token = request.get_json()["authToken"]
+
+    print ('\nLogin route received data: ', request.get_json())
+    print ('\nOAuth token to parse: ', token)
+    
+    try:
+        CLIENT_ID = "649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com"
+        idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
+
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise ValueError('Wrong issuer.')
+        
+        # ID token is valid. Get the user's Google Account ID from the decoded token.
+        userid = idinfo['sub']
+        print ('The userID for the OAuth token is %s'%(userid))
+
+    except ValueError:
+        # Invalid token
+        pass
+
+    return json.jsonify({"message": "All is well.", "token": token})
+
+
+@app.route("/org/signup", methods=['POST'])
+def signup():
+    '''process a sign-up attempt with an Oauth token and some form data'''
+    print ('\nSignup route received data: ', request)
+    return redirect('/')
+
 
 @app.route("/org/opportunities", methods=['GET'])
 def manage_opportunities():
@@ -93,6 +134,7 @@ def manage_opportunities():
         opp.startDateTime = readable_date(opp.startDateTime)
     
     return render_template('organization/opportunities.html', title='Voluntr | Opportunities', headerName = org_name, opportunities = opps)
+
 
 @app.route("/org/add", methods=['GET', 'POST'])
 def new_opportunity():
@@ -144,6 +186,7 @@ def new_opportunity():
 
     return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
 
+
 @app.route("/org/edit", methods=['GET'])
 def edit_opportunity():
     ''' displays a form pre-populated with data for a single opportunity, so the user can 
@@ -151,25 +194,14 @@ def edit_opportunity():
     from the app '''
     return render_template('organization/edit.html', title='Voluntr | Edit Opportunity')
 
+
 @app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
     '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
     return render_template('organization/preview.html', title="Voluntr | Preview Post")
 
-@app.route("/org/login", methods=['POST'])
-def login():
-    '''process a login attempt via OAuth token'''
-    token = request.get_json()["authToken"]
-    print ('\nLogin route received data: ', request.get_json())
-    print ('\nOAuth token to parse: ', token)
-    return json.jsonify({"message": "All is well.", "token": token})
 
-@app.route("/org/signup", methods=['POST'])
-def signup():
-    '''process a sign-up attempt with an Oauth token and some form data'''
-    print ('\nSignup route received data: ', request)
-    return redirect('/')
-
+# Run this route upon app startup to load sample data
 @app.route("/drop_create", methods=['GET'])
 def dropCreate():
     db.drop_all()
