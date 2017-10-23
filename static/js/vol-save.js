@@ -5,7 +5,7 @@ function loadStore() {
 
   //if no local store has been created for savedOpps, create an empty array to hold it
   if (!store) {
-    store = JSON.stringify([]);
+    store = [];
   }
 
   return store;
