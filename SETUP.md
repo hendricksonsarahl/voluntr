@@ -108,7 +108,9 @@ Follow these steps to successfully run this app on your machine!
     ```
 
     The app will now be running in your browser at [http://localhost:5000/](http://localhost:5000/)
-    <b>Important: You must be running 'localhost' and not '127.0.0.1' in your browser for Organization sign in to function properly.</b>
+    - Once the app is running, first visit the /drop_create route to load sample data.
+    - <b>Important: You must be running 'localhost' and not '127.0.0.1' in your browser for Organization sign in to function properly.</b>
+
 
 ## 5. Testing.
 ### JavaScript
