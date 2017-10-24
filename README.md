@@ -71,11 +71,12 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 
 | As a Volunteer, I can... | Goal | Status |
 | --- | --- |--- |
-| view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | MVP  | Not Passing :red_circle: |
-| set and edit preferences of when, where and what I will be doing while volunteering so I don’t have to search through many postings that don’t meet my interests. | MVP | Not Passing :red_circle: |
-| see that the results list includes opportunities that match my preferences  | MVP | Not Passing :red_circle: |
-| get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP | Not Passing :red_circle: |
+| view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | MVP  | Passing :white_check_mark: |
+|set and edit preferences of what day(s) I want to volunteer so I don’t have to search through many postings that don’t meet my schedule. | MVP | Not Passing :red_circle: |
+| set and edit preferences of where I want to volunteer so I don’t have to search through many postings that don’t meet my location. | MVP | Not Passing :red_circle: |
+| see that the results list includes opportunity categories that match my preferences  | MVP | Not Passing :red_circle: |
 | save an opportunity post to a local list so that I can re-visit it later  | MVP | Passing :white_check_mark: |
+| view the saved opportunity to get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP | Not Passing :red_circle: |
 | remove a saved opportunity from my list  | MVP | Passing :white_check_mark: |
 
 </div>
@@ -85,9 +86,9 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 | As a Nonprofit, I can... | Goal | Status |
 | --- | --- |--- |
 | register my organization on Voluntr. | MVP | Not Passing :red_circle: |
-| easily submit open volunteer opportunities. | MVP | Not Passing :red_circle: |
+| easily submit open volunteer opportunities. | MVP | Passing :white_check_mark: |
 | edit or remove a posted opportunity  | MVP  | Not Passing :red_circle: |
-| view the list of posted opportunities that are open  | MVP | Not Passing :red_circle: |
+| view the list of posted opportunities that are open  | MVP | Passing :white_check_mark: |
 | view and edit profile settings for my organization, including name, contact email, and any other profile data  | MVP | Not Passing :red_circle: |
 | log in to my existing account and logout when I'm done  | MVP | Not Passing :red_circle: |
 
