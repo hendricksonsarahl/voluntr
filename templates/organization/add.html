@@ -53,10 +53,10 @@
               <div class="form-group">
                 <label for="category">Category</label>
                 <p class="help-block">Choose the one category that best fits this opportunity.</p>
-                {% for category in categories %}
+                {% for key, value in categories.items() %}
                 <div class="radio">
                   <label>
-                    <input id="{{category}}" type="radio" name="category" value="{{category}}">{{category}}
+                    <input id="{{key}}" type="radio" name="category" value="{{key}}">{{value}}
                   </label>
                 </div>
                 {% endfor %}
