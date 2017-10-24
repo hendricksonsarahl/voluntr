@@ -10,24 +10,26 @@
   <div class="container-outer">
     <div class="container">
       <div class="row opp-header opp-header--{{ opp.category_class }}">
-        <h1 class="text-center">{{ opp.title }}</h1>
-        <h3 class="text-center">{{ opp.owner.orgName }}</h3><br><br><br>
-        <div class="row">
-          <div class="col-xs-6"> 
+        <div class="opp-header__top">
+          <h1 class="text-center">{{ opp.title }}</h1>
+          <h3 class="text-center">{{ opp.owner.orgName }}</h3>
+        </div>
+        <div class="opp-header__bottom">
+          <div class="opp-header__bottom-left">
             <h4 class="text-center">{{ opp.address }}</h4>
             <h4 class="text-center">{{ opp.city }},&nbsp;{{ opp.state }}&nbsp;{{ opp.zipcode }}</h4>
           </div>
-          <div class="col-xs-6">
+          <div class="opp-header__bottom-right">
             <h4 class="text-center">{{event_date}}</h4>
             <h4 class="text-center">{{event_time}}</h4>
-          </div>
+          </div> 
         </div>
       </div>
       <hr>
       <div class="row">
         <p><strong>Location:&nbsp;</strong>{{ opp.address }},&nbsp;{{ opp.city }},&nbsp;{{ opp.state }}&nbsp;{{ opp.zipcode }}</p>
         <p><strong>Organization website:&nbsp;</strong><a href={{opp.owner.url}}>{{opp.owner.url}}</a></p>
-        <p><strong>When:&nbsp;</strong>November 9, 6:00PM - 7:30PM</p>
+        <p><strong>When:&nbsp;</strong>{{event_date}}, {{event_time}}</p>
         <p> <strong>About:&nbsp;</strong>{{ opp.description }}</p>
         <p><strong>Next steps:&nbsp;</strong>{{ opp.nextSteps }}</p>
       </div>
