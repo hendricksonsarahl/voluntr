@@ -1,11 +1,10 @@
 // TODO: Finish this function
 function onSignIn(googleUser) {
-  // Build an object with the data we wish to send to server
   var profile = googleUser.getBasicProfile();
   var authToken = googleUser.getAuthResponse().id_token;
+
+  // Build an object with the data we wish to send to server 
   var userDataToSend = {
-    contactName: profile.getName(),
-    email: profile.getEmail(),
     authToken: authToken
   };
 
@@ -28,12 +27,12 @@ function onSignIn(googleUser) {
         response
           .json()
           .then(function(responseData) {
-            console.log("Success! Server responded with: ", responseData);
+            console.log("Server responded with: ", responseData);
             
             if (responseData.valid_token && responseData.account_exists) {
               redirectToOrgHome();
             } else {
-              showSignUpForm();
+              showSignUpForm(profile.getName(), profile.getEmail());
             }
           })
           .catch(displayError);
@@ -43,8 +42,16 @@ function onSignIn(googleUser) {
 }
 
 // Executed after successful Google sign-in, with no existing Voluntr account:
-function showSignUpForm() {
+function showSignUpForm(contactName, email) {
   var signUpForm = document.querySelector('.signup-row');
+  var contactNameInput = document.getElementById('contactName');
+  var emailInput = document.getElementById('email');
+
+  //pre-populate Contact Name and Contact Email fields with data from Google account:
+  contactNameInput.value = contactName;
+  emailInput.value = email;
+
+  //display the form
   signUpForm.classList.remove("hidden");
 }
 
