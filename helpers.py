@@ -137,7 +137,7 @@ def process_oauth_token(token):
     except ValueError:
         # Invalid token
         return None
-=======
+
 # Category helpers
 ##############################3
 def get_categories():
