@@ -1,3 +1,14 @@
+// returns true iff target object's ID matches the ID of an element in the provided array
+function idInArray(arr, target) {
+  function checkId(obj) {
+
+    //window.currentOpp is a global variable loaded in the HTML created by the Jinja template
+    return obj.id === target.id;
+  }
+
+  return arr.findIndex(checkId) > -1
+}
+
 // return the savedOpps value in localStorage. if it doesn't exist yet, create an empty array first
 function loadStore() {
   //get the current stored value for savedOpps
@@ -44,6 +55,21 @@ function showNoOppsMessage(parentElt) {
     '<h2>Nothing Saved Yet</h2><p><a href="/opportunities">Continue browsing opportunities</a></p>';
 }
 
+// add opportunities to a JSON-encoded localStorage array
+function saveOpportunity(store, opp){
+
+    //add the page's currentOpp to the provided store, then save it to localStorage
+    store.push(opp);
+    localStorage.setItem("savedOpps", JSON.stringify(store));
+}
+
+// change the appearance and text of the save button if the opp has been saved
+function updateSaveButton() {
+  this.classList.remove('btn-default')
+  this.classList.add('btn-success');
+  this.innerHTML = 'Saved!&nbsp;<span class="glyphicon glyphicon-ok"></span>';  
+}
+
 // Remove an opportunity from localStorage
 function removeOppFromStore(oppId) {
   var oppList = loadStore();
@@ -84,25 +110,49 @@ if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
   (function() {
     var store = loadStore();
-    var oppListParent = document.getElementById("opp-container");
-
-    //initial render
-    render(store, oppListParent);
-
-    //listen for clicks on Remove buttons
-    oppListParent.addEventListener("click", function(e) {
-      if (
-        e.target.classList.contains("remove-button") ||
-        e.target.parentNode.classList.contains("remove-button")
-      ) {
-        var clickedOppId = e.target.parentNode.parentNode.parentNode.dataset.id
-        removeOppFromStore(clickedOppId);
-
-        //re-load the store from localStorage, and re-render the view
-        store = loadStore();
-        render(store, oppListParent);
+    
+    // set up Browse Opportunities page:
+    if(window.location.pathname === "/opportunities") {
+      var saveButton = document.getElementById('save-button');
+      //currentOpp is a global variable loaded in the HTML created by the Jinja template
+      
+      // update the save button if the opp is already saved on page load
+      if (idInArray(store, currentOpp)) {
+        updateSaveButton.bind(saveButton)();
       }
-    });
+
+      // on Save Button click, add the opp to localStorage and change button appearance
+      saveButton.addEventListener('click', function(){
+
+        //check to see if the opportunity has already been saved:
+        if(!idInArray(store, currentOpp)) {
+          saveOpportunity(store, currentOpp);
+          updateSaveButton.bind(this)();
+        }
+      });
+
+    // set up My Saved Opportunities page:
+    } else if (window.location.pathname === "/matches") {
+      var oppListParent = document.getElementById("opp-container");
+
+      //initial render
+      render(store, oppListParent);
+
+      //listen for clicks on Remove buttons
+      oppListParent.addEventListener("click", function(e) {
+        if (
+          e.target.classList.contains("remove-button") ||
+          e.target.parentNode.classList.contains("remove-button")
+        ) {
+          var clickedOppId = e.target.parentNode.parentNode.parentNode.dataset.id
+          removeOppFromStore(clickedOppId);
+
+          //re-load the store from localStorage, and re-render the view
+          store = loadStore();
+          render(store, oppListParent);
+        }
+      });
+    }
   })();
 }
 
