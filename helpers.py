@@ -114,27 +114,32 @@ def validate_next_steps(input_text):
 
     return input_text
 
-def get_category_class(category):
+# Category helpers
+##############################3
+def get_categories():
+    ''' returns a dictionary containing category_class:category key value pairs ''' 
+    categories = { "animals":"Animals",
+                    "arts_culture":"Arts & Culture", 
+                    "kids_youth":"Children & Youth",
+                    "community":"Community", 
+                    "education_lit":"Education & Literacy",  
+                    "environment":"Environment & Nature", 
+                    "health_med":"Health & Medicine", 
+                    "houseless":"Homeless & Housing", 
+                    "hunger":"Hunger", 
+                    "disabilities":"People with Disabilities"}
+    return categories
 
-    if category == "Animals": 
-        return "animals"
-    elif category == "Arts & Culture":
-        return "arts_culture"
-    elif category == "Children & Youth": 
-        return "kids_youth" 
-    elif category == "Community":
-        return "community"
-    elif category == "Education & Literacy": 
-        return "education_lit"
-    elif category == "Environment & Nature": 
-        return "environment"
-    elif category == "Health & Medicine": 
-        return "health_med"
-    elif category == "Homeless & Housing": 
-        return "houseless"
-    elif category == "Hunger": 
-        return "hunger"
-    elif category == "People with Disabilities": 
-        return "disabilities"
-    else:
-        return "unknown"
+def get_category(cat_class):
+    ''' Given a string representing a category class, this function 
+    returns the related category '''
+    categories = get_categories()
+    return categories[cat_class]
+
+def get_cat_class(category):
+    ''' Given a string representing a category, returns a string 
+    representing the related category class '''
+    categories = get_categories()
+    for key in categories.keys():
+        if get_category(key) == category:
+            return key
