@@ -55,6 +55,31 @@ body {
   margin: 10px;
 }
 
+.opp-nav-buttons {
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .opp-nav-buttons {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+  }
+  .opp-nav-buttons > .btn,
+  .opp-nav-buttons > .btn-group {
+    display: table-cell;
+    float: none;
+    width: 1%;
+  }
+  .opp-nav-buttons > .btn-group .btn {
+    width: 100%;
+  }
+  .opp-nav-buttons > .btn-group .dropdown-menu {
+    left: auto;
+  }
+}
+
 /*~~~~~~~~Flexbox layout for Opp Headers:~~~~~~~~~~~*/
 
 .opp-header {
