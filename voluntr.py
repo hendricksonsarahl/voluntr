@@ -35,7 +35,7 @@ def set_filters():
         
         return resp # sets cookie and redirects
 
-    categories = {"disabilities":"People with Disabilities", "hunger":"Hunger", "houseless":"Homeless & Housing", "health_med":"Health & Medicine", "environment":"Environment & Nature", "education_lit":"Education & Literacy", "community":"Community", "kids_youth":"Children & Youth", "arts_culture":"Arts & Culture", "animals":"Animals"}
+    categories = get_categories()
 
     return render_template('volunteer/filters.html', title="Voluntr | Filters", categories = categories)
 
@@ -150,7 +150,8 @@ def new_opportunity():
         city = request.form["city"]
         state = request.form["state"]
         zip_code = request.form["zip"]
-        category = request.form["category"]
+        category_class = request.form["category"]
+        category = get_category(category_class)
         description = validate_description(request.form["description"])
         next_steps = validate_next_steps(request.form["nextsteps"])
         
@@ -159,9 +160,6 @@ def new_opportunity():
 
         # get duration as an int
         duration = get_duration(start_time, end_time)
-        
-        # get category_class
-        category_class = get_category_class(category)
 
         # temporary hard-coded owner ID - to be removed when Oauth signin/sessions are completed 
         org_id = 4
@@ -174,15 +172,13 @@ def new_opportunity():
                                     start_date_time, duration, 
                                     category_class, category, 
                                     next_steps, org_id)
-            #print("category is : " + category)
-            #print("category_class is : " + category_class)
             db.session.add(new_opp)
             db.session.commit()
 
             return redirect('/org/opportunities')
     
     # response for GET requests:
-    categories = ["People with Disabilities", "Hunger", "Homeless & Housing", "Health & Medicine", "Environment & Nature", "Education & Literacy", "Community", "Children & Youth", "Arts & Culture", "Animals"]
+    categories = get_categories()
 
     return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
 
