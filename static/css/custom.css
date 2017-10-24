@@ -59,6 +59,7 @@ body {
   margin: 5px 0;
 }
 
+/*Uses code from Bootstrap's btn-justified class, only on small screens:*/
 @media (max-width: 768px) {
   .opp-nav-buttons {
     display: table;
@@ -151,9 +152,9 @@ body {
 
 .opp-header h4 {
   text-transform: uppercase;
+  margin-top: 3px;
+  margin-bottom: 0;
 }
-
-
 
 .opp-header--animals {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/animals.jpg");

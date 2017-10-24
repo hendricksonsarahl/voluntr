@@ -4,55 +4,59 @@
   <div class="container-outer">
     <div class="container">
       <h2>My Search Preferences</h2>
-      <form action="/filters" method="post" id="filters-form">
-        <div class="form-group hidden">
-          <label for="zipcode">Zip Code</label>
-          <input name="zipcode" class="form-control" id="zipcode" type="text" placeholder="Zip Code" maxlength="5">
-        </div>
-        <div class="form-group hidden">
-          <label for="distance">Distance (miles)</label>
-          <input name="distance" id="distance" type="range" min="1" max="50" value="10">
-        </div>
-        <div class="form-group">
-          <label for="category">Show me opportunities related to:</label>
-            <p>(Or view opportunities from all categories by checking none.)</p>
-            {% for key, value in categories.items() %}
-            <div class="radio">
-              <label>
-                <input id="{{key}}" type="radio" name="category" value="{{key}}">{{value}}
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form action="/filters" method="post" id="filters-form">
+            <div class="form-group hidden">
+              <label for="zipcode">Zip Code</label>
+              <input name="zipcode" class="form-control" id="zipcode" type="text" placeholder="Zip Code" maxlength="5">
+            </div>
+            <div class="form-group hidden">
+              <label for="distance">Distance (miles)</label>
+              <input name="distance" id="distance" type="range" min="1" max="50" value="10">
+            </div>
+            <div class="form-group">
+              <label for="category">Show me opportunities related to:</label>
+                <p>(Or view opportunities from all categories by checking none.)</p>
+                {% for key, value in categories.items() %}
+                <div class="radio">
+                  <label>
+                    <input id="{{key}}" type="radio" name="category" value="{{key}}">{{value}}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+
+            <div class="form-group hidden">
+              <label for="available">Available Days:&nbsp;</label>
+              <label class="checkbox-inline">
+                <input id="sun" type="checkbox" name="availableDays" value="sunday"> Sun
+              </label>
+              <label class="checkbox-inline">
+                <input id="mon" type="checkbox" name="availableDays" value="monday"> Mon
+              </label>
+              <label class="checkbox-inline">
+                <input id="tue" type="checkbox" name="availableDays" value="tuesday"> Tue
+              </label>
+              <label class="checkbox-inline">
+                <input id="wed" type="checkbox" name="availableDays" value="wednesday"> Wed
+              </label>
+              <label class="checkbox-inline">
+                <input id="thu" type="checkbox" name="availableDays" value="thursday"> Thu
+              </label>
+              <label class="checkbox-inline">
+                <input id="fri" type="checkbox" name="availableDays" value="friday"> Fri
+              </label>
+              <label class="checkbox-inline">
+                <input id="sat" type="checkbox" name="availableDays" value="saturday"> Sat
               </label>
             </div>
-            {% endfor %}
-          </div>
-
-        <div class="form-group hidden">
-          <label for="available">Available Days:&nbsp;</label>
-          <label class="checkbox-inline">
-            <input id="sun" type="checkbox" name="availableDays" value="sunday"> Sun
-          </label>
-          <label class="checkbox-inline">
-            <input id="mon" type="checkbox" name="availableDays" value="monday"> Mon
-          </label>
-          <label class="checkbox-inline">
-            <input id="tue" type="checkbox" name="availableDays" value="tuesday"> Tue
-          </label>
-          <label class="checkbox-inline">
-            <input id="wed" type="checkbox" name="availableDays" value="wednesday"> Wed
-          </label>
-          <label class="checkbox-inline">
-            <input id="thu" type="checkbox" name="availableDays" value="thursday"> Thu
-          </label>
-          <label class="checkbox-inline">
-            <input id="fri" type="checkbox" name="availableDays" value="friday"> Fri
-          </label>
-          <label class="checkbox-inline">
-            <input id="sat" type="checkbox" name="availableDays" value="saturday"> Sat
-          </label>
+            <div class="text-center">
+              <button type="submit" form="filters-form" value="Sign Up" class="btn btn-primary">Browse Opportunities</button>
+            </div>
+          </form>
         </div>
-        <div class="text-center">
-          <button type="submit" form="filters-form" value="Sign Up" class="btn btn-primary">Browse Opportunities</button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 {% endblock %}     
