@@ -2,6 +2,21 @@ body {
   padding-bottom: 15px;
 }
 
+.navbar-brand {
+  position: relative;
+  bottom: 3px;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.navbar-brand img {
+  height: 30px;
+  display: inline;
+  margin-right: 5px;
+  position: relative;
+  bottom: 3px;
+}
+
 .panel .btn {
   margin-right: 5px;
 }
@@ -9,6 +24,10 @@ body {
 @media (max-width: 768px) {
   .navbar {
     margin-bottom: 10px;
+  }
+
+  .navbar-brand {
+    font-size: 18px;
   }
 
   .container-outer {
@@ -34,25 +53,6 @@ body {
 
 .alert-container .alert {
   margin: 10px;
-}
-
-/*Background overlay effect for text on photos:*/
-
-.jumbotron-index {
-  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url("../images/diego-ph-254975.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  color: #fff;
-  height: 450px;
-  padding: 30px 15px;
-}
-
-.opp-header {
-  color: #fff;
-  min-height: 300px;
-  padding: 0px 15px;
-  position: relative;
 }
 
 /*~~~~~~~~Flexbox layout for Opp Headers:~~~~~~~~~~~*/
@@ -100,6 +100,25 @@ body {
 }
 
 /*~~~~~~~~~~~End flexbox for Opp Headers~~~~~~~~~~~*/
+
+/*Background overlay effect for text on photos:*/
+
+.jumbotron-index {
+  background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url("../images/diego-ph-254975.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  height: 450px;
+  padding: 30px 15px;
+}
+
+.opp-header {
+  color: #fff;
+  min-height: 300px;
+  padding: 0px 15px;
+  position: relative;
+}
 
 .opp-header * {
   font-weight: bold;
