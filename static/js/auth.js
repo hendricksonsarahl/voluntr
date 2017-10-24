@@ -1,11 +1,9 @@
-// TODO: Finish this function
 function onSignIn(googleUser) {
-  // Build an object with the data we wish to send to server
   var profile = googleUser.getBasicProfile();
   var authToken = googleUser.getAuthResponse().id_token;
+
+  // Build an object with the data we wish to send to server 
   var userDataToSend = {
-    contactName: profile.getName(),
-    email: profile.getEmail(),
     authToken: authToken
   };
 
@@ -28,14 +26,18 @@ function onSignIn(googleUser) {
         response
           .json()
           .then(function(responseData) {
-            console.log("Success! Server responded with: ", responseData);
+            console.log("Server responded with: ", responseData);
             
-            //TODO: Make this conditional actually depend on server response
-            // if(response.accountExists) {
-            if (false) {
-              redirectToOrgHome();
+            // Based on token validity, and Voluntr account existence, either:
+            // Redirect to logged-in view, show sign-up form, or show an error message
+            if(responseData.valid_token) {
+              if (responseData.account_exists) {
+                redirectToOrgHome();
+              } else {
+                showSignUpForm(profile.getName(), profile.getEmail(), authToken);
+              }
             } else {
-              showSignUpForm();
+              throw Error('Received invalid Google authorization token.')
             }
           })
           .catch(displayError);
@@ -45,8 +47,18 @@ function onSignIn(googleUser) {
 }
 
 // Executed after successful Google sign-in, with no existing Voluntr account:
-function showSignUpForm() {
+function showSignUpForm(contactName, email, token) {
   var signUpForm = document.querySelector('.signup-row');
+  var contactNameInput = document.getElementById('contactName');
+  var emailInput = document.getElementById('email');
+  var tokenInput = document.getElementById('token');
+
+  //pre-populate Contact Name and Contact Email fields with data from Google account:
+  contactNameInput.value = contactName;
+  emailInput.value = email;
+  tokenInput.value = token;
+
+  //display the form
   signUpForm.classList.remove("hidden");
 }
 

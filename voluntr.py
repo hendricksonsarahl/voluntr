@@ -1,6 +1,4 @@
 from flask import Flask, request, redirect, render_template, flash, url_for, json, make_response
-from google.oauth2 import id_token
-from google.auth.transport import requests
 from app import app, db
 from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
@@ -81,39 +79,41 @@ def display_matches():
 def org_login():
     '''displays a form for organizations to signup or login to Voluntr'''
     return render_template('organization/login.html', title="Voluntr | Log In")
-
-
-
+        
 @app.route("/org/login", methods=['POST'])
 def login():
-    '''process a login attempt via OAuth token'''
+    '''process a login attempt via OAuth token, return JSON'''
     token = request.get_json()["authToken"]
 
-    print ('\nLogin route received data: ', request.get_json())
-    print ('\nOAuth token to parse: ', token)
-    
-    try:
-        CLIENT_ID = "649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com"
-        idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
+    # Start building a response
+    response_content = {"token": token}
 
-        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-            raise ValueError('Wrong issuer.')
-        
-        # ID token is valid. Get the user's Google Account ID from the decoded token.
-        userid = idinfo['sub']
-        print ('The userID for the OAuth token is %s'%(userid))
+    # Check the validity of the OAuth token:
+    google_id = process_oauth_token(token)
+    if (google_id):
+        response_content["valid_token"] = True
 
-    except ValueError:
-        # Invalid token
-        pass
+        # If the token is valid, see if the ID corresponds to an existing Voluntr account
+        org_account = Organization.query.filter_by(id=google_id).first()
 
-    return json.jsonify({"message": "All is well.", "token": token})
+        if (org_account):
+            response_content["account_exists"] = True
+        else:
+            response_content["account_exists"] = False
+    else:
+        response_content["valid_token"] = False
+
+    return json.jsonify(response_content)
 
 
 @app.route("/org/signup", methods=['POST'])
 def signup():
     '''process a sign-up attempt with an Oauth token and some form data'''
-    print ('\nSignup route received data: ', request)
+
+    # Expect to receive form data from the browser with 5 fields:
+    # token, orgName, url, contactName, email
+    # We'll convert the token to an ID with process_oauth_token()
+    print ('\nSignup route received data: ', request.form)
     return redirect('/')
 
 
