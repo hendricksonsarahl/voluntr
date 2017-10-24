@@ -1,7 +1,4 @@
 import datetime
-from google.auth import exceptions
-from google.auth import jwt
-from google.auth.transport.requests import AuthorizedSession
 
 # datetime object formatting helpers
 ######################################
@@ -141,74 +138,3 @@ def get_category_class(category):
         return "disabilities"
     else:
         return "unknown"
-
-# Google ID Token helpers
-######################################
-
-# The URL that provides public certificates for verifying ID tokens issued
-# by Google's OAuth 2.0 authorization server.
-_GOOGLE_OAUTH2_CERTS_URL = 'https://www.googleapis.com/oauth2/v1/certs'
-
-authed_session = AuthorizedSession(credentials)
-
-response = authed_session.get(
-    'https://www.googleapis.com/storage/v1/b')
-    
-def _fetch_certs(request, certs_url):
-    """Fetches certificates.
-    Google-style cerificate endpoints return JSON in the format of
-    ``{'key id': 'x509 certificate'}``.
-    Args:
-        request (google.auth.transport.Request): The object used to make
-            HTTP requests.
-        certs_url (str): The certificate endpoint URL.
-    Returns:
-        Mapping[str, str]: A mapping of public key ID to x.509 certificate
-            data.
-    """
-    response = request(certs_url, method='GET')
-
-    if response.status != http_client.OK:
-        raise exceptions.TransportError(
-            'Could not fetch certificates at {}'.format(certs_url))
-
-    return json.loads(response.data.decode('utf-8'))
-
-
-def verify_token(id_token, request, audience=None,
-                 certs_url=_GOOGLE_OAUTH2_CERTS_URL):
-    """Verifies an ID token and returns the decoded token.
-    Args:
-        id_token (Union[str, bytes]): The encoded token.
-        request (google.auth.transport.Request): The object used to make
-            HTTP requests.
-        audience (str): The audience that this token is intended for. If None
-            then the audience is not verified.
-        certs_url (str): The URL that specifies the certificates to use to
-            verify the token. This URL should return JSON in the format of
-            ``{'key id': 'x509 certificate'}``.
-    Returns:
-        Mapping[str, Any]: The decoded token.
-    """
-    certs = _fetch_certs(request, certs_url)
-
-    return jwt.decode(id_token, certs=certs, audience=audience)
-
-
-def verify_oauth2_token(id_token, request, audience=None):
-    """Verifies an ID Token issued by Google's OAuth 2.0 authorization server.
-
-    Args:
-        id_token (Union[str, bytes]): The encoded token.
-        request (google.auth.transport.Request): The object used to make
-            HTTP requests.
-        audience (str): The audience that this token is intended for. This is
-            typically your application's OAuth 2.0 client ID. If None then the
-            audience is not verified.
-
-    Returns:
-        Mapping[str, Any]: The decoded token.
-    """
-    return verify_token(
-        id_token, request, audience=audience,
-        certs_url=_GOOGLE_OAUTH2_CERTS_URL)
