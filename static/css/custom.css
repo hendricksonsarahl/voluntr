@@ -8,13 +8,27 @@ body {
 
 @media (max-width: 768px) {
   .navbar {
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
-}
 
-@media (max-width: 768px) {
   .container-outer {
     margin: 0 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
   }
 }
 
