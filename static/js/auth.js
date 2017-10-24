@@ -28,10 +28,16 @@ function onSignIn(googleUser) {
           .then(function(responseData) {
             console.log("Server responded with: ", responseData);
             
-            if (responseData.valid_token && responseData.account_exists) {
-              redirectToOrgHome();
+            // Based on token validity, and Voluntr account existence, either:
+            // Redirect to logged-in view, show sign-up form, or show an error message
+            if(responseData.valid_token) {
+              if (responseData.account_exists) {
+                redirectToOrgHome();
+              } else {
+                showSignUpForm(profile.getName(), profile.getEmail());
+              }
             } else {
-              showSignUpForm(profile.getName(), profile.getEmail());
+              throw Error('Received invalid Google authorization token.')
             }
           })
           .catch(displayError);

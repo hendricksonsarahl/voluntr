@@ -161,4 +161,4 @@ def process_oauth_token(token):
     # TODO: Error handling
     except ValueError:
         # Invalid token
-        return
+        return None
