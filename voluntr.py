@@ -82,7 +82,7 @@ def org_login():
         
 @app.route("/org/login", methods=['POST'])
 def login():
-    '''process a login attempt via OAuth token'''
+    '''process a login attempt via OAuth token, return JSON'''
     token = request.get_json()["authToken"]
 
     # Start building a response
@@ -93,7 +93,7 @@ def login():
     if (user_id):
         response_content["valid_token"] = True
 
-        # If the token is valid, see if the ID corresponds to an existing account
+        # If the token is valid, see if the ID corresponds to an existing Voluntr account
         # TODO: Actually perform this check
         account_exists = False
 
@@ -110,7 +110,11 @@ def login():
 @app.route("/org/signup", methods=['POST'])
 def signup():
     '''process a sign-up attempt with an Oauth token and some form data'''
-    print ('\nSignup route received data: ', request)
+
+    # Expect to receive JSON-encoded data from the browser with 5 fields:
+    # token, orgName, url, contactName, email
+    # We'll convert the token to an ID with process_oauth_token()
+
     return redirect('/')
 
 

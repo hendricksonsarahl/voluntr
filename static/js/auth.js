@@ -30,9 +30,7 @@ function onSignIn(googleUser) {
           .then(function(responseData) {
             console.log("Success! Server responded with: ", responseData);
             
-            //TODO: Make this conditional actually depend on server response
-            // if(response.accountExists) {
-            if (false) {
+            if (responseData.valid_token && responseData.account_exists) {
               redirectToOrgHome();
             } else {
               showSignUpForm();
