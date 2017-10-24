@@ -33,7 +33,10 @@ function showOpps(store, parentElt) {
     oppElt.innerHTML = `
     <div class="panel panel-default" data-id="${opp.id}">
       <div class="panel-body">
-        <h4>${opp.title}</h4>
+        <h4>${opp.title}
+          <br />
+          <small>${opp.event_date}</small>
+        </h4>
         <div class="pull-right">
           <a class="btn btn-primary" href="#" role="button">View&nbsp;
             <div class="glyphicon glyphicon-play"></div>

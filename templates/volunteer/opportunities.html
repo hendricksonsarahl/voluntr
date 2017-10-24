@@ -4,7 +4,8 @@
     //set global variable with data about this opportunity, so that other scripts can access it
     window.currentOpp = {{
       {"title": opp.title,
-      "id": opp.id} | tojson | safe
+      "id": opp.id,
+      "event_date": event_date} | tojson | safe
     }};
   </script>
   <div class="container-outer">
