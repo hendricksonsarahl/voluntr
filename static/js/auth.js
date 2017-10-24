@@ -34,7 +34,7 @@ function onSignIn(googleUser) {
               if (responseData.account_exists) {
                 redirectToOrgHome();
               } else {
-                showSignUpForm(profile.getName(), profile.getEmail());
+                showSignUpForm(profile.getName(), profile.getEmail(), authToken);
               }
             } else {
               throw Error('Received invalid Google authorization token.')
@@ -47,14 +47,16 @@ function onSignIn(googleUser) {
 }
 
 // Executed after successful Google sign-in, with no existing Voluntr account:
-function showSignUpForm(contactName, email) {
+function showSignUpForm(contactName, email, token) {
   var signUpForm = document.querySelector('.signup-row');
   var contactNameInput = document.getElementById('contactName');
   var emailInput = document.getElementById('email');
+  var tokenInput = document.getElementById('token');
 
   //pre-populate Contact Name and Contact Email fields with data from Google account:
   contactNameInput.value = contactName;
   emailInput.value = email;
+  tokenInput.value = token;
 
   //display the form
   signUpForm.classList.remove("hidden");

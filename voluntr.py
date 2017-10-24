@@ -110,10 +110,10 @@ def login():
 def signup():
     '''process a sign-up attempt with an Oauth token and some form data'''
 
-    # Expect to receive JSON-encoded data from the browser with 5 fields:
+    # Expect to receive form data from the browser with 5 fields:
     # token, orgName, url, contactName, email
     # We'll convert the token to an ID with process_oauth_token()
-
+    print ('\nSignup route received data: ', request.form)
     return redirect('/')
 
 
