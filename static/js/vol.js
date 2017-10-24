@@ -63,11 +63,17 @@ function saveOpportunity(store, opp){
     localStorage.setItem("savedOpps", JSON.stringify(store));
 }
 
-// change the appearance and text of the save button if the opp has been saved
-function updateSaveButton() {
-  this.classList.remove('btn-default')
-  this.classList.add('btn-success');
-  this.innerHTML = 'Saved!&nbsp;<span class="glyphicon glyphicon-ok"></span>';  
+// change the appearance and text of the save button when an opp is saved or removed
+function updateSaveButton(isSaved) {
+  if (isSaved) {
+    this.classList.remove('btn-default');
+    this.classList.add('btn-success');
+    this.innerHTML = 'Saved!&nbsp;<span class="glyphicon glyphicon-ok"></span>';  
+  } else {
+    this.classList.add('btn-default');
+    this.classList.remove('btn-success');
+    this.innerHTML = 'Save&nbsp;<span class="glyphicon glyphicon-pushpin"></span>';  
+  }
 }
 
 // Remove an opportunity from localStorage
@@ -118,16 +124,20 @@ if (typeof window !== "undefined") {
       
       // update the save button if the opp is already saved on page load
       if (idInArray(store, currentOpp)) {
-        updateSaveButton.bind(saveButton)();
+        updateSaveButton.bind(saveButton)(true);
       }
 
       // on Save Button click, add the opp to localStorage and change button appearance
       saveButton.addEventListener('click', function(){
-
-        //check to see if the opportunity has already been saved:
+        //depending on if the opportunity has already been saved, either save or remove it:
         if(!idInArray(store, currentOpp)) {
           saveOpportunity(store, currentOpp);
-          updateSaveButton.bind(this)();
+          updateSaveButton.bind(this)(true);
+          store = loadStore();
+        } else {
+          removeOppFromStore(currentOpp.id);
+          updateSaveButton.bind(this)(false);
+          store = loadStore();
         }
       });
 
