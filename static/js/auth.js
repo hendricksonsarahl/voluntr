@@ -1,4 +1,3 @@
-// TODO: Finish this function
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   var authToken = googleUser.getAuthResponse().id_token;

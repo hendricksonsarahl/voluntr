@@ -89,15 +89,14 @@ def login():
     response_content = {"token": token}
 
     # Check the validity of the OAuth token:
-    user_id = process_oauth_token(token)
-    if (user_id):
+    google_id = process_oauth_token(token)
+    if (google_id):
         response_content["valid_token"] = True
 
         # If the token is valid, see if the ID corresponds to an existing Voluntr account
-        # TODO: Actually perform this check
-        account_exists = False
+        org_account = Organization.query.filter_by(id=google_id).first()
 
-        if (account_exists):
+        if (org_account):
             response_content["account_exists"] = True
         else:
             response_content["account_exists"] = False
