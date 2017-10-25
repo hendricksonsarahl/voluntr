@@ -2,19 +2,52 @@ body {
   padding-bottom: 15px;
 }
 
+.navbar-brand {
+  position: relative;
+  bottom: 3px;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.navbar-brand img {
+  height: 30px;
+  display: inline;
+  margin-right: 5px;
+  position: relative;
+  bottom: 3px;
+}
+
 .panel .btn {
   margin-right: 5px;
 }
 
 @media (max-width: 768px) {
   .navbar {
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
-}
 
-@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 18px;
+  }
+
   .container-outer {
     margin: 0 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
   }
 }
 
@@ -22,10 +55,82 @@ body {
   margin: 10px;
 }
 
+.opp-nav-buttons {
+  margin: 5px 0;
+}
+
+/*Uses code from Bootstrap's btn-justified class, only on small screens:*/
+@media (max-width: 768px) {
+  .opp-nav-buttons {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+  }
+  .opp-nav-buttons > .btn,
+  .opp-nav-buttons > .btn-group {
+    display: table-cell;
+    float: none;
+    width: 1%;
+  }
+  .opp-nav-buttons > .btn-group .btn {
+    width: 100%;
+  }
+  .opp-nav-buttons > .btn-group .dropdown-menu {
+    left: auto;
+  }
+}
+
+/*~~~~~~~~Flexbox layout for Opp Headers:~~~~~~~~~~~*/
+
+.opp-header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.opp-header__top {
+  order: 0;
+  flex: 2 2 auto;
+  align-self: stretch;
+}
+
+.opp-header__bottom {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.opp-header__bottom-left, .opp-header__bottom-right {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: flex-start;
+}
+
+.opp-header__bottom-left {
+  margin-right: 8px;
+}
+
+.opp-header__bottom-right {
+  margin-left: 8px;
+}
+
+/*~~~~~~~~~~~End flexbox for Opp Headers~~~~~~~~~~~*/
+
 /*Background overlay effect for text on photos:*/
 
 .jumbotron-index {
-  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url("../images/diego-ph-254975.jpg");
+  background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url("../images/diego-ph-254975.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -41,72 +146,83 @@ body {
   position: relative;
 }
 
+.opp-header * {
+  font-weight: bold;
+}
+
+.opp-header h4 {
+  text-transform: uppercase;
+  margin-top: 3px;
+  margin-bottom: 0;
+}
+
 .opp-header--animals {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/animals.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/animals.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--arts_culture {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/arts_culture.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/arts_culture.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--community {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/community.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/community.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--disabilities {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/disabilities.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/disabilities.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--education_lit {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/education_lit.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/education_lit.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--environment {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/environment.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/environment.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--health_med {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/health_med.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/health_med.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--houseless {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/houseless.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/houseless.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--hunger {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/hunger.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/hunger.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .opp-header--kids_youth {
-  background: linear-gradient(rgba(20,20,20,.6), rgba(20,20,20,.6)), url("../images/kids_youth.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/kids_youth.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
+
