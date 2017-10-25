@@ -29,9 +29,18 @@ def set_filters():
             category = request.form['category']   
         else:
             category = "all" # if not set to "all"
-            
+
+        if 'availableDays' in request.form.keys(): # if availability was in form sent. assign it to var
+            availability = request.form.getlist('availableDays')
+        else:
+            availability = ["all"] # if not set to "all"
+
+        avail = ""
+        for i in range(len(availability)):
+            avail = avail + availability[i] + "-"
+
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
-        resp.set_cookie('filters', str("0 " + category)) # prepares cookie to be set with index of zero
+        resp.set_cookie('filters', str("0," + category + "," + avail)) # prepares cookie to be set with index of zero
         
         return resp # sets cookie and redirects
 
@@ -47,23 +56,28 @@ def opportunities():
     if 'filters' in request.cookies:
         cookie = (request.cookies.get('filters')) #grabs cookie
 
-        filters = cookie.split(" ") # splits cookie into list
+        filters = cookie.split(",") # splits cookie into list
         num = int(filters[0]) # grabs index from list
         category = filters[1] # grabs category from list
+        avail = filters[2] # grabs available days
+        availability = avail.split("-") # splits into list
 
-        search = Filters(category=category) # creates filter with given category
+        search = Filters(category=category, availability=availability) # creates filter with given category and availability
         opps = search.search() #grabs list of opportunities
         opp = opps[num] # picks out the opp at index
+        
         event_date = readable_date(opp.startDateTime)
         event_time = readable_times(opp.startDateTime, opp.duration)
+
         if len(opps) > (num + 1): 
             num = num + 1 # increments index if its not at the end of the list
         else:
             num = 0 # loops back around
+
         resp = make_response(render_template('volunteer/opportunities.html', 
                                             opp=opp, event_date = event_date, event_time=event_time, json=json, title="Voluntr | Browse Opportunities")
                                             ) # tells the cookie what to load while it sets itself
-        resp.set_cookie('filters', str(num) + " " + category) #preps cookie for setting
+        resp.set_cookie('filters', str(num) + "," + category + "," + avail) #preps cookie for setting
         return resp # sets cookie and displays page
     
     return redirect("/filters") # redirects to filters if no cookie exists
