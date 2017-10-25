@@ -83,9 +83,17 @@ def opportunities():
     return redirect("/filters") # redirects to filters if no cookie exists
 
 
-@app.route("/matches", methods=['GET'])
+@app.route("/matches", methods=['GET', 'POST'])
 def display_matches():
     '''lists all opportunities that a volunteer user saved'''
+    if request.method == 'POST':
+        oppId = request.form['oppId']
+        opp = get_opp_by_id(oppId)
+        event_date = readable_date(opp.startDateTime)
+        event_time = readable_times(opp.startDateTime, opp.duration)
+        return render_template('volunteer/single_opp.html', title="Voluntr | Saved Opportunity", 
+                                    opp=opp, event_date = event_date, event_time=event_time)
+
     return render_template('volunteer/matches.html', title="Voluntr | Saved Opportunities")
 
 
