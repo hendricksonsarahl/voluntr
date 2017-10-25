@@ -25,7 +25,10 @@ class Filters():
     def filter_by_days(self, opps):
         filtered = []
         for i in range(len(opps)):
-            for j in range (len(self.availability)):
-                if get_day(opps[i].startDateTime) == self.availability[j] or get_day(opps[i].startDateTime) == "all":
-                    filtered = filtered + [opps[i]]
+            if get_day(opps[i].startDateTime) == "all":
+                filtered = filtered + [opps[i]]
+            else:
+                for j in range (len(self.availability)):
+                    if get_day(opps[i].startDateTime) == self.availability[j]:
+                        filtered = filtered + [opps[i]]
         return filtered
