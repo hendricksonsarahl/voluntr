@@ -28,12 +28,12 @@ def set_filters():
         if 'category' in request.form.keys(): # if category was in form sent. assign it to var
             category = request.form['category']   
         else:
-            category = "all" # if not set to "all"
+            category = "all" # if no category in form data, set to "all"
 
         if 'availableDays' in request.form.keys(): # if availability was in form sent. assign it to var
             availability = request.form.getlist('availableDays')
         else:
-            availability = ["all"] # if not set to "all"
+            availability = ["all"] # if no list of available days in form data, set to ["all"]
 
         avail = ""
         for i in range(len(availability)):
