@@ -17,6 +17,11 @@
             </div>
             <div class="form-group">
               <label for="category">Show me opportunities related to:</label>
+              <div class="radio">
+              <label>
+                <input id="all" type="radio" name="category" value="all" checked="checked">Any Category
+              </label>
+              </div>
                 {% for key, value in categories.items() %}
                 <div class="radio">
                   <label>
@@ -24,11 +29,6 @@
                   </label>
                 </div>
                 {% endfor %}
-            </div>
-            <div class="radio">
-              <label>
-                <input id="all" type="radio" name="category" value="all" checked="checked">Any Category
-              </label>
             </div>
             <br />
             <div class="form-group">
