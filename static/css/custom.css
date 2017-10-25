@@ -2,11 +2,13 @@ body {
   padding-bottom: 15px;
 }
 
-.navbar-brand {
+.navbar .navbar-brand {
   position: relative;
   bottom: 3px;
   text-transform: uppercase;
   font-size: 20px;
+  font-family: 'Autour One',Calibri,Candara,Arial,sans-serif;
+  color: #eee;
 }
 
 .navbar-brand img {

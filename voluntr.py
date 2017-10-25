@@ -28,7 +28,7 @@ def set_filters():
         if 'category' in request.form.keys(): # if category was in form sent. assign it to var
             category = request.form['category']   
         else:
-            category = "all" # if not set to "all"
+            category = "all" # if no category in form data, set to "all"
             
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
         resp.set_cookie('filters', str("0 " + category)) # prepares cookie to be set with index of zero
