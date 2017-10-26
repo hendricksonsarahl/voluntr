@@ -7,7 +7,7 @@ zcdb = ZipCodeDatabase()
 
 class Filters():
 
-    def __init__(self, category="all", availability=["all"], zipcode="97232", distance=5):
+    def __init__(self, category="all", availability=["all"], zipcode="all", distance="all"):
 
         self.category = category
         self.availability = availability
@@ -21,11 +21,12 @@ class Filters():
         else:
             opps = Opportunity.query.filter_by(category_class=self.category).all()
 
-
         if self.availability[0] != "all" and len(self.availability) != 7:
             opps = self.filter_by_days(opps)
 
-        opps = self.filter_by_location(opps)
+        if self.zipcode != "all" and self.distance != "all":
+            print ("RUNNING", self.zipcode, self.distance)
+            opps = self.filter_by_location(opps)
 
         return opps
 

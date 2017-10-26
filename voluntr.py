@@ -36,7 +36,11 @@ def set_filters():
             availability = ["all"] # if no list of available days in form data, set to ["all"]
 
         if 'zipcode' in request.form.keys(): # if zipcode was in form sent. assign it to var
-            zipcode = request.form['zipcode']   
+            if len(request.form['zipcode']) == 5:
+                zipcode = request.form['zipcode']
+            else:
+                zipcode = "all"
+                
         else:
             zipcode = "all" # if no zipcode in form data, set to "all"
 
