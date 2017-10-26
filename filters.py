@@ -7,11 +7,11 @@ zcdb = ZipCodeDatabase()
 
 class Filters():
 
-    def __init__(self, category="all", availability=["all"], zip="97232", distance=5):
+    def __init__(self, category="all", availability=["all"], zipcode="97232", distance=5):
 
         self.category = category
         self.availability = availability
-        self.zip = zip
+        self.zipcode = zipcode
         self.distance = distance
 
     def search(self):
@@ -25,7 +25,7 @@ class Filters():
         if self.availability[0] != "all" and len(self.availability) != 7:
             opps = self.filter_by_days(opps)
 
-        opps = self.filter_by_zip(opps)
+        opps = self.filter_by_location(opps)
 
         return opps
 
@@ -40,9 +40,9 @@ class Filters():
                         filtered = filtered + [opps[i]]
         return filtered
 
-    def filter_by_zip(self, opps):
+    def filter_by_location(self, opps):
         filtered = []
-        zips = zcdb.get_zipcodes_around_radius(self.zip, self.distance)
+        zips = zcdb.get_zipcodes_around_radius(self.zipcode, self.distance)
         for i in range(len(opps)):
             for j in range (len(zips)):
                 if opps[i].zipcode == zips[j].zip:
