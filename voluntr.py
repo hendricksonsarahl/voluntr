@@ -226,12 +226,23 @@ def new_opportunity():
     return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
 
 
-@app.route("/org/edit", methods=['GET'])
+@app.route("/org/edit", methods=['GET', 'POST'])
 def edit_opportunity():
     ''' displays a form pre-populated with data for a single opportunity, so the user can 
     either edit individual fields and repost the opportunity, or remove the opportunity 
     from the app '''
-    return render_template('organization/edit.html', title='Voluntr | Edit Opportunity')
+    #if request.method == "POST":
+
+
+    id = request.args.get("id", type=int)
+    opp = get_opp_by_id(id) 
+    event_date = opp.startDateTime.strftime('%Y/%B/%d')
+    time_start = get_start_time(opp.startDateTime)
+    time_end = get_end_time(opp.startDateTime, opp.duration)  
+    categories = get_categories()
+    return render_template('organization/edit.html', title='Voluntr | Edit Opportunity', opp=opp, 
+                                event_date = event_date, time_start = time_start, time_end = time_end,
+                                categories=categories)
 
 
 @app.route("/org/opportunity", methods=['GET'])

@@ -96,6 +96,42 @@ def create_datetime(date, start_time):
     
     return start_date_time
 
+def get_start_time(opp_datetime):
+    start_hour = int(opp_datetime.strftime("%H"))
+    start_minutes = int(opp_datetime.strftime("%M"))
+
+    if start_hour >= 12:
+        start_suffix = "PM"
+        if start_hour > 12:
+            start_hour %= 12
+    else:
+        start_suffix = "AM"
+    
+    if start_minutes < 10:
+        start_minutes = "0" + str(start_minutes)
+
+    return str(start_hour) + ":" + str(start_minutes) + " " + start_suffix
+
+def get_end_time(opp_datetime, duration):
+    end_hour = int(opp_datetime.strftime("%H"))
+    end_minutes = int(opp_datetime.strftime("%M")) + duration
+    
+    if end_minutes > 60:
+        end_hour += end_minutes//60
+        end_minutes = end_minutes % 60
+    
+    if end_hour >= 12:
+        end_suffix = "PM"
+        if end_hour > 12:
+            end_hour %= 12     
+    else:
+        end_suffix = "AM"
+    
+    if end_minutes < 10:
+        end_minutes = "0" + str(end_minutes)
+
+    return str(end_hour) + ":" + str(end_minutes) + " " + end_suffix
+    
 # Opportunity form input helpers 
 ###################################
 
