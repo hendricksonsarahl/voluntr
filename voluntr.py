@@ -217,8 +217,13 @@ def edit_opportunity():
 
 @app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
-    '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
-    return render_template('organization/preview.html', title="Voluntr | Preview Post")
+    '''displays details about a specific volunteer opportunity''' 
+    id = request.args.get("id", type=int)
+    opp = get_opp_by_id(id) 
+    event_date = readable_date(opp.startDateTime)
+    event_time = readable_times(opp.startDateTime, opp.duration)
+    return render_template('organization/preview.html', title="Voluntr | Preview Post", opp=opp, 
+                                event_date = event_date, event_time = event_time)
 
 
 # Run this route upon app startup to load sample data
