@@ -1,7 +1,7 @@
 from app import db
 from models.org import Opportunity
 from helpers import get_day
-from pyzipcode import ZipCodeDatabase
+from pyzipcode import ZipCodeDatabase, ZipNotFoundException
 
 zcdb = ZipCodeDatabase()
 
@@ -42,11 +42,18 @@ class Filters():
         return filtered
 
     def filter_by_location(self, opps):
-        filtered = []
-        zips = zcdb.get_zipcodes_around_radius(self.zipcode, self.distance)
-        for i in range(len(opps)):
-            for j in range (len(zips)):
-                if opps[i].zipcode == zips[j].zip:
-                    filtered = filtered + [opps[i]]
+        try:
+            filtered = []
+            zips = zcdb.get_zipcodes_around_radius(self.zipcode, self.distance)
+            for i in range(len(opps)):
+                for j in range (len(zips)):
+                    if opps[i].zipcode == zips[j].zip:
+                        filtered = filtered + [opps[i]]
+            return filtered
+        except ZipNotFoundException:
+            #TODO Send meaningful feedback to browser. For now, it's just ignoring the location filter
+            print('Zip code not found.')
+            return opps
+            
                 
-        return filtered
+        
