@@ -38,15 +38,16 @@ function showOpps(store, parentElt) {
           <small>${opp.event_date}</small>
         </h4>
         <div class="pull-right">
-          <form action="/matches" method="post">
+          <form action="/match" method="post">
             <input type="hidden" name="oppId" value="${opp.id}"/>
             <button type="submit" class="btn btn-primary">View&nbsp
               <span class="glyphicon glyphicon-play"></span>
             </button>
-          </form>
-          <a class="btn btn-danger remove-button" href="#" role="button">Remove&nbsp;
+            <a class="btn btn-danger remove-button" href="#" role="button">Remove&nbsp;
             <div class="glyphicon glyphicon-remove"></div>
-          </a>
+            </a>
+          </form>
+          
         </div>
       </div>
     </div>
