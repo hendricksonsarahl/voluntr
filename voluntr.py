@@ -88,6 +88,16 @@ def display_matches():
     '''lists all opportunities that a volunteer user saved'''
     return render_template('volunteer/matches.html', title="Voluntr | Saved Opportunities")
 
+@app.route("/match", methods=['POST'])
+def display_match():
+    """displays a single oppotunity that the user saved"""
+
+    oppId = request.form['oppId']
+    opp = get_opp_by_id(oppId)
+    event_date = readable_date(opp.startDateTime)
+    event_time = readable_times(opp.startDateTime, opp.duration)
+    return render_template('volunteer/single_opp.html', title="Voluntr | Saved Opportunity", 
+                                opp=opp, event_date = event_date, event_time=event_time)
 
 @app.route("/org/login", methods=['GET'])
 def org_login():
