@@ -32,6 +32,9 @@ def set_filters():
 
         if 'availableDays' in request.form.keys(): # if availability was in form sent. assign it to var
             availability = request.form.getlist('availableDays')
+            if len(availability) == 7:
+ -              availability = ["all"] # if all days are in list of available days, set to ["all"]
+ -                                     # (saves a lot of time sorting for no reason)
 
         else:
             availability = ["all"] # if no list of available days in form data, set to ["all"]
