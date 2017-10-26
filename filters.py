@@ -7,7 +7,7 @@ zcdb = ZipCodeDatabase()
 
 class Filters():
 
-    def __init__(self, category="all", availability=["all"], zipcode="all", distance="all"):
+    def __init__(self, categories="all", availability=["all"], zipcode="all", distance="all"):
 
         self.categories = categories
         self.availability = availability
