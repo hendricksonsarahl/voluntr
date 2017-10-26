@@ -83,6 +83,17 @@ body {
   }
 }
 
+.days-table {
+  max-width: 400px;
+}
+/*Fit the days-of-week table onto very small screens:*/
+@media (max-width: 400px) {
+  table.table.days-table thead td {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 /*~~~~~~~~Flexbox layout for Opp Headers:~~~~~~~~~~~*/
 
 .opp-header {
