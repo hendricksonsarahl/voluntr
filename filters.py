@@ -25,7 +25,6 @@ class Filters():
             opps = self.filter_by_days(opps)
 
         if self.zipcode != "all" and self.distance != "all":
-            print ("RUNNING", self.zipcode, self.distance)
             opps = self.filter_by_location(opps)
 
         return opps
