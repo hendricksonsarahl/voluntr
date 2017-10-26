@@ -38,12 +38,26 @@ def set_filters():
         else:
             availability = ["all"] # if no list of available days in form data, set to ["all"]
 
+        if 'zipcode' in request.form.keys(): # if zipcode was in form sent. assign it to var
+            if len(request.form['zipcode']) == 5:
+                zipcode = request.form['zipcode']
+            else:
+                zipcode = "all"
+                
+        else:
+            zipcode = "all" # if no zipcode in form data, set to "all"
+
+        if 'distance' in request.form.keys(): # if distance was in form sent. assign it to var
+            distance = request.form['distance']   
+        else:
+            distance = "all" # if no distance in form data, set to "all"
+
         avail = ""
         for i in range(len(availability)):
             avail = avail + availability[i] + "-"
 
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
-        resp.set_cookie('filters', str("0," + category + "," + avail)) # prepares cookie to be set with index of zero
+        resp.set_cookie('filters', str("0," + category + "," + avail + "," + zipcode + "," + distance )) # prepares cookie to be set with index of zero
         
         return resp # sets cookie and redirects
 
@@ -64,8 +78,10 @@ def opportunities():
         category = filters[1] # grabs category from list
         avail = filters[2] # grabs available days
         availability = avail.split("-") # splits into list
+        zipcode = filters[3] #grabs zipcode from list
+        distance = filters[4] #grabs distance from list
 
-        search = Filters(category=category, availability=availability) # creates filter with given category and availability
+        search = Filters(category=category, availability=availability, zipcode=zipcode, distance=distance) # creates filter with given category and availability
         opps = search.search() #grabs list of opportunities
         opp = opps[num] # picks out the opp at index
         
@@ -80,7 +96,7 @@ def opportunities():
         resp = make_response(render_template('volunteer/opportunities.html', 
                                             opp=opp, event_date = event_date, event_time=event_time, json=json, title="Voluntr | Browse Opportunities")
                                             ) # tells the cookie what to load while it sets itself
-        resp.set_cookie('filters', str(num) + "," + category + "," + avail) #preps cookie for setting
+        resp.set_cookie('filters', str(num) + "," + category + "," + avail + "," + zipcode + "," + distance ) #preps cookie for setting
         return resp # sets cookie and displays page
     
     return redirect("/filters") # redirects to filters if no cookie exists
@@ -176,7 +192,7 @@ def new_opportunity():
         address = request.form["address"]
         city = request.form["city"]
         state = request.form["state"]
-        zip_code = request.form["zip"]
+        zip_code = request.form["zipcode"]
         category_class = request.form["category"]
         category = get_category(category_class)
         description = validate_description(request.form["description"])
