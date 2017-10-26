@@ -8,7 +8,6 @@
           <div class="panel panel-default">
             <div class="panel-body">
 
-
                   <div class="form-group">
                     <label for="category">Show me opportunities related to:</label>
                     <div class="radio">
@@ -24,8 +23,6 @@
                       </div>
                       {% endfor %}
                   </div>
-                  <!-- <br /> -->
-
 
                   <div class="form-group">
                     <label for="available">On any of these days:&nbsp;</label>
@@ -54,8 +51,6 @@
                       </tbody>
                     </table>
                   </div>
-                  <!-- <br /> -->
-
 
                   <div class="row">
                     <div class="col-xs-6">
@@ -76,12 +71,11 @@
                     <div class="col-xs-6">
                       <div class="form-group">
                         <label for="zipcode">Of zip code:</label>
-                        <input name="zipcode" class="form-control" id="zipcode" type="text" placeholder="Zip Code" maxlength="5">
+                        <input name="zipcode" class="form-control" id="zipcode" type="text" placeholder="Zip Code" maxlength="5" pattern="[0-9]{5}" title="Please enter exactly 5 numerical digits." >
                       </div>
                     </div>
                   </div>
                   <br />
-
 
               <div class="text-center">
                 <button type="submit" form="filters-form" value="Sign Up" class="btn btn-primary">Browse Opportunities</button>
