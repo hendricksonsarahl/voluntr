@@ -181,3 +181,13 @@ def get_cat_class(category):
 #########################
 def get_opp_by_id(oppId):
     return Opportunity.query.get(oppId)
+
+# index helpers
+##########################
+
+def increment(index, length):
+    if length > (index + 1): 
+        index = index + 1 # increments index if its not at the end of the list
+    else:
+        index = 0 # loops back around
+    return index

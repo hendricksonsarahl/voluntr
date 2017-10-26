@@ -1,20 +1,23 @@
 from app import db
 from models.org import Opportunity
-from helpers import get_day
+from helpers import get_day, get_categories
 
 class Filters():
 
-    def __init__(self, category="all", availability=["all"]):
+    def __init__(self, categories="all", availability=["all"]):
 
-        self.category = category
+        self.categories = categories
         self.availability = availability
 
     def search(self):
-        if self.category == "all":
+        print(self.categories)
+        if self.categories[0] == "all" or len(self.categories) == len(get_categories()):
             opps = Opportunity.query.all()
 
         else:
-            opps = Opportunity.query.filter_by(category_class=self.category).all()
+            opps = []
+            for i in range(len(self.categories)):
+                opps = opps + Opportunity.query.filter_by(category_class=self.categories[i]).all()
 
 
         if self.availability[0] != "all" and len(self.availability) != 7:
@@ -28,7 +31,6 @@ class Filters():
             if get_day(opps[i].startDateTime) == "all":
                 filtered = filtered + [opps[i]]
             else:
-                for j in range (len(self.availability)):
-                    if get_day(opps[i].startDateTime) == self.availability[j]:
-                        filtered = filtered + [opps[i]]
+                if get_day(opps[i].startDateTime) in self.availability:
+                    filtered = filtered + [opps[i]]
         return filtered
