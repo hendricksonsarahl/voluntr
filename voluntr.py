@@ -32,21 +32,15 @@ def set_filters():
 
         if 'availableDays' in request.form.keys(): # if availability was in form sent. assign it to var
             availability = request.form.getlist('availableDays')
-            if len(availability) == 7:
-                availability = ["all"] # if all days are in list of available days, set to ["all"]
-                                       # (saves a lot of time sorting for no reason)
+
         else:
             availability = ["all"] # if no list of available days in form data, set to ["all"]
 
-        cat = ""
-        for i in range(len(category)):
-            cat = cat + category[i] + "-"
-        avail = ""
-        for i in range(len(availability)):
-            avail = avail + availability[i] + "-"
+        cat = list_to_string(category)
+        avail = list_to_string(availability)
 
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
-        resp.set_cookie('filters', str("0_" + cat + "_" + avail)) # prepares cookie to be set with index of zero
+        resp.set_cookie('filters', str("0/" + cat + "/" + avail)) # prepares cookie to be set with index of zero
         
         return resp # sets cookie and redirects
 
@@ -62,7 +56,7 @@ def opportunities():
     if 'filters' in request.cookies:
         cookie = (request.cookies.get('filters')) #grabs cookie
 
-        filters = cookie.split("_") # splits cookie into list
+        filters = cookie.split("/") # splits cookie into list
         num = int(filters[0]) # grabs index from list
         cat = filters[1] # grabs categories from list
         categories = cat.split("-")
@@ -81,7 +75,7 @@ def opportunities():
         resp = make_response(render_template('volunteer/opportunities.html', 
                                             opp=opp, event_date = event_date, event_time=event_time, json=json, title="Voluntr | Browse Opportunities")
                                             ) # tells the cookie what to load while it sets itself
-        resp.set_cookie('filters', str(num) + "_" + cat + "_" + avail) #preps cookie for setting
+        resp.set_cookie('filters', str(num) + "/" + cat + "/" + avail) #preps cookie for setting
         return resp # sets cookie and displays page
     
     return redirect("/filters") # redirects to filters if no cookie exists
