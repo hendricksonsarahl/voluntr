@@ -91,6 +91,16 @@ def display_matches():
     '''lists all opportunities that a volunteer user saved'''
     return render_template('volunteer/matches.html', title="Voluntr | Saved Opportunities")
 
+@app.route("/match", methods=['POST'])
+def display_match():
+    """displays a single oppotunity that the user saved"""
+
+    oppId = request.form['oppId']
+    opp = get_opp_by_id(oppId)
+    event_date = readable_date(opp.startDateTime)
+    event_time = readable_times(opp.startDateTime, opp.duration)
+    return render_template('volunteer/single_opp.html', title="Voluntr | Saved Opportunity", 
+                                opp=opp, event_date = event_date, event_time=event_time)
 
 @app.route("/org/login", methods=['GET'])
 def org_login():
@@ -210,8 +220,13 @@ def edit_opportunity():
 
 @app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
-    '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
-    return render_template('organization/preview.html', title="Voluntr | Preview Post")
+    '''displays details about a specific volunteer opportunity''' 
+    id = request.args.get("id", type=int)
+    opp = get_opp_by_id(id) 
+    event_date = readable_date(opp.startDateTime)
+    event_time = readable_times(opp.startDateTime, opp.duration)
+    return render_template('organization/preview.html', title="Voluntr | Preview Post", opp=opp, 
+                                event_date = event_date, event_time = event_time)
 
 
 # Run this route upon app startup to load sample data

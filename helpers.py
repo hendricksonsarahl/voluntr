@@ -1,6 +1,9 @@
 import datetime
+from models.org import Opportunity
 from google.oauth2 import id_token
 from google.auth.transport import requests
+from app import db
+from models.org import Opportunity
 
 # datetime object formatting helpers
 ######################################
@@ -174,3 +177,8 @@ def get_cat_class(category):
     for key in categories.keys():
         if get_category(key) == category:
             return key
+
+# Query helpers
+###########################
+def get_opp_by_id(oppId):
+    return Opportunity.query.get(oppId)

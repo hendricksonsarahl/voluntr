@@ -1,26 +1,8 @@
-{% extends "layouts/org-layout.html" %}
-
+{% extends "layouts/vol-layout.html" %}
 {% block contentInner %}
+
   <div class="container-outer">
     <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <h3> Post Preview </h3>
-              <p> The content below shows your post as it appears to potential volunteers.</p>
-              <div class="pull-right">
-                <a class="btn btn-primary" href="./edit" role="button">Edit&nbsp;
-                  <div class="glyphicon glyphicon-pencil"></div>
-                </a>
-                <a class="btn btn-danger" href="./opportunities" role="button">Delete&nbsp;
-                  <div class="glyphicon glyphicon-remove-sign"></div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="row opp-header opp-header--{{ opp.category_class }}">
         <div class="opp-header__top">
           <h1 class="text-center">{{ opp.title }}</h1>
@@ -40,16 +22,8 @@
       <div class="row">
         <div class="text-center">
           <div class="btn-group opp-nav-buttons" role="group" aria-label="Navigate opportunity pages">
-            <div class="btn-group" role="group">
-              <button id="save-button" class="btn btn-default">Save&nbsp;
-                <span class="glyphicon glyphicon-pushpin"></span>
-              </button>
-            </div>
-            <a class="btn btn-default" href="#" role="button">Filters&nbsp;
-              <div class="glyphicon glyphicon-search"></div>
-            </a>
-            <a class="btn btn-default" href="#" role="button">Next&nbsp;
-              <div class="glyphicon glyphicon-play"></div>
+            <a class="btn btn-default" href="./matches" role="button">
+              <div class="glyphicon glyphicon-menu-left"></div>&nbsp;Back&nbsp;
             </a>
           </div>
         </div>
@@ -63,4 +37,5 @@
       </div>
     </div>
   </div>
-{% endblock %}     
+  
+{% endblock %}   
