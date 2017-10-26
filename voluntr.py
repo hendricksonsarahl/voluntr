@@ -35,12 +35,22 @@ def set_filters():
         else:
             availability = ["all"] # if no list of available days in form data, set to ["all"]
 
+        if 'zipcode' in request.form.keys(): # if zipcode was in form sent. assign it to var
+            zipcode = request.form['zipcode']   
+        else:
+            zipcode = "all" # if no zipcode in form data, set to "all"
+
+        if 'distance' in request.form.keys(): # if distance was in form sent. assign it to var
+            distance = request.form['distance']   
+        else:
+            distance = "all" # if no distance in form data, set to "all"
+
         avail = ""
         for i in range(len(availability)):
             avail = avail + availability[i] + "-"
 
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
-        resp.set_cookie('filters', str("0," + category + "," + avail)) # prepares cookie to be set with index of zero
+        resp.set_cookie('filters', str("0," + category + "," + avail + "," + zipcode + "," + distance )) # prepares cookie to be set with index of zero
         
         return resp # sets cookie and redirects
 
