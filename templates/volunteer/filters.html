@@ -30,30 +30,33 @@
                 </div>
                 {% endfor %}
             </div>
-              
+            <br />
             <div class="form-group">
               <label for="available">Available Days:&nbsp;</label>
-              <label class="checkbox-inline">
-                <input id="sun" type="checkbox" name="availableDays" value="Sunday"> Sun
-              </label>
-              <label class="checkbox-inline">
-                <input id="mon" type="checkbox" name="availableDays" value="Monday"> Mon
-              </label>
-              <label class="checkbox-inline">
-                <input id="tue" type="checkbox" name="availableDays" value="Tuesday"> Tue
-              </label>
-              <label class="checkbox-inline">
-                <input id="wed" type="checkbox" name="availableDays" value="Wednesday"> Wed
-              </label>
-              <label class="checkbox-inline">
-                <input id="thu" type="checkbox" name="availableDays" value="Thursday"> Thu
-              </label>
-              <label class="checkbox-inline">
-                <input id="fri" type="checkbox" name="availableDays" value="Friday"> Fri
-              </label>
-              <label class="checkbox-inline">
-                <input id="sat" type="checkbox" name="availableDays" value="Saturday"> Sat
-              </label>
+              <table class="table table-bordered table-condensed days-table text-center">
+                <thead>
+                  <tr class="text-center">
+                    <td class="text-center">Sun</td>
+                    <td class="text-center">Mon</td>
+                    <td class="text-center">Tue</td>
+                    <td class="text-center">Wed</td>
+                    <td class="text-center">Thu</td>
+                    <td class="text-center">Fri</td>
+                    <td class="text-center">Sat</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input id="sun" type="checkbox" name="availableDays" value="Sunday" checked="checked"></td>
+                    <td><input id="sun" type="checkbox" name="availableDays" value="Monday" checked="checked"></td>
+                    <td><input id="sun" type="checkbox" name="availableDays" value="Tuesday" checked="checked"></td>
+                    <td><input id="sun" type="checkbox" name="availableDays" value="Wednesday" checked="checked"></td>
+                    <td><input id="sun" type="checkbox" name="availableDays" value="Thursday" checked="checked"></td>
+                    <td><input id="sun" type="checkbox" name="availableDays" value="Friday" checked="checked"></td>
+                    <td><input id="sun" type="checkbox" name="availableDays" value="Saturday" checked="checked"></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="text-center">
               <button type="submit" form="filters-form" value="Sign Up" class="btn btn-primary">Browse Opportunities</button>
