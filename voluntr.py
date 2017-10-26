@@ -96,6 +96,7 @@ def org_login():
         
 @app.route("/org/login", methods=['POST'])
 def login():
+
     '''process a login attempt via OAuth token, return JSON'''
     token = request.get_json()["authToken"]
 
@@ -112,6 +113,7 @@ def login():
 
         if (org_account):
             response_content["account_exists"] = True
+
         else:
             response_content["account_exists"] = False
     else:
@@ -124,6 +126,25 @@ def login():
 def signup():
     '''process a sign-up attempt with an Oauth token and some form data'''
 
+    token = request.form['token']
+    orgName = request.form['orgName']
+    email = request.form['email']
+    url = request.form['url']
+    contactName = request.form['contactName']
+
+    existing_user = Organization.query.filter_by(id=google_id).first()
+    if not existing_user:
+        new_user = Organization(orgName, email, url, contactName)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash("Thanks, you are now signed up!", category='message')
+        return redirect('/org/opportunities')
+    else:
+        flash("There is an existing account for this organization, please sign in", category='error')
+        return redirect('/org/signup')
+    
+    
     # Expect to receive form data from the browser with 5 fields:
     # token, orgName, url, contactName, email
     # We'll convert the token to an ID with process_oauth_token()
