@@ -40,14 +40,13 @@ function showOpps(store, parentElt) {
         <div class="pull-right">
           <form action="/match" method="post">
             <input type="hidden" name="oppId" value="${opp.id}"/>
-            <button type="submit" class="btn btn-primary">View&nbsp
+            <button type="submit" class="btn btn-primary">View&nbsp;
               <span class="glyphicon glyphicon-play"></span>
             </button>
             <a class="btn btn-danger remove-button" href="#" role="button">Remove&nbsp;
             <div class="glyphicon glyphicon-remove"></div>
             </a>
           </form>
-          
         </div>
       </div>
     </div>
@@ -161,7 +160,7 @@ if (typeof window !== "undefined") {
           e.target.classList.contains("remove-button") ||
           e.target.parentNode.classList.contains("remove-button")
         ) {
-          var clickedOppId = e.target.parentNode.parentNode.parentNode.dataset.id
+          var clickedOppId = e.target.parentNode.parentNode.parentNode.parentNode.dataset.id;
           removeOppFromStore(clickedOppId);
 
           //re-load the store from localStorage, and re-render the view
