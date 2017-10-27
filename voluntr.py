@@ -123,31 +123,32 @@ def login():
         response_content["valid_token"] = False
 
     return json.jsonify(response_content)
-
-    '''process a sign-up attempt with an Oauth token and some form data'''
     
 
 @app.route("/org/signup", methods=['POST'])
 def signup():
-    
+    '''process a sign-up attempt with an Oauth token and some form data'''
+
     token = request.form['token']
     orgName = request.form['orgName']
     email = request.form['email']
     url = request.form['url']
     contactName = request.form['contactName']
 
+    # call process_oauth_token to convert token to google id
     userid = process_oauth_token(token)
-    print(userid)
 
-    # retrieve the user data from the database
+    # retrieve the user data from the database 
     user = Organization.query.filter_by(id=userid).first()
- 
+    
+    # if userid not in database, create new user
     if not (user):
 
         new_user = Organization(userid=userid, email=email, orgName=orgName, contactName=contactName, url=url)
         db.session.add(new_user)
         db.session.commit()
     
+    #if userid is in database, redirect to org homepage
     if (user):
 
         return redirect('/org/opportunities')
