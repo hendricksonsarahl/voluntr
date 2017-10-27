@@ -124,39 +124,69 @@ def org_login():
         
 @app.route("/org/login", methods=['POST'])
 def login():
+
     '''process a login attempt via OAuth token, return JSON'''
+
     token = request.get_json()["authToken"]
 
     # Start building a response
     response_content = {"token": token}
 
     # Check the validity of the OAuth token:
-    google_id = process_oauth_token(token)
-    if (google_id):
+    userid = process_oauth_token(token)
+
+    if (userid):
         response_content["valid_token"] = True
 
         # If the token is valid, see if the ID corresponds to an existing Voluntr account
-        org_account = Organization.query.filter_by(id=google_id).first()
+        org_account = Organization.query.filter_by(id=userid).first()
 
         if (org_account):
             response_content["account_exists"] = True
+
         else:
             response_content["account_exists"] = False
+
     else:
         response_content["valid_token"] = False
 
     return json.jsonify(response_content)
-
+    
 
 @app.route("/org/signup", methods=['POST'])
 def signup():
     '''process a sign-up attempt with an Oauth token and some form data'''
 
+    token = request.form['token']
+    orgName = request.form['orgName']
+    email = request.form['email']
+    url = request.form['url']
+    contactName = request.form['contactName']
+
+    # call process_oauth_token to convert token to google id
+    userid = process_oauth_token(token)
+
+    # retrieve the user data from the database 
+    user = Organization.query.filter_by(id=userid).first()
+    
+    # if userid not in database, create new user
+    if not (user):
+
+        new_user = Organization(userid=userid, email=email, orgName=orgName, contactName=contactName, url=url)
+        db.session.add(new_user)
+        db.session.commit()
+    
+    #if userid is in database, redirect to org homepage
+    if (user):
+
+        return redirect('/org/opportunities')
+   
     # Expect to receive form data from the browser with 5 fields:
     # token, orgName, url, contactName, email
     # We'll convert the token to an ID with process_oauth_token()
     print ('\nSignup route received data: ', request.form)
-    return redirect('/')
+
+    return redirect('/org/opportunities')
 
 
 @app.route("/org/opportunities", methods=['GET'])

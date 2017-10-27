@@ -16,7 +16,8 @@ def add_orgs():
         email = row[1]
         url = row[2]
         contact_name = row[3]
-        new_org = Organization(org_name, email, url, contact_name)
+        userid = row[4]
+        new_org = Organization(userid, org_name, email, url, contact_name)
         # adds and commits the new organization to the db
         db.session.add(new_org)
         db.session.commit()
