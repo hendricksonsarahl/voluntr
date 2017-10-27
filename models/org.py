@@ -3,13 +3,15 @@ from datetime import datetime
 
 class Organization(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.String(200), unique=True)
     orgName = db.Column(db.String(120), unique=True)
     email = db.Column(db.String(120), unique=True)
     url = db.Column(db.String(200))
     contactName = db.Column(db.String(50))
     opportunities = db.relationship('Opportunity', backref='owner')
 
-    def __init__(self, orgName, email, url, contactName):
+    def __init__(self, userid, orgName, email, url, contactName):
+        self.userid = userid
         self.orgName = orgName
         self.email = email
         self.url = url
