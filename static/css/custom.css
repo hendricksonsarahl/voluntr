@@ -83,6 +83,22 @@ body {
   }
 }
 
+.days-table {
+  max-width: 400px;
+}
+
+/*Tweaks to fit things onto very small screens:*/
+@media (max-width: 400px) {
+  table.table.days-table thead td {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  select.form-control {
+    padding: 0px;
+  }
+}
+
 /*~~~~~~~~Flexbox layout for Opp Headers:~~~~~~~~~~~*/
 
 .opp-header {

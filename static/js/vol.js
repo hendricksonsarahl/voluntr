@@ -38,12 +38,15 @@ function showOpps(store, parentElt) {
           <small>${opp.event_date}</small>
         </h4>
         <div class="pull-right">
-          <a class="btn btn-primary" href="#" role="button">View&nbsp;
-            <div class="glyphicon glyphicon-play"></div>
-          </a>
-          <a class="btn btn-danger remove-button" href="#" role="button">Remove&nbsp;
+          <form action="/match" method="post">
+            <input type="hidden" name="oppId" value="${opp.id}"/>
+            <button type="submit" class="btn btn-primary">View&nbsp;
+              <span class="glyphicon glyphicon-play"></span>
+            </button>
+            <a class="btn btn-danger remove-button" href="#" role="button">Remove&nbsp;
             <div class="glyphicon glyphicon-remove"></div>
-          </a>
+            </a>
+          </form>
         </div>
       </div>
     </div>
@@ -157,7 +160,7 @@ if (typeof window !== "undefined") {
           e.target.classList.contains("remove-button") ||
           e.target.parentNode.classList.contains("remove-button")
         ) {
-          var clickedOppId = e.target.parentNode.parentNode.parentNode.dataset.id
+          var clickedOppId = e.target.parentNode.parentNode.parentNode.parentNode.dataset.id;
           removeOppFromStore(clickedOppId);
 
           //re-load the store from localStorage, and re-render the view

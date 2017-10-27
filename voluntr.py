@@ -26,21 +26,37 @@ def set_filters():
     if request.method == 'POST':
 
         if 'category' in request.form.keys(): # if category was in form sent. assign it to var
-            category = request.form['category']   
+            category = request.form.getlist('category')   
         else:
-            category = "all" # if no category in form data, set to "all"
+            category = ["all"] # if no category in form data, set to "all"
 
         if 'availableDays' in request.form.keys(): # if availability was in form sent. assign it to var
             availability = request.form.getlist('availableDays')
+            if len(availability) == 7:
+                availability = ["all"] # if all days are in list of available days, set to ["all"]
+                                        # (saves a lot of time sorting for no reason)
+
         else:
             availability = ["all"] # if no list of available days in form data, set to ["all"]
 
-        avail = ""
-        for i in range(len(availability)):
-            avail = avail + availability[i] + "-"
+        cat = list_to_string(category)
+        avail = list_to_string(availability)
+
+        if 'zipcode' in request.form.keys(): # if zipcode was in form sent. assign it to var
+            if len(request.form['zipcode']) == 5:
+                zipcode = request.form['zipcode']
+            else:
+                zipcode = "all"    
+        else:
+            zipcode = "all" # if no zipcode in form data, set to "all"
+
+        if 'distance' in request.form.keys(): # if distance was in form sent. assign it to var
+            distance = request.form['distance']   
+        else:
+            distance = "all" # if no distance in form data, set to "all"
 
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
-        resp.set_cookie('filters', str("0," + category + "," + avail)) # prepares cookie to be set with index of zero
+        resp.set_cookie('filters', str("0/" + cat + "/" + avail + "/" + zipcode + "/" + distance )) # prepares cookie to be set with index of zero
         
         return resp # sets cookie and redirects
 
@@ -56,28 +72,30 @@ def opportunities():
     if 'filters' in request.cookies:
         cookie = (request.cookies.get('filters')) #grabs cookie
 
-        filters = cookie.split(",") # splits cookie into list
+        filters = cookie.split("/") # splits cookie into list
         num = int(filters[0]) # grabs index from list
-        category = filters[1] # grabs category from list
+        cat = filters[1] # grabs categories from list
+        categories = cat.split("-")
         avail = filters[2] # grabs available days
         availability = avail.split("-") # splits into list
+        zipcode = filters[3] #grabs zipcode from list
+        distance = filters[4] #grabs distance from list
 
-        search = Filters(category=category, availability=availability) # creates filter with given category and availability
+        search = Filters(categories=categories, availability=availability, zipcode=zipcode, distance=distance) # creates filter with given category and availability
         opps = search.search() #grabs list of opportunities
         opp = opps[num] # picks out the opp at index
         
         event_date = readable_date(opp.startDateTime)
         event_time = readable_times(opp.startDateTime, opp.duration)
 
-        if len(opps) > (num + 1): 
-            num = num + 1 # increments index if its not at the end of the list
-        else:
-            num = 0 # loops back around
+        num = increment(num, len(opps))
 
         resp = make_response(render_template('volunteer/opportunities.html', 
                                             opp=opp, event_date = event_date, event_time=event_time, json=json, title="Voluntr | Browse Opportunities")
                                             ) # tells the cookie what to load while it sets itself
-        resp.set_cookie('filters', str(num) + "," + category + "," + avail) #preps cookie for setting
+
+        resp.set_cookie('filters', str(num) + "/" + cat + "/" + avail + "/" + zipcode + "/" + distance ) #preps cookie for setting
+
         return resp # sets cookie and displays page
     
     return redirect("/filters") # redirects to filters if no cookie exists
@@ -88,6 +106,16 @@ def display_matches():
     '''lists all opportunities that a volunteer user saved'''
     return render_template('volunteer/matches.html', title="Voluntr | Saved Opportunities")
 
+@app.route("/match", methods=['POST'])
+def display_match():
+    """displays a single oppotunity that the user saved"""
+
+    oppId = request.form['oppId']
+    opp = get_opp_by_id(oppId)
+    event_date = readable_date(opp.startDateTime)
+    event_time = readable_times(opp.startDateTime, opp.duration)
+    return render_template('volunteer/single_opp.html', title="Voluntr | Saved Opportunity", 
+                                opp=opp, event_date = event_date, event_time=event_time)
 
 @app.route("/org/login", methods=['GET'])
 def org_login():
@@ -193,7 +221,7 @@ def new_opportunity():
         address = request.form["address"]
         city = request.form["city"]
         state = request.form["state"]
-        zip_code = request.form["zip"]
+        zip_code = request.form["zipcode"]
         category_class = request.form["category"]
         category = get_category(category_class)
         description = validate_description(request.form["description"])
@@ -237,8 +265,13 @@ def edit_opportunity():
 
 @app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
-    '''displays details about a specific volunteer opportunity, with option to edit/delete the opportunity''' 
-    return render_template('organization/preview.html', title="Voluntr | Preview Post")
+    '''displays details about a specific volunteer opportunity''' 
+    id = request.args.get("id", type=int)
+    opp = get_opp_by_id(id) 
+    event_date = readable_date(opp.startDateTime)
+    event_time = readable_times(opp.startDateTime, opp.duration)
+    return render_template('organization/preview.html', title="Voluntr | Preview Post", opp=opp, 
+                                event_date = event_date, event_time = event_time)
 
 
 # Run this route upon app startup to load sample data
