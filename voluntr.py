@@ -129,19 +129,28 @@ def login():
 
 @app.route("/org/signup", methods=['POST'])
 def signup():
-    userid = process_oauth_token('token')
-
+    
+    token = request.form['token']
     orgName = request.form['orgName']
     email = request.form['email']
     url = request.form['url']
     contactName = request.form['contactName']
 
+    userid = process_oauth_token(token)
+    print(userid)
+
     # retrieve the user data from the database
     user = Organization.query.filter_by(id=userid).first()
  
-    new_user = Organization(userid = userid, email=email, orgName=orgName, contactName=contactName, url=url)
-    db.session.add(new_user)
-    db.session.commit()
+    if not (user):
+
+        new_user = Organization(userid=userid, email=email, orgName=orgName, contactName=contactName, url=url)
+        db.session.add(new_user)
+        db.session.commit()
+    
+    if (user):
+
+        return redirect('/org/opportunities')
    
     # Expect to receive form data from the browser with 5 fields:
     # token, orgName, url, contactName, email
