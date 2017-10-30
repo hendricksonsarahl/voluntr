@@ -139,7 +139,7 @@ def login():
         response_content["valid_token"] = True
 
         # If the token is valid, see if the ID corresponds to an existing Voluntr account
-        org_account = Organization.query.filter_by(id=userid).first()
+        org_account = Organization.query.filter_by(userid=userid).first()
 
         if (org_account):
             response_content["account_exists"] = True
@@ -177,6 +177,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
     
+    # redirect user to logged-in view, and set cookie with OAuth token:
     resp = make_response(redirect("/org/opportunities"))
     resp.set_cookie('token', token)
     return resp
