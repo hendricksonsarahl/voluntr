@@ -29,7 +29,7 @@ tap.test("redirectToOrgHome function", function(test) {
     );
 
     //invoke function being tested
-    frontEndCode.redirectToOrgHome();
+    // frontEndCode.redirectToOrgHome();
     
     test.notOk(document.querySelector('.redirect-row').classList.contains("hidden"),
       'After invoking, redirect-row div does not have class "hidden"'
