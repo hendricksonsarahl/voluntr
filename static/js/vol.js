@@ -118,11 +118,26 @@ function render(store, parentElt) {
 }
 
 // On filters form, check all category boxes
-function selectAllCategories() {
+function toggleAllCategories() {
   var categoryInputs = document.querySelectorAll('input[name=category]');
-  categoryInputs.forEach(function(cat) {
-    cat.checked="checked";
-  })
+  var selectAllButton = document.getElementById('selectAll');
+  var selectNoneButton = document.getElementById('selectNone');
+
+  if (this.id === "selectAll") {
+    categoryInputs.forEach(function(cat) {
+      cat.checked=true;
+    });
+    
+    selectAllButton.classList.add("hidden");
+    selectNoneButton.classList.remove("hidden");
+  } else {
+    categoryInputs.forEach(function(cat) {
+      cat.checked=false;
+    });
+    
+    selectNoneButton.classList.add("hidden");
+    selectAllButton.classList.remove("hidden");
+  }
 }
 
 //don't run this outside of a browser environment (e.g., when testing in Node)
@@ -132,11 +147,13 @@ if (typeof window !== "undefined") {
     var store = loadStore();
 
     var selectAllButton = document.getElementById('selectAll');
+    var selectNoneButton = document.getElementById('selectNone');
     var saveButton = document.getElementById('save-button');
     var oppListParent = document.getElementById("opp-container");
 
     if (selectAllButton) {
-      selectAllButton.addEventListener('click', selectAllCategories);
+      selectAllButton.addEventListener('click', toggleAllCategories);
+      selectNoneButton.addEventListener('click', toggleAllCategories);
     }
     
     // set up Browse Opportunities page:
