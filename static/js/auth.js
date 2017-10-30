@@ -80,9 +80,7 @@ if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
   (function() {
     console.log('auth.js loaded');
-    //when the sign-out link is clicked, the signOut function is executed
-    var signOutLink = document.getElementById("signOut");
-    signOutLink.addEventListener("click", signOut);
+
   })();
 }
 

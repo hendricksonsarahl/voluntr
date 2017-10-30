@@ -39,10 +39,13 @@ if (typeof window !== "undefined") {
   
   // Code in this anonymous function is immediately invoked once this script loads:
   (function() {
+
+    //when the sign-out link is clicked, the signOut function is executed
+    if (window.location.pathname.substring(0,4) === "/org") {
+      var signOutLink = document.getElementById("signOut");
+      signOutLink.addEventListener("click", signOut);
+    }
     
-
-
-
   })();
 }
 
