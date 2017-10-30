@@ -31,8 +31,8 @@ function signOut(event) {
 
   //send sign-out request to Google
   var auth2 = gapi.auth2.getAuthInstance();
+  auth2.disconnect();
   auth2.signOut().then(function() {
-    console.log("User signed out.");
 
     //delete the OAuth token from browser cookies:
     deleteCookie('token');
@@ -49,8 +49,8 @@ if (typeof window !== "undefined") {
   (function() {
 
     //when the sign-out link is clicked, the signOut function is executed
-    if (window.location.pathname.substring(0,4) === "/org") {
-      var signOutLink = document.getElementById("signOut");
+    var signOutLink = document.getElementById("signOut");
+    if (signOutLink) {
       signOutLink.addEventListener("click", signOut);
     }
     

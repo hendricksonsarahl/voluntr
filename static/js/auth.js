@@ -27,7 +27,6 @@ function onSignIn(googleUser) {
         response
           .json()
           .then(function(responseData) {
-            console.log("Server responded with: ", responseData);
             
             // Based on token validity, and Voluntr account existence, either:
             // Redirect to logged-in view, show sign-up form, or show an error message
