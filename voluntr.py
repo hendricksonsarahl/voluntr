@@ -166,6 +166,7 @@ def signup():
     # call process_oauth_token to convert token to google id
     userid = process_oauth_token(token)
 
+
     # retrieve the user data from the database 
     user = Organization.query.filter_by(id=userid).first()
     
@@ -176,17 +177,9 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
     
-    #if userid is in database, redirect to org homepage
-    if (user):
-
-        return redirect('/org/opportunities')
-   
-    # Expect to receive form data from the browser with 5 fields:
-    # token, orgName, url, contactName, email
-    # We'll convert the token to an ID with process_oauth_token()
-    print ('\nSignup route received data: ', request.form)
-
-    return redirect('/org/opportunities')
+    resp = make_response(redirect("/org/opportunities"))
+    resp.set_cookie('token', token)
+    return resp
 
 
 @app.route("/org/opportunities", methods=['GET'])
