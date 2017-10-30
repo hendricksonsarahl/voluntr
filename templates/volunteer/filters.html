@@ -12,6 +12,8 @@
                     <label for="category">Show me opportunities related to:</label>
                     <div class="checkbox">
                     </div>
+                      
+
                       {% for key, value in categories.items() %}
                       <div class="checkbox">
                         <label>
@@ -19,15 +21,18 @@
                         </label>
                       </div>
                       {% endfor %}
+
                       <button type="button" class="btn btn-primary btn-sm" id="selectAll">
                         <span class="glyphicon glyphicon-check"></span>
                         &nbsp;Select All
                       </button>
-                      <button type="button" class="btn btn-primary btn-sm hidden" id="selectNone">
+                      <button type="button" class="btn btn-default btn-sm hidden" id="selectNone">
                         <span class="glyphicon glyphicon-unchecked"></span>
                         &nbsp;Select None
                       </button>
+                      
                   </div>
+                  <br />
 
                   <div class="form-group">
                     <label for="available">On any of these days:&nbsp;</label>
@@ -56,6 +61,7 @@
                       </tbody>
                     </table>
                   </div>
+                  <br />
 
                   <div class="row">
                     <div class="col-xs-6">
