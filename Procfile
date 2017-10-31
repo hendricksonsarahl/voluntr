@@ -1,1 +1,1 @@
-python voluntr.py
+web: python voluntr.py
