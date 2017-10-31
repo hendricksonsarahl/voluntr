@@ -1,1 +1,1 @@
-web: python voluntr.py
+web: gunicorn voluntr:app
