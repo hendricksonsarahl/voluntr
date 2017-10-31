@@ -45,10 +45,11 @@ def opportunities():
     '''display search results to volunteer'''
 
     if 'filters' in request.cookies:
-        cookie = (request.cookies.get('filters')) #grabs cookie
 
+        cookie = (request.cookies.get('filters')) #grabs cookie
         filters = cookie.split("/") # splits cookie into list
-        num = int(filters[0]) # grabs index from list
+
+        index = int(filters[0]) # grabs index from list
         cat = filters[1] # grabs categories from list
         categories = cat.split("-")
         avail = filters[2] # grabs available days
@@ -58,18 +59,18 @@ def opportunities():
 
         search = Filters(categories=categories, availability=availability, zipcode=zipcode, distance=distance) # creates filter with given category and availability
         opps = search.search() #grabs list of opportunities
-        opp = opps[num] # picks out the opp at index
+        opp = opps[index] # picks out the opp at index
+        index = increment(index, len(opps)) # increments index
         
         event_date = readable_date(opp.startDateTime)
         event_time = readable_times(opp.startDateTime, opp.duration)
 
-        num = increment(num, len(opps))
-
         resp = make_response(render_template('volunteer/opportunities.html', 
-                                            opp=opp, event_date = event_date, event_time=event_time, json=json, title="Voluntr | Browse Opportunities")
+                                            opp=opp, event_date = event_date, event_time=event_time, 
+                                            json=json, title="Voluntr | Browse Opportunities")
                                             ) # tells the cookie what to load while it sets itself
 
-        resp.set_cookie('filters', str(num) + "/" + cat + "/" + avail + "/" + zipcode + "/" + distance ) #preps cookie for setting
+        resp.set_cookie('filters', str(index) + "/" + cat + "/" + avail + "/" + zipcode + "/" + distance ) #preps cookie for setting
 
         return resp # sets cookie and displays page
     
