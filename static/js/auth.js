@@ -33,6 +33,9 @@ function onSignIn(googleUser) {
             // Redirect to logged-in view, show sign-up form, or show an error message
             if(responseData.valid_token) {
               if (responseData.account_exists) {
+
+                //add token to cookie, then redirect to logged-in view
+                document.cookie = `token=${responseData.token}; path=/`;
                 redirectToOrgHome();
               } else {
                 showSignUpForm(profile.getName(), profile.getEmail(), authToken);

@@ -139,7 +139,7 @@ def login():
         response_content["valid_token"] = True
 
         # If the token is valid, see if the ID corresponds to an existing Voluntr account
-        org_account = Organization.query.filter_by(id=userid).first()
+        org_account = Organization.query.filter_by(userid=userid).first()
 
         if (org_account):
             response_content["account_exists"] = True
@@ -166,6 +166,7 @@ def signup():
     # call process_oauth_token to convert token to google id
     userid = process_oauth_token(token)
 
+
     # retrieve the user data from the database 
     user = Organization.query.filter_by(id=userid).first()
     
@@ -176,17 +177,10 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
     
-    #if userid is in database, redirect to org homepage
-    if (user):
-
-        return redirect('/org/opportunities')
-   
-    # Expect to receive form data from the browser with 5 fields:
-    # token, orgName, url, contactName, email
-    # We'll convert the token to an ID with process_oauth_token()
-    print ('\nSignup route received data: ', request.form)
-
-    return redirect('/org/opportunities')
+    # redirect user to logged-in view, and set cookie with OAuth token:
+    resp = make_response(redirect("/org/opportunities"))
+    resp.set_cookie('token', token)
+    return resp
 
 
 @app.route("/org/opportunities", methods=['GET'])
