@@ -24,9 +24,9 @@ tap.test("redirectToOrgHome function", function(test) {
       'Before invoking, redirect-row div has class "hidden"'
     );
 
-    test.equal('/org/login', window.location.pathname, 
-      'Before invoking, browser is on login page'
-    );
+    // test.equal('/org/login', window.location.pathname, 
+    //   'Before invoking, browser is on login page'
+    // );
 
     //invoke function being tested
     frontEndCode.redirectToOrgHome();
@@ -35,6 +35,7 @@ tap.test("redirectToOrgHome function", function(test) {
       'After invoking, redirect-row div does not have class "hidden"'
     );
 
+    console.log(window.location.pathname);
     // TODO: figure out simulating navigation in JSDOM
     // test.equal('/org/opportunities', window.location.pathname, 
     //   'After invoking, browser is on org homepage'
