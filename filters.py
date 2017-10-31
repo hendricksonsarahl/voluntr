@@ -1,26 +1,23 @@
 from app import db
 from models.org import Opportunity
-from helpers import get_day
+from helpers import get_day, get_categories
 from pyzipcode import ZipCodeDatabase, ZipNotFoundException
 
 zcdb = ZipCodeDatabase()
 
 class Filters():
 
-    def __init__(self, category="all", availability=["all"], zipcode="all", distance="all"):
+    def __init__(self, categories="all", availability=["all"], zipcode="all", distance="all"):
 
-        self.category = category
+        self.categories = categories
         self.availability = availability
         self.zipcode = zipcode
         self.distance = distance
 
     def search(self):
-        if self.category == "all":
-            opps = Opportunity.query.all()
 
-        else:
-            opps = Opportunity.query.filter_by(category_class=self.category).all()
-
+        opps = self.filter_by_categories()
+        
         if self.availability[0] != "all" and len(self.availability) != 7:
             opps = self.filter_by_days(opps)
 
@@ -29,15 +26,25 @@ class Filters():
 
         return opps
 
+    def filter_by_categories(self):
+        if self.categories[0] == "all" or len(self.categories) == len(get_categories()):
+            opps = Opportunity.query.all()
+        else:
+            opps = []
+            for i in range(len(self.categories)):
+                opps = opps + Opportunity.query.filter_by(category_class=self.categories[i]).all()
+
+        return opps
+
     def filter_by_days(self, opps):
         filtered = []
+
         for i in range(len(opps)):
             if get_day(opps[i].startDateTime) == "all":
                 filtered = filtered + [opps[i]]
-            else:
-                for j in range (len(self.availability)):
-                    if get_day(opps[i].startDateTime) == self.availability[j]:
-                        filtered = filtered + [opps[i]]
+            elif get_day(opps[i].startDateTime) in self.availability:
+                filtered = filtered + [opps[i]]
+
         return filtered
 
     def filter_by_location(self, opps):

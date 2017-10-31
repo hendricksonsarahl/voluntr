@@ -1,6 +1,6 @@
 # Voluntr
 
-## Current Version: 0.26.0
+## Current Version: 0.30.0
 
 <b> A web app that provides a simple platform for nonprofits to connect with potential volunteers</b>
 
@@ -63,7 +63,7 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 | As a new visitor, I can... | Goal | Status |
 | --- | --- |--- |
 | discover the app and learn about it's purpose and options | MVP | Passing :white_check_mark: |
-| easily find the relevant half of the app to use (volunteer vs organization). | MVP | Passing :white_check_mark: |
+| easily find the relevant half of the app to use (volunteer vs organization) | MVP | Passing :white_check_mark: |
 
 </div>
 
@@ -72,11 +72,11 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 | As a Volunteer, I can... | Goal | Status |
 | --- | --- |--- |
 | view available volunteer opportunities, including photo, non-profit name, and volunteer position title so that I can quickly find opportunities that apply to me without having to sign up  | MVP  | Passing :white_check_mark: |
-|set and edit preferences of what day(s) I want to volunteer so I don’t have to search through many postings that don’t meet my schedule. | MVP | Not Passing :red_circle: |
-| set and edit preferences of where I want to volunteer so I don’t have to search through many postings that don’t meet my location. | MVP | Not Passing :red_circle: |
-| see that the results list includes opportunity categories that match my preferences  | MVP | Not Passing :red_circle: |
+|set and edit preferences of what day(s) I want to volunteer so I don’t have to search through many postings that don’t meet my schedule | MVP | Passing :white_check_mark: |
+| set and edit preferences of where I want to volunteer so I don’t have to search through many postings that don’t meet my location | MVP | Passing :white_check_mark: |
+| see that the results list includes opportunity categories that match my preferences  | MVP | Passing :white_check_mark: |
 | save an opportunity post to a local list so that I can re-visit it later  | MVP | Passing :white_check_mark: |
-| view the saved opportunity to get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP | Not Passing :red_circle: |
+| view the saved opportunity to get contact information for volunteer organizations so that I can get in touch outside of the app to discuss opportunities further  | MVP | Passing :white_check_mark: |
 | remove a saved opportunity from my list  | MVP | Passing :white_check_mark: |
 
 </div>
@@ -85,8 +85,8 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 
 | As a Nonprofit, I can... | Goal | Status |
 | --- | --- |--- |
-| register my organization on Voluntr. | MVP | Not Passing :red_circle: |
-| easily submit open volunteer opportunities. | MVP | Passing :white_check_mark: |
+| register my organization on Voluntr | MVP | Passing :white_check_mark: |
+| easily submit open volunteer opportunities | MVP | Not Passing :red_circle: |
 | edit or remove a posted opportunity  | MVP  | Not Passing :red_circle: |
 | view the list of posted opportunities that are open  | MVP | Passing :white_check_mark: |
 | view and edit profile settings for my organization, including name, contact email, and any other profile data  | MVP | Not Passing :red_circle: |
@@ -94,4 +94,4 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 
 </div>
 
-Our stretch goal will be to include some Python unit and acceptance tests using pytest and pytest-BDD, and some JavaScript unit tests with tap.  
+Our stretch goals include adding Python unit and acceptance tests using pytest and pytest-BDD, and some JavaScript unit tests with tap.  

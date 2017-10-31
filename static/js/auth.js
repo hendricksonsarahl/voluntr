@@ -1,4 +1,5 @@
 function onSignIn(googleUser) {
+  console.log('onSignIn runs');
   var profile = googleUser.getBasicProfile();
   var authToken = googleUser.getAuthResponse().id_token;
 
@@ -26,12 +27,14 @@ function onSignIn(googleUser) {
         response
           .json()
           .then(function(responseData) {
-            console.log("Server responded with: ", responseData);
             
             // Based on token validity, and Voluntr account existence, either:
             // Redirect to logged-in view, show sign-up form, or show an error message
             if(responseData.valid_token) {
               if (responseData.account_exists) {
+
+                //add token to cookie, then redirect to logged-in view
+                document.cookie = `token=${responseData.token}; path=/`;
                 redirectToOrgHome();
               } else {
                 showSignUpForm(profile.getName(), profile.getEmail(), authToken);
@@ -75,9 +78,8 @@ function redirectToOrgHome() {
 if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
   (function() {
-    //when the sign-out link is clicked, the signOut function is executed
-    var signOutLink = document.getElementById("signOut");
-    signOutLink.addEventListener("click", signOut);
+    console.log('auth.js loaded');
+
   })();
 }
 
