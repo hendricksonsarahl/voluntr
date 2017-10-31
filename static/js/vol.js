@@ -117,18 +117,45 @@ function render(store, parentElt) {
   }
 }
 
+// On filters form, check all category boxes
+function toggleAllCategories() {
+  var categoryInputs = document.querySelectorAll('input[name=category]');
+  var selectAllButton = document.getElementById('selectAll');
+  var selectNoneButton = document.getElementById('selectNone');
+
+  if (this.id === "selectAll") {
+    categoryInputs.forEach(function(cat) {
+      cat.checked=true;
+    });
+  } else {
+    categoryInputs.forEach(function(cat) {
+      cat.checked=false;
+    });
+  }
+}
+
 //don't run this outside of a browser environment (e.g., when testing in Node)
 if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
   (function() {
     var store = loadStore();
+
+    var selectAllButton = document.getElementById('selectAll');
+    var selectNoneButton = document.getElementById('selectNone');
+    var saveButton = document.getElementById('save-button');
+    var oppListParent = document.getElementById("opp-container");
+
+    if (selectAllButton) {
+      selectAllButton.addEventListener('click', toggleAllCategories);
+      selectNoneButton.addEventListener('click', toggleAllCategories);
+    }
     
     // set up Browse Opportunities page:
-    if(window.location.pathname === "/opportunities") {
-      var saveButton = document.getElementById('save-button');
-      //currentOpp is a global variable loaded in the HTML created by the Jinja template
-      
+    if(saveButton) {
+
       // update the save button if the opp is already saved on page load
+      // (currentOpp is a global variable loaded in the HTML created by the Jinja template)      
+
       if (idInArray(store, currentOpp)) {
         updateSaveButton.bind(saveButton)(true);
       }
@@ -146,10 +173,10 @@ if (typeof window !== "undefined") {
           store = loadStore();
         }
       });
+    }
 
     // set up My Saved Opportunities page:
-    } else if (window.location.pathname === "/matches") {
-      var oppListParent = document.getElementById("opp-container");
+    if (oppListParent) {
 
       //initial render
       render(store, oppListParent);

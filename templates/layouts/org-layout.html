@@ -1,7 +1,13 @@
 {% extends "layouts/base.html" %}
 
-{% block content %}
+{% block headContent %}
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+{% endblock %}
 
+{% block content %}
+  <div class="g-signin2 hidden" data-onsuccess="onSignIn" data-theme="dark" data-longtitle="true" data-height="50" data-width="300"></div>
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -26,7 +32,11 @@
             <a href="./add">New Opportunity</a>
           </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right"></ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="./" id="signOut">Sign Out</a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>

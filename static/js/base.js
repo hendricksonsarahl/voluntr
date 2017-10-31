@@ -19,6 +19,11 @@ function displayError(message) {
   alertContainer.appendChild(alert);
 }
 
+// helper function to delete a cookie by setting its expiration date in the past
+function deleteCookie(name) {
+  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 // Sign out of Google connection, then redirect to "/"
 function signOut(event) {
   //don't immediately redirect the user
@@ -26,8 +31,11 @@ function signOut(event) {
 
   //send sign-out request to Google
   var auth2 = gapi.auth2.getAuthInstance();
+  auth2.disconnect();
   auth2.signOut().then(function() {
-    console.log("User signed out.");
+
+    //delete the OAuth token from browser cookies:
+    deleteCookie('token');
 
     //redirect user after confirmation of sign-out received
     window.location.href = "/";
@@ -39,10 +47,13 @@ if (typeof window !== "undefined") {
   
   // Code in this anonymous function is immediately invoked once this script loads:
   (function() {
+
+    //when the sign-out link is clicked, the signOut function is executed
+    var signOutLink = document.getElementById("signOut");
+    if (signOutLink) {
+      signOutLink.addEventListener("click", signOut);
+    }
     
-
-
-
   })();
 }
 

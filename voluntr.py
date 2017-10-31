@@ -25,35 +25,10 @@ def set_filters():
 
     if request.method == 'POST':
 
-        if 'category' in request.form.keys(): # if category was in form sent. assign it to var
-            category = request.form.getlist('category')   
-        else:
-            category = ["all"] # if no category in form data, set to "all"
-
-        if 'availableDays' in request.form.keys(): # if availability was in form sent. assign it to var
-            availability = request.form.getlist('availableDays')
-            if len(availability) == 7:
-                availability = ["all"] # if all days are in list of available days, set to ["all"]
-                                        # (saves a lot of time sorting for no reason)
-
-        else:
-            availability = ["all"] # if no list of available days in form data, set to ["all"]
-
-        cat = list_to_string(category)
-        avail = list_to_string(availability)
-
-        if 'zipcode' in request.form.keys(): # if zipcode was in form sent. assign it to var
-            if len(request.form['zipcode']) == 5:
-                zipcode = request.form['zipcode']
-            else:
-                zipcode = "all"    
-        else:
-            zipcode = "all" # if no zipcode in form data, set to "all"
-
-        if 'distance' in request.form.keys(): # if distance was in form sent. assign it to var
-            distance = request.form['distance']   
-        else:
-            distance = "all" # if no distance in form data, set to "all"
+        cat = process_category(request.form) 
+        avail = process_availability(request.form)
+        zipcode = process_zipcode(request.form)
+        distance = process_distance(request.form)
 
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
         resp.set_cookie('filters', str("0/" + cat + "/" + avail + "/" + zipcode + "/" + distance )) # prepares cookie to be set with index of zero
@@ -139,7 +114,7 @@ def login():
         response_content["valid_token"] = True
 
         # If the token is valid, see if the ID corresponds to an existing Voluntr account
-        org_account = Organization.query.filter_by(id=userid).first()
+        org_account = Organization.query.filter_by(userid=userid).first()
 
         if (org_account):
             response_content["account_exists"] = True
@@ -166,6 +141,7 @@ def signup():
     # call process_oauth_token to convert token to google id
     userid = process_oauth_token(token)
 
+
     # retrieve the user data from the database 
     user = Organization.query.filter_by(id=userid).first()
     
@@ -176,17 +152,10 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
     
-    #if userid is in database, redirect to org homepage
-    if (user):
-
-        return redirect('/org/opportunities')
-   
-    # Expect to receive form data from the browser with 5 fields:
-    # token, orgName, url, contactName, email
-    # We'll convert the token to an ID with process_oauth_token()
-    print ('\nSignup route received data: ', request.form)
-
-    return redirect('/org/opportunities')
+    # redirect user to logged-in view, and set cookie with OAuth token:
+    resp = make_response(redirect("/org/opportunities"))
+    resp.set_cookie('token', token)
+    return resp
 
 
 @app.route("/org/opportunities", methods=['GET'])
