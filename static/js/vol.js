@@ -127,16 +127,10 @@ function toggleAllCategories() {
     categoryInputs.forEach(function(cat) {
       cat.checked=true;
     });
-    
-    selectAllButton.classList.add("hidden");
-    selectNoneButton.classList.remove("hidden");
   } else {
     categoryInputs.forEach(function(cat) {
       cat.checked=false;
     });
-    
-    selectNoneButton.classList.add("hidden");
-    selectAllButton.classList.remove("hidden");
   }
 }
 
