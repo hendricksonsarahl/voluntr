@@ -96,6 +96,10 @@ p.help-block {
   margin-bottom: 10px;
 }
 
+.centered-form h3, h4 {
+  margin-top: 0;
+}
+
 /*Tweaks to fit things onto very small screens:*/
 @media (max-width: 400px) {
   table.table.days-table thead td {
