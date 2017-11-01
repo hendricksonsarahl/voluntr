@@ -1,5 +1,13 @@
 body {
-  padding-bottom: 15px;
+  padding-bottom: 50px;
+}
+
+h2 {
+  margin-top: 10px;
+}
+
+p.help-block {
+  margin-top: 0;
 }
 
 .navbar .navbar-brand {
@@ -85,6 +93,15 @@ body {
 
 .days-table {
   max-width: 400px;
+  margin-bottom: 10px;
+}
+
+.centered-form h3, h4 {
+  margin-top: 0;
+}
+
+.categories-group > .checkbox:first-child {
+  margin-top: 0;
 }
 
 /*Tweaks to fit things onto very small screens:*/
