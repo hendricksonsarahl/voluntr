@@ -2,6 +2,14 @@ body {
   padding-bottom: 50px;
 }
 
+h2 {
+  margin-top: 10px;
+}
+
+p.help-block {
+  margin-top: 0;
+}
+
 .navbar .navbar-brand {
   position: relative;
   bottom: 3px;
