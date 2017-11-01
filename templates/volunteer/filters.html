@@ -14,19 +14,8 @@
                   <h4>Show me opportunities related to:</h4>
                 </label>
               </div>
-
               <div class="col-xs-12 col-sm-6">
-                <div class="form-group">
-                  <br />
-                  <button type="button" class="btn btn-primary btn-sm" id="selectAll">
-                    <span class="glyphicon glyphicon-check"></span>
-                    &nbsp;Select All
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm" id="selectNone">
-                    <span class="glyphicon glyphicon-unchecked"></span>
-                    &nbsp;Unselect All
-                  </button>
-
+                <div class="form-group">                  
                   {% for key, value in categories.items() %}
                   <div class="checkbox">
                     <label>
@@ -34,7 +23,11 @@
                     </label>
                   </div>
                   {% endfor %}
-          
+                  <div class="checkbox" id="selectAll">
+                    <label>
+                      <input type="checkbox"><strong>Select All</strong>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
