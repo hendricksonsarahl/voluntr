@@ -25,35 +25,10 @@ def set_filters():
 
     if request.method == 'POST':
 
-        if 'category' in request.form.keys(): # if category was in form sent. assign it to var
-            category = request.form.getlist('category')   
-        else:
-            category = ["all"] # if no category in form data, set to "all"
-
-        if 'availableDays' in request.form.keys(): # if availability was in form sent. assign it to var
-            availability = request.form.getlist('availableDays')
-            if len(availability) == 7:
-                availability = ["all"] # if all days are in list of available days, set to ["all"]
-                                        # (saves a lot of time sorting for no reason)
-
-        else:
-            availability = ["all"] # if no list of available days in form data, set to ["all"]
-
-        cat = list_to_string(category)
-        avail = list_to_string(availability)
-
-        if 'zipcode' in request.form.keys(): # if zipcode was in form sent. assign it to var
-            if len(request.form['zipcode']) == 5:
-                zipcode = request.form['zipcode']
-            else:
-                zipcode = "all"    
-        else:
-            zipcode = "all" # if no zipcode in form data, set to "all"
-
-        if 'distance' in request.form.keys(): # if distance was in form sent. assign it to var
-            distance = request.form['distance']   
-        else:
-            distance = "all" # if no distance in form data, set to "all"
+        cat = process_category(request.form) 
+        avail = process_availability(request.form)
+        zipcode = process_zipcode(request.form)
+        distance = process_distance(request.form)
 
         resp = make_response(redirect("/opportunities")) # tells the cookie to redirect to /opp after setting cookie
         resp.set_cookie('filters', str("0/" + cat + "/" + avail + "/" + zipcode + "/" + distance )) # prepares cookie to be set with index of zero
@@ -70,10 +45,11 @@ def opportunities():
     '''display search results to volunteer'''
 
     if 'filters' in request.cookies:
-        cookie = (request.cookies.get('filters')) #grabs cookie
 
+        cookie = (request.cookies.get('filters')) #grabs cookie
         filters = cookie.split("/") # splits cookie into list
-        num = int(filters[0]) # grabs index from list
+
+        index = int(filters[0]) # grabs index from list
         cat = filters[1] # grabs categories from list
         categories = cat.split("-")
         avail = filters[2] # grabs available days
@@ -83,18 +59,18 @@ def opportunities():
 
         search = Filters(categories=categories, availability=availability, zipcode=zipcode, distance=distance) # creates filter with given category and availability
         opps = search.search() #grabs list of opportunities
-        opp = opps[num] # picks out the opp at index
+        opp = opps[index] # picks out the opp at index
+        index = increment(index, len(opps)) # increments index
         
         event_date = readable_date(opp.startDateTime)
         event_time = readable_times(opp.startDateTime, opp.duration)
 
-        num = increment(num, len(opps))
-
         resp = make_response(render_template('volunteer/opportunities.html', 
-                                            opp=opp, event_date = event_date, event_time=event_time, json=json, title="Voluntr | Browse Opportunities")
+                                            opp=opp, event_date = event_date, event_time=event_time, 
+                                            json=json, title="Voluntr | Browse Opportunities")
                                             ) # tells the cookie what to load while it sets itself
 
-        resp.set_cookie('filters', str(num) + "/" + cat + "/" + avail + "/" + zipcode + "/" + distance ) #preps cookie for setting
+        resp.set_cookie('filters', str(index) + "/" + cat + "/" + avail + "/" + zipcode + "/" + distance ) #preps cookie for setting
 
         return resp # sets cookie and displays page
     
