@@ -118,19 +118,32 @@ function render(store, parentElt) {
 }
 
 // On filters form, check all category boxes
-function toggleAllCategories() {
+function selectAllCategories() {
   var categoryInputs = document.querySelectorAll('input[name=category]');
   var selectAllButton = document.getElementById('selectAll');
-  var selectNoneButton = document.getElementById('selectNone');
 
-  if (this.id === "selectAll") {
-    categoryInputs.forEach(function(cat) {
-      cat.checked=true;
-    });
+  categoryInputs.forEach(function(cat) {
+    cat.checked = true;
+  });
+}
+
+// Select All checkbox should be checked exactly when all other checkboxes are checked
+function toggleSelectAllCheckbox() {
+  var selectAllCheckbox = document.querySelector('#selectAll input');
+  var categoryInputs = document.querySelectorAll('input[name=category]');
+
+  if (!this.checked) {
+    selectAllCheckbox.checked = false;
   } else {
-    categoryInputs.forEach(function(cat) {
-      cat.checked=false;
-    });
+    var allChecked = true;
+    for (var i = 0; i < categoryInputs.length; i++) {
+      if (!categoryInputs[i].checked) {
+        allChecked = false;
+      }
+    }
+    if (allChecked) {
+      selectAllCheckbox.checked = true;
+    }
   }
 }
 
@@ -141,13 +154,15 @@ if (typeof window !== "undefined") {
     var store = loadStore();
 
     var selectAllButton = document.getElementById('selectAll');
-    var selectNoneButton = document.getElementById('selectNone');
+    var categoryInputs = document.querySelectorAll('input[name=category]');
     var saveButton = document.getElementById('save-button');
     var oppListParent = document.getElementById("opp-container");
 
     if (selectAllButton) {
-      selectAllButton.addEventListener('click', toggleAllCategories);
-      selectNoneButton.addEventListener('click', toggleAllCategories);
+      selectAllButton.addEventListener('click', selectAllCategories);
+      categoryInputs.forEach(function(cat) {
+        cat.addEventListener('click', toggleSelectAllCheckbox);
+      });
     }
     
     // set up Browse Opportunities page:
