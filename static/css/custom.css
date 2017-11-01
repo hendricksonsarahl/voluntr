@@ -100,6 +100,10 @@ p.help-block {
   margin-top: 0;
 }
 
+.categories-group > .checkbox:first-child {
+  margin-top: 0;
+}
+
 /*Tweaks to fit things onto very small screens:*/
 @media (max-width: 400px) {
   table.table.days-table thead td {

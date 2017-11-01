@@ -4,7 +4,7 @@
   <div class="container-outer">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 centered-form">
           <h2>My Search Preferences</h2>
           <hr />
           <form action="/filters" method="post" id="filters-form">
@@ -15,7 +15,12 @@
                 </label>
               </div>
               <div class="col-xs-12 col-sm-6">
-                <div class="form-group">                  
+                <div class="form-group categories-group">  
+                  <div class="checkbox" id="selectAll">
+                    <label>
+                      <input type="checkbox"><strong>All Categories</strong>
+                    </label>
+                  </div>                
                   {% for key, value in categories.items() %}
                   <div class="checkbox">
                     <label>
@@ -23,11 +28,7 @@
                     </label>
                   </div>
                   {% endfor %}
-                  <div class="checkbox" id="selectAll">
-                    <label>
-                      <input type="checkbox"><strong>Select All</strong>
-                    </label>
-                  </div>
+                  
                 </div>
               </div>
             </div>
