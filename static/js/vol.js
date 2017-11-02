@@ -121,14 +121,15 @@ function render(store, parentElt) {
 function selectAllCategories() {
   var categoryInputs = document.querySelectorAll('input[name=category]');
   var selectAllButton = document.querySelector('#selectAll input');
-  console.log(selectAllButton.checked);
+
   if (selectAllButton.checked) {
-      categoryInputs.forEach(function(cat) {
-        cat.checked = false;
-    });}else{
-      categoryInputs.forEach(function(cat) {
-        cat.checked = true;
-        })  ;
+    categoryInputs.forEach(function(cat) {
+      cat.checked = true;
+    });
+  } else {
+    categoryInputs.forEach(function(cat) {
+      cat.checked = false;
+    });
   }
 }
 
@@ -166,7 +167,7 @@ if (typeof window !== "undefined") {
     if (selectAllButton) {
       selectAllButton.addEventListener('change', selectAllCategories);
       categoryInputs.forEach(function(cat) {
-        cat.addEventListener('click', toggleSelectAllCheckbox);
+        cat.addEventListener('change', toggleSelectAllCheckbox);
       });
     }
     

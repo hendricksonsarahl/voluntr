@@ -204,6 +204,8 @@ def list_to_string(theList):
 def process_category(form):
     if 'category' in form.keys(): # if category was in form sent. assign it to var
         category = form.getlist('category')   
+        if len(category) == len(get_categories()):
+            category = ["all"] # if all category in form data, set to "all"
     else:
         category = ["all"] # if no category in form data, set to "all"
     cat = list_to_string(category)
