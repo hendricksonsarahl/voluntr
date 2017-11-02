@@ -233,6 +233,12 @@ def edit_opportunity():
     return render_template('organization/edit.html', title='Voluntr | Edit Opportunity')
 
 
+@app.route("/org/profile", methods=['GET'])
+def view_profile():
+    ''' displays a form pre-populated with data about the organization account'''
+    return render_template('organization/profile.html', title='Voluntr | Account Profile')
+
+
 @app.route("/org/opportunity", methods=['GET'])
 def show_opportunity():
     '''displays details about a specific volunteer opportunity''' 
