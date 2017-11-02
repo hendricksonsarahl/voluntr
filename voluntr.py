@@ -225,18 +225,23 @@ def new_opportunity():
     return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
 
 
+@app.route("/org/profile", methods=['GET'])
+def view_profile():
+    ''' displays a form pre-populated with data about the organization account'''
+    # TODO: Stop hard-coding org_id
+    org_id = 4
+
+    org = Organization.query.filter_by(id=org_id).first()
+
+    return render_template('organization/profile.html', org=org, title='Voluntr | Account Profile')
+
+
 @app.route("/org/edit", methods=['GET'])
 def edit_opportunity():
     ''' displays a form pre-populated with data for a single opportunity, so the user can 
     either edit individual fields and repost the opportunity, or remove the opportunity 
     from the app '''
     return render_template('organization/edit.html', title='Voluntr | Edit Opportunity')
-
-
-@app.route("/org/profile", methods=['GET'])
-def view_profile():
-    ''' displays a form pre-populated with data about the organization account'''
-    return render_template('organization/profile.html', title='Voluntr | Account Profile')
 
 
 @app.route("/org/opportunity", methods=['GET'])
