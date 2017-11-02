@@ -121,7 +121,7 @@ function render(store, parentElt) {
 function selectAllCategories() {
   var categoryInputs = document.querySelectorAll('input[name=category]');
   var selectAllButton = document.querySelector('#selectAll input');
-  
+
   if (selectAllButton.checked) {
     categoryInputs.forEach(function(cat) {
       cat.checked = true;

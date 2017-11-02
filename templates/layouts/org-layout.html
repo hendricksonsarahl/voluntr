@@ -31,12 +31,27 @@
           <li id="add">
             <a href="./add">New Opportunity</a>
           </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="./" id="signOut">Sign Out</a>
+          <li class="visible-xs">
+            <a href="/org/profile">Account Profile</a>
+          </li>
+          <li class="visible-xs">
+            <a href="/" id="signOut">Sign Out</a>
           </li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown hidden-xs">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/org/profile">Profile</a>
+              </li>
+              <li>
+                <a href="/" id="signOut">Sign Out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
       </div>
     </div>
   </nav>
