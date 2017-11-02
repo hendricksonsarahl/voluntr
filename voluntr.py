@@ -322,7 +322,7 @@ def dropCreate():
     db.drop_all()
     db.create_all()
     add_orgs()
-    add_opportunities()
+    # add_opportunities()
     
     return redirect('/')
 
