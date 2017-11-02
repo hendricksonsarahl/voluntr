@@ -121,14 +121,16 @@ function render(store, parentElt) {
 function selectAllCategories() {
   var categoryInputs = document.querySelectorAll('input[name=category]');
   var selectAllButton = document.querySelector('#selectAll input');
-
+  
   if (selectAllButton.checked) {
     categoryInputs.forEach(function(cat) {
       cat.checked = true;
-  });}else{
-        categoryInputs.forEach(function(cat) {
-          cat.checked = false;
-      });}
+    });
+  } else {
+    categoryInputs.forEach(function(cat) {
+      cat.checked = false;
+    });
+  }
 }
 
 // Select All checkbox should be checked exactly when all other checkboxes are checked
