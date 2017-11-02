@@ -102,6 +102,9 @@ def create_datetime(date, start_time):
 def validate_opp_data():
     return True
 
+def validate_org_data():
+    return True
+
 def validate_title(title_input):
     ''' takes a single string input and returns a placeholder title if an empty string was submitted '''
     
