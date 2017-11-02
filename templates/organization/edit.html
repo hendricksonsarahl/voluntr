@@ -11,7 +11,7 @@
                 <h2>Edit Opportunity Post</h2>
               </div>
               <div class="row">
-                <form>
+                <form action="./edit?id={{opp.id}}" method="post">
                   <div class="form-group">
                     <label for="title">Title</label>
                     <input class="form-control" id="title" type="text" maxlength="120" name="title" value="{{opp.title}}">
@@ -58,7 +58,12 @@
                   {% for key, value in categories.items() %}
                   <div class="radio">
                     <label>
+                      {% if key != opp.category_class %}
                       <input id="{{key}}" type="radio" name="category" value="{{key}}">{{value}}
+                      {% endif %}
+                      {% if key == opp.category_class %}
+                      <input id="{{key}}" type="radio" name="category" value="{{key}}" checked="">{{value}}
+                      {% endif %}
                     </label>
                   </div>
                   {% endfor %}
@@ -72,7 +77,7 @@
                   <textarea class="form-control" id="nextSteps" maxlength="1000" rows="5" name= "nextSteps" value="{{opp.nextSteps}}">{{opp.nextSteps}}</textarea>
                 </div>
                 <div class="text-center">
-                  <a class="btn btn-primary" href="./opportunities" role="button">Update</a>
+                  <input type="submit" class="btn btn-primary" role="button" value="Update"></a>
                   <a class="btn btn-danger" href="./opportunities" role="button">Delete Post&nbsp;
                     <div class="glyphicon glyphicon-remove-sign"></div>
                   </a>
