@@ -223,7 +223,7 @@ def new_opportunity():
     categories = get_categories()
 
     return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
-
+  
 
 @app.route("/org/profile", methods=['GET', 'POST'])
 def view_profile():
@@ -254,13 +254,55 @@ def view_profile():
 
     return render_template('organization/profile.html', org=org, title='Voluntr | Account Profile')
 
-
-@app.route("/org/edit", methods=['GET'])
+   
+@app.route("/org/edit", methods=['GET', 'POST'])
 def edit_opportunity():
     ''' displays a form pre-populated with data for a single opportunity, so the user can 
     either edit individual fields and repost the opportunity, or remove the opportunity 
     from the app '''
-    return render_template('organization/edit.html', title='Voluntr | Edit Opportunity')
+
+
+    if request.method == "POST":
+            
+        id = request.args.get("id", type=int)
+        opp = get_opp_by_id(id)
+        
+        # use form data to update opportunity
+        opp.title = validate_title(request.form["title"])
+        opp.address = request.form["address"]
+        opp.city = request.form["city"]
+        opp.state = request.form["state"]
+        opp.zipcode = request.form["zipcode"]
+        opp.description = validate_description(request.form["description"])
+        
+        # format dateStartTime and duration
+        date = request.form["date"]
+        start_time = request.form["startTime"]
+        end_time = request.form["endTime"]
+        opp.startDateTime = create_datetime(date, start_time)
+        opp.duration = get_duration(start_time, end_time)
+        
+        opp.category_class = request.form["category"]
+        opp.category = get_category(request.form["category"])
+        opp.nextSteps = validate_next_steps(request.form["nextSteps"])    
+        
+        # TODO: add real validation steps here 
+        if validate_opp_data() == True:
+            # update db with new form information
+            db.session.commit()
+            return redirect('/org/opportunities')
+    
+    # for GET requests:
+        
+    id = request.args.get("id", type=int)
+    opp = get_opp_by_id(id)
+    event_date = opp.startDateTime.strftime('%Y-%m-%d')
+    time_start = get_start_time(opp.startDateTime)
+    time_end = get_end_time(opp.startDateTime, opp.duration)  
+    categories = get_categories()
+    return render_template('organization/edit.html', title='Voluntr | Edit Opportunity', opp=opp, 
+                                event_date = event_date, time_start = time_start, time_end = time_end,
+                                categories=categories)
 
 
 @app.route("/org/opportunity", methods=['GET'])
