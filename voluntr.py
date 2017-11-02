@@ -36,11 +36,12 @@ def set_filters():
         return resp # sets cookie and redirects
 
     categories = get_categories()
-    org_account = Organization.query.filter_by(userid=3).first()
-    print(org_account.id)
-    print(org_account.userid)
-    print(type(org_account.id))
-    print(type(org_account.userid))
+    for i in range(1,10):
+        org_account = Organization.query.filter_by(userid=i).first()
+        print(org_account.id)
+        print(org_account.userid)
+        print(type(org_account.id))
+        print(type(org_account.userid))
 
     return render_template('volunteer/filters.html', title="Voluntr | Filters", categories = categories)
 
