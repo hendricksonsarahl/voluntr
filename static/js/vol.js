@@ -120,11 +120,17 @@ function render(store, parentElt) {
 // On filters form, check all category boxes
 function selectAllCategories() {
   var categoryInputs = document.querySelectorAll('input[name=category]');
-  var selectAllButton = document.getElementById('selectAll');
-
-  categoryInputs.forEach(function(cat) {
-    cat.checked = true;
-  });
+  var selectAllButton = document.querySelector('#selectAll input');
+  
+  if (selectAllButton.checked) {
+    categoryInputs.forEach(function(cat) {
+      cat.checked = true;
+    });
+  } else {
+    categoryInputs.forEach(function(cat) {
+      cat.checked = false;
+    });
+  }
 }
 
 // Select All checkbox should be checked exactly when all other checkboxes are checked
@@ -159,9 +165,9 @@ if (typeof window !== "undefined") {
     var oppListParent = document.getElementById("opp-container");
 
     if (selectAllButton) {
-      selectAllButton.addEventListener('click', selectAllCategories);
+      selectAllButton.addEventListener('change', selectAllCategories);
       categoryInputs.forEach(function(cat) {
-        cat.addEventListener('click', toggleSelectAllCheckbox);
+        cat.addEventListener('change', toggleSelectAllCheckbox);
       });
     }
     
