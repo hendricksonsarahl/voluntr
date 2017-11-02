@@ -33,7 +33,7 @@ class Opportunity(db.Model):
     category_class = db.Column(db.String(20))
     category = db.Column(db.String(35))
     nextSteps = db.Column(db.String(1000))
-    owner_id = db.Column(db.Integer, db.ForeignKey('organization.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey('organization.userid'))
 
     def __init__(self, title, address, city, state, zipcode, description, startDateTime, duration, category_class, category, nextSteps, owner):
         self.title = title
