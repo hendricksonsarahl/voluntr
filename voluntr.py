@@ -36,7 +36,7 @@ def set_filters():
         return resp # sets cookie and redirects
 
     categories = get_categories()
-    org_account = Organization.query.filter_by(id=3).first()
+    org_account = Organization.query.filter_by(userid=3).first()
     print(org_account.id)
     print(org_account.userid)
     print(type(org_account.id))
