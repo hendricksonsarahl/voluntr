@@ -118,19 +118,38 @@ function render(store, parentElt) {
 }
 
 // On filters form, check all category boxes
-function toggleAllCategories() {
+function selectAllCategories() {
   var categoryInputs = document.querySelectorAll('input[name=category]');
-  var selectAllButton = document.getElementById('selectAll');
-  var selectNoneButton = document.getElementById('selectNone');
+  var selectAllButton = document.querySelector('#selectAll input');
 
-  if (this.id === "selectAll") {
+  if (selectAllButton.checked) {
     categoryInputs.forEach(function(cat) {
-      cat.checked=true;
+      cat.checked = true;
     });
   } else {
     categoryInputs.forEach(function(cat) {
-      cat.checked=false;
+      cat.checked = false;
     });
+  }
+}
+
+// Select All checkbox should be checked exactly when all other checkboxes are checked
+function toggleSelectAllCheckbox() {
+  var selectAllCheckbox = document.querySelector('#selectAll input');
+  var categoryInputs = document.querySelectorAll('input[name=category]');
+
+  if (!this.checked) {
+    selectAllCheckbox.checked = false;
+  } else {
+    var allChecked = true;
+    for (var i = 0; i < categoryInputs.length; i++) {
+      if (!categoryInputs[i].checked) {
+        allChecked = false;
+      }
+    }
+    if (allChecked) {
+      selectAllCheckbox.checked = true;
+    }
   }
 }
 
@@ -141,13 +160,15 @@ if (typeof window !== "undefined") {
     var store = loadStore();
 
     var selectAllButton = document.getElementById('selectAll');
-    var selectNoneButton = document.getElementById('selectNone');
+    var categoryInputs = document.querySelectorAll('input[name=category]');
     var saveButton = document.getElementById('save-button');
     var oppListParent = document.getElementById("opp-container");
 
     if (selectAllButton) {
-      selectAllButton.addEventListener('click', toggleAllCategories);
-      selectNoneButton.addEventListener('click', toggleAllCategories);
+      selectAllButton.addEventListener('change', selectAllCategories);
+      categoryInputs.forEach(function(cat) {
+        cat.addEventListener('change', toggleSelectAllCheckbox);
+      });
     }
     
     // set up Browse Opportunities page:

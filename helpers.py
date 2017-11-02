@@ -96,10 +96,35 @@ def create_datetime(date, start_time):
     
     return start_date_time
 
+def get_start_time(opp_datetime):
+    start_hour = int(opp_datetime.strftime("%H"))
+    start_minutes = int(opp_datetime.strftime("%M"))
+    
+    if start_minutes < 10:
+        start_minutes = "0" + str(start_minutes)
+
+    return str(start_hour) + ":" + str(start_minutes)
+
+def get_end_time(opp_datetime, duration):
+    end_hour = int(opp_datetime.strftime("%H"))
+    end_minutes = int(opp_datetime.strftime("%M")) + duration
+    
+    if end_minutes > 60:
+        end_hour += end_minutes//60
+        end_minutes = end_minutes % 60
+    
+    if end_minutes < 10:
+        end_minutes = "0" + str(end_minutes)
+
+    return str(end_hour) + ":" + str(end_minutes)
+    
 # Opportunity form input helpers 
 ###################################
 
 def validate_opp_data():
+    return True
+
+def validate_org_data():
     return True
 
 def validate_title(title_input):
@@ -201,6 +226,8 @@ def list_to_string(theList):
 def process_category(form):
     if 'category' in form.keys(): # if category was in form sent. assign it to var
         category = form.getlist('category')   
+        if len(category) == len(get_categories()):
+            category = ["all"] # if all category in form data, set to "all"
     else:
         category = ["all"] # if no category in form data, set to "all"
     cat = list_to_string(category)
