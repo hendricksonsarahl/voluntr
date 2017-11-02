@@ -1,5 +1,6 @@
 import csv 
 import datetime
+import time
 from app import app, db
 from models.org import Organization, Opportunity
 
@@ -23,6 +24,7 @@ def add_orgs():
         db.session.add(new_org)
         db.session.commit()
 
+    time.sleep(3)
     # isolate and read data from opps csv
     oppsfile = open('csvdata/opportunities.csv')
     read_opps = csv.reader(oppsfile, delimiter=',')
