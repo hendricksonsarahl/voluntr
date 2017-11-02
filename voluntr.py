@@ -223,8 +223,38 @@ def new_opportunity():
     categories = get_categories()
 
     return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
+  
 
+@app.route("/org/profile", methods=['GET', 'POST'])
+def view_profile():
+    ''' displays a form pre-populated with data about the organization account'''
+    
+    if request.method == 'POST':
+        
+        # TODO: Stop hard-coding org_id
+        org_id = 4
+        org = Organization.query.filter_by(id=org_id).first()
 
+        # update org data with form data
+        org.contactName = request.form["contactName"]
+        org.email = request.form["email"]
+        org.orgName = request.form["orgName"]
+        org.url = request.form["url"]
+
+        # TODO: server-side validation will be added here soon. 
+        if validate_org_data() == True:
+            # save updated opportunity to db.
+            db.session.commit()
+
+            return redirect('/org/opportunities')
+
+    # TODO: Stop hard-coding org_id
+    org_id = 4
+    org = Organization.query.filter_by(id=org_id).first()
+
+    return render_template('organization/profile.html', org=org, title='Voluntr | Account Profile')
+
+   
 @app.route("/org/edit", methods=['GET', 'POST'])
 def edit_opportunity():
     ''' displays a form pre-populated with data for a single opportunity, so the user can 

@@ -124,6 +124,9 @@ def get_end_time(opp_datetime, duration):
 def validate_opp_data():
     return True
 
+def validate_org_data():
+    return True
+
 def validate_title(title_input):
     ''' takes a single string input and returns a placeholder title if an empty string was submitted '''
     
@@ -223,6 +226,8 @@ def list_to_string(theList):
 def process_category(form):
     if 'category' in form.keys(): # if category was in form sent. assign it to var
         category = form.getlist('category')   
+        if len(category) == len(get_categories()):
+            category = ["all"] # if all category in form data, set to "all"
     else:
         category = ["all"] # if no category in form data, set to "all"
     cat = list_to_string(category)
