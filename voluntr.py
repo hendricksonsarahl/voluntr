@@ -236,6 +236,7 @@ def edit_opportunity():
             
         id = request.args.get("id", type=int)
         opp = get_opp_by_id(id)
+        
         # use form data to update opportunity
         opp.title = validate_title(request.form["title"])
         opp.address = request.form["address"]
@@ -243,16 +244,17 @@ def edit_opportunity():
         opp.state = request.form["state"]
         opp.zipcode = request.form["zipcode"]
         opp.description = validate_description(request.form["description"])
+        
+        # format dateStartTime and duration
         date = request.form["date"]
         start_time = request.form["startTime"]
         end_time = request.form["endTime"]
-        # format dateStartTime
         opp.startDateTime = create_datetime(date, start_time)
-        # get duration as an int
         opp.duration = get_duration(start_time, end_time)
+        
         opp.category_class = request.form["category"]
         opp.category = get_category(request.form["category"])
-        opp.nextSteps = validate_next_steps(request.form["nextsteps"])    
+        opp.nextSteps = validate_next_steps(request.form["nextSteps"])    
         
         # TODO: add real validation steps here 
         if validate_opp_data() == True:
