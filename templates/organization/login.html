@@ -1,18 +1,12 @@
-{% extends "layouts/base.html" %}
-
-{% block headContent %}
-  <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/base.html" %} {% block headContent %}
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script> {% endblock %} {% block content %}
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">
-        <img src="/static/images/voluntr_logo_small.png" />
-        Voluntr
+        <img src="/static/images/voluntr_logo_small.png" /> Voluntr
       </a>
     </div>
   </div>
@@ -23,66 +17,92 @@
 <div class="container-outer">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="text-center col-xs-12">
         <h2>Organization Sign-Up</h2>
       </div>
     </div>
+    <br />
 
     <!-- Google Sign-In button, controlled from Google's platform.js script -->
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-longtitle="true" data-height="50" data-width="300"></div>
-    
+    <div class="center g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-longtitle="true" data-height="50" data-width="300"></div>
     <br />
     <br />
-    <div class="row signup-row fade in hidden">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>Successfully connected to Google! We just need to know a few things to create your account.</h4>
-            <form action="/org/signup" method="post" id="signup-form">
-              <div class="form-group">
-                <label for="contactName">Contact Name</label>
-                <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required">
-              </div>
-              <div class="form-group">
-                <label for="email">Contact Email</label>
-                <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required">
-              </div>
-              <div class="form-group">
-                <label for="orgName">Organization Name</label>
-                <input class="form-control" id="orgName" name="orgName" type="text" maxlength="120" required="required" autofocus="autofocus">
-              </div>
-              <div class="form-group">
-                <label for="url">Organization Website</label>
-                <input class="form-control" id="url" name="url" type="text" maxlength="200" required="required">
-              </div>
-              <!-- JavaScript will add the OAuth token to this hidden input: -->
-              <input type="hidden" id="token" name="token">
-              <div class="text-center">
-                <button type="submit" form="signup-form" value="Sign Up" class="btn btn-primary">Sign Up</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12">
-        <a href="/" id="signOut">Sign out</a>
+    <div class="row">
+      <div class="text-center">
+        <h3>A Platform For Nonprofits</h3>
       </div>
     </div>
-    <div class="row redirect-row fade in hidden">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>Log in successful, loading homepage...</h4>
+    <br>
+    <div class="row center">
+      <div class="text-center col-xs-12 col-md-4">
+        <div class="icon-signup">
+        </div>
+        <br>
+        <p class="text-center lead">Simple
+          <br>Sign-Up</p>
+      </div>
+      <div class="text-center col-xs-12 col-md-4">
+        <div class="icon-form">
+        </div>
+        <br>
+        <p class="text-center lead">Post Volunteer
+          <br>Opportunities</p>
+      </div>
+      <div class="text-center col-xs-12 col-md-4">
+        <div class="icon-voluntr">
+        </div>
+        <br>
+        <p class="text-center lead">Voluntr!</p>
+      </div>
+
+      <br />
+      <div class="row signup-row fade in hidden">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4>Successfully connected to Google! We just need to know a few things to create your account.</h4>
+              <form action="/org/signup" method="post" id="signup-form">
+                <div class="form-group">
+                  <label for="contactName">Contact Name</label>
+                  <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required">
+                </div>
+                <div class="form-group">
+                  <label for="email">Contact Email</label>
+                  <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required">
+                </div>
+                <div class="form-group">
+                  <label for="orgName">Organization Name</label>
+                  <input class="form-control" id="orgName" name="orgName" type="text" maxlength="120" required="required" autofocus="autofocus">
+                </div>
+                <div class="form-group">
+                  <label for="url">Organization Website</label>
+                  <input class="form-control" id="url" name="url" type="text" maxlength="200" required="required">
+                </div>
+                <!-- JavaScript will add the OAuth token to this hidden input: -->
+                <input type="hidden" id="token" name="token">
+                <div class="text-center">
+                  <button type="submit" form="signup-form" value="Sign Up" class="btn btn-primary">Sign Up</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <a href="/" id="signOut">Sign out</a>
+        </div>
+      </div>
+      <div class="row redirect-row fade in hidden">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4>Log in successful, loading homepage...</h4>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-</body>
-{% endblock %} 
-
-{% block scriptContent %}
-  <script src="/static/js/auth.js"></script>
-{% endblock %}
+  </body>
+  {% endblock %} {% block scriptContent %}
+  <script src="/static/js/auth.js"></script> {% endblock %}
