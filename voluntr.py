@@ -165,12 +165,12 @@ def manage_opportunities():
      new opportunities, or view an individual opportunity'''
     # TODO: hard coding a single org id here for now. Eventually, this information will be passed to 
     # this route by Oauth  
-    org_id = 4
+    org_userid = 4
 
-    org = Organization.query.filter_by(id=org_id).first()
+    org = Organization.query.filter_by(userid=org_userid).first()
     # define variables to pass into the template
     org_name = org.orgName
-    opps = Opportunity.query.filter_by(owner_id = org_id).all()
+    opps = Opportunity.query.filter_by(owner_id = org_userid).all()
     # format datetime into more readable strings
     for opp in opps:
         opp.startDateTime = readable_date(opp.startDateTime)
@@ -204,7 +204,7 @@ def new_opportunity():
         duration = get_duration(start_time, end_time)
 
         # temporary hard-coded owner ID - to be removed when Oauth signin/sessions are completed 
-        org_id = 4
+        org_userid = 4
 
         # TODO: server-side validation will be added here soon. 
         if validate_opp_data() == True:
@@ -213,7 +213,7 @@ def new_opportunity():
                                     state, zip_code, description,
                                     start_date_time, duration, 
                                     category_class, category, 
-                                    next_steps, org_id)
+                                    next_steps, org_userid)
             db.session.add(new_opp)
             db.session.commit()
 
@@ -231,9 +231,9 @@ def view_profile():
     
     if request.method == 'POST':
         
-        # TODO: Stop hard-coding org_id
-        org_id = 4
-        org = Organization.query.filter_by(id=org_id).first()
+        # TODO: Stop hard-coding org_userid
+        org_userid = 4
+        org = Organization.query.filter_by(userid=org_userid).first()
 
         # update org data with form data
         org.contactName = request.form["contactName"]
@@ -248,9 +248,9 @@ def view_profile():
 
             return redirect('/org/opportunities')
 
-    # TODO: Stop hard-coding org_id
-    org_id = 4
-    org = Organization.query.filter_by(id=org_id).first()
+    # TODO: Stop hard-coding org_userid
+    org_userid = 4
+    org = Organization.query.filter_by(userid=org_userid).first()
 
     return render_template('organization/profile.html', org=org, title='Voluntr | Account Profile')
 
