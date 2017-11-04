@@ -162,7 +162,7 @@ p.help-block {
 
 /*~~~~~~~~~~~End flexbox for Opp Headers~~~~~~~~~~~*/
 
-/*Background overlay effect for text on photos:*/
+/*Index splash image styling:*/
 
 .jumbotron-index {
   background: url("../images/splash_800x.png");
@@ -185,6 +185,8 @@ p.help-block {
     height: 200px;
   }
 }
+
+/*Index and Login icon styling:*/
 
 .icon-search {
   background: url("../images/search-icon.png");
@@ -216,6 +218,27 @@ p.help-block {
   padding: 10px 10px;
 }
 
+.icon-signup {
+  background: url("../images/signup-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-form {
+  background: url("../images/form-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+/*Background overlay effect for text on photos:*/
 
 .opp-header {
   color: #fff;
@@ -304,3 +327,14 @@ p.help-block {
   background-position: center center;
 }
 
+/*~~~~~~~~~~~ Google Sign-In ~~~~~~~~~~~*/
+
+/*Centering button placement: */
+
+.g-signin2{
+  width: 100%;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+}
