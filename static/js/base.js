@@ -49,10 +49,10 @@ if (typeof window !== "undefined") {
   (function() {
 
     //when the sign-out link is clicked, the signOut function is executed
-    var signOutLink = document.getElementById("signOut");
-    if (signOutLink) {
-      signOutLink.addEventListener("click", signOut);
-    }
+    var signOutLink = document.querySelectorAll(".signOutLink");
+    signOutLink.forEach(function(link){
+      link.addEventListener("click", signOut);
+    });
     
   })();
 }
