@@ -170,14 +170,14 @@ def manage_opportunities():
 
         # define variables to pass into the template
         org_name = org.orgName
-        opps = Opportunity.query.filter_by(owner_id = org.id).all()
+        opps = Opportunity.query.filter_by(owner_id = org.userid).all()
         # format datetime into more readable strings
         for opp in opps:
             opp.startDateTime = readable_date(opp.startDateTime)
         
         return render_template('organization/opportunities.html', title='Voluntr | Opportunities', headerName = org_name, opportunities = opps)
-    # this should probably lead to an error page, or at least somewhere else.. so i just did this instead
     # just in case cookie isn't there for some reason
+    # this should probably lead to an error page, or at least somewhere else.. so i just did this instead
     return  redirect("/")
 
 @app.route("/org/add", methods=['GET', 'POST'])
@@ -215,7 +215,7 @@ def new_opportunity():
                                     state, zip_code, description,
                                     start_date_time, duration, 
                                     category_class, category, 
-                                    next_steps, org.id)
+                                    next_steps, org.userid)
 
             db.session.add(new_opp)
             db.session.commit()
