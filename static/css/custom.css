@@ -162,17 +162,83 @@ p.help-block {
 
 /*~~~~~~~~~~~End flexbox for Opp Headers~~~~~~~~~~~*/
 
-/*Background overlay effect for text on photos:*/
+/*Index splash image styling:*/
 
 .jumbotron-index {
-  background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url("../images/diego-ph-254975.jpg");
+  background: url("../images/splash_800x.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   color: #fff;
   height: 450px;
-  padding: 30px 15px;
+  padding: 15px 15px;
 }
+
+@media (max-width: 768px) {
+  .jumbotron-index {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jumbotron-index {
+    height: 200px;
+  }
+}
+
+/*Index and Login icon styling:*/
+
+.icon-search {
+  background: url("../images/search-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-save {
+  background: url("../images/save-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-voluntr {
+  background: url("../images/voluntr_logo_small.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-signup {
+  background: url("../images/signup-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-form {
+  background: url("../images/form-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+/*Background overlay effect for text on photos:*/
 
 .opp-header {
   color: #fff;
@@ -261,3 +327,14 @@ p.help-block {
   background-position: center center;
 }
 
+/*~~~~~~~~~~~ Google Sign-In ~~~~~~~~~~~*/
+
+/*Centering button placement: */
+
+.g-signin2{
+  width: 100%;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+}
