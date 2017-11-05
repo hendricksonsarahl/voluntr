@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <h1 class="text-center" >An Error has occured:</h1>
+
+      <h2 class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        {{error}}
+      </h2>
+
+      <h4 class="text-center" > return to the <a href='/filters'> Filters </a> page</h4>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

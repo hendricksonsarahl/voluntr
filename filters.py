@@ -58,8 +58,8 @@ class Filters():
             return filtered
         except ZipNotFoundException:
             #TODO Send meaningful feedback to browser. For now, it's just ignoring the location filter
-            print('Zip code not found.')
-            return opps
+            error = "Zip code not found. Please check your zipcode and try again. If it still does not work we appologize (your zipcode may not be supported yet)"
+            return error
             
                 
         
