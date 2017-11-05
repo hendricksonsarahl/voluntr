@@ -1,9 +1,8 @@
 import datetime
-from models.org import Opportunity
+from models.org import Opportunity, Organization
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from app import db
-from models.org import Opportunity
 
 # datetime object formatting helpers
 ######################################
@@ -165,13 +164,17 @@ def process_oauth_token(token):
         
         # ID token is valid. Get the user's Google Account ID from the decoded token.
         userid = idinfo['sub']
-        print ('The userID for the OAuth token is %s'%(userid))
+
         return userid
 
     # TODO: Error handling
     except ValueError:
         # Invalid token
         return None
+
+def process_org_token(token):
+    userid = process_oauth_token(token)
+    return Organization.query.filter_by(userid=userid).first()
 
 # Category helpers
 ##############################3
