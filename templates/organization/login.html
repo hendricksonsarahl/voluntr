@@ -1,7 +1,12 @@
-{% extends "layouts/base.html" %} {% block headContent %}
-<meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script> {% endblock %} {% block content %}
+{% extends "layouts/base.html" %} 
+
+{% block headContent %}
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script> 
+{% endblock %} 
+
+{% block content %}
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -36,36 +41,70 @@
     </div>
 
     <!-- Only visible after connecting to Google without a Voluntr account: -->
-    <div class="row signup-row hidden">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>Successfully connected to Google! We just need to know a few things to create your Voluntr account.</h4>
-            <form action="/org/signup" method="post" id="signup-form">
-              <div class="form-group">
-                <label for="orgName">Organization Name</label>
-                <input class="form-control" id="orgName" name="orgName" type="text" maxlength="120" required="required" autofocus="autofocus">
-              </div>
-              <div class="form-group">
-                <label for="url">Organization Website</label>
-                <input class="form-control" id="url" name="url" type="text" maxlength="200" required="required">
-              </div>
-              <div class="form-group">
-                <label for="contactName">Contact Name</label>
-                <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required">
-              </div>
-              <div class="form-group">
-                <label for="email">Contact Email</label>
-                <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required">
-              </div>
-              <!-- JavaScript will add the OAuth token to this hidden input: -->
-              <input type="hidden" id="token" name="token">
-              <div class="text-center">
-                <button type="submit" form="signup-form" value="Sign Up" class="btn btn-primary">Sign Up</button>
-              </div>
-            </form>
+    <div class="row signup-row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2 centered-form">
+        <p class="lead text-center">Successfully connected to Google! We just need to know a few things to create your Voluntr account.</p>
+        <br />
+        <form action="/org/signup" method="post" id="signup-form">
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <label for="orgName">
+                <h3>Organization Name</h3>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+              <input class="form-control" id="orgName" name="orgName" type="text" maxlength="120" required="required">
+              
+            </div>
           </div>
-        </div>
+          <br />
+          <br class="hidden-xs" />
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <label for="url">
+                <h3>Organization Website</h3>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+              <input class="form-control" id="url" name="url" type="text" maxlength="200" required="required">
+            </div>
+          </div>
+          <br />
+          <br class="hidden-xs" />
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <label for="contactName">
+                <h3>Contact Name</h3>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+              <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required">
+            </div>
+          </div>
+          <br />
+          <br class="hidden-xs" />
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <label for="email">
+                <h3>Contact Email</h3>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+              <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required">
+            </div>
+          </div>
+          <br />
+          <br class="hidden-xs" />
+          
+          <!-- JavaScript will add the OAuth token to this hidden input: -->
+          <input type="hidden" id="token" name="token">
+          <div class="text-center">
+            <button type="submit" form="signup-form" value="Sign Up" class="btn btn-primary">Sign Up</button>
+          </div>
+        </form>
       </div>
     </div>
     
@@ -103,5 +142,7 @@
   </div>
 
   </body>
-  {% endblock %} {% block scriptContent %}
-  <script src="/static/js/auth.js"></script> {% endblock %}
+  {% endblock %} 
+  {% block scriptContent %}
+    <script src="/static/js/auth.js"></script> 
+  {% endblock %}
