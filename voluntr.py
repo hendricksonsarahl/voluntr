@@ -59,6 +59,11 @@ def opportunities():
 
         search = Filters(categories=categories, availability=availability, zipcode=zipcode, distance=distance) # creates filter with given category and availability
         opps = search.search() #grabs list of opportunities
+
+        error = check_opps(opps)
+        if error:
+            return render_template('volunteer/filter_errors.html', error=error)
+        
         opp = opps[index] # picks out the opp at index
         index = increment(index, len(opps)) # increments index
         
