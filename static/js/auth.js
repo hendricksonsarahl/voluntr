@@ -69,7 +69,11 @@ function showSignUpForm(contactName, email, token) {
 // Executed after successful Google sign-in to an existing Voluntr account:
 function redirectToOrgHome() {
   var redirectRow = document.querySelector('.redirect-row');
+  var googleDiv = document.querySelector('.g-signin2');
+
   redirectRow.classList.remove("hidden");
+  googleDiv.classList.add("hidden");
+  
   setTimeout(function() {
     window.location.href="/org/opportunities";    
   }, 1200);
