@@ -1,5 +1,4 @@
 function onSignIn(googleUser) {
-  console.log('onSignIn runs');
   var profile = googleUser.getBasicProfile();
   var authToken = googleUser.getAuthResponse().id_token;
 
@@ -78,7 +77,6 @@ function redirectToOrgHome() {
 if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
   (function() {
-    console.log('auth.js loaded');
 
   })();
 }
