@@ -63,20 +63,20 @@
               <h4>Successfully connected to Google! We just need to know a few things to create your account.</h4>
               <form action="/org/signup" method="post" id="signup-form">
                 <div class="form-group">
-                  <label for="contactName">Contact Name</label>
-                  <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required">
-                </div>
-                <div class="form-group">
-                  <label for="email">Contact Email</label>
-                  <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required">
-                </div>
-                <div class="form-group">
                   <label for="orgName">Organization Name</label>
                   <input class="form-control" id="orgName" name="orgName" type="text" maxlength="120" required="required" autofocus="autofocus">
                 </div>
                 <div class="form-group">
                   <label for="url">Organization Website</label>
                   <input class="form-control" id="url" name="url" type="text" maxlength="200" required="required">
+                </div>
+                <div class="form-group">
+                  <label for="contactName">Contact Name</label>
+                  <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required">
+                </div>
+                <div class="form-group">
+                  <label for="email">Contact Email</label>
+                  <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required">
                 </div>
                 <!-- JavaScript will add the OAuth token to this hidden input: -->
                 <input type="hidden" id="token" name="token">
