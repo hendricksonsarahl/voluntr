@@ -69,6 +69,10 @@ p.help-block {
   margin: 5px 0;
 }
 
+.g-signin2 {
+  margin-top: 20px;
+}
+
 /*Uses code from Bootstrap's btn-justified class, only on small screens:*/
 @media (max-width: 768px) {
   .opp-nav-buttons {

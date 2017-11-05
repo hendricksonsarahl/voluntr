@@ -25,7 +25,6 @@
         <h2>Organization Sign-Up</h2>
       </div>
     </div>
-    <br />
 
     <!-- Google Sign-In button, controlled from Google's platform.js script -->
     <div class="center g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-longtitle="true" data-height="50" data-width="300"></div>
@@ -41,70 +40,71 @@
     </div>
 
     <!-- Only visible after connecting to Google without a Voluntr account: -->
-    <div class="row signup-row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2 centered-form">
+    <div class="row signup-row hidden">
+      <div class="col-xs-12 col-md-10 col-md-offset-1 centered-form">
         <p class="lead text-center">Successfully connected to Google! We just need to know a few things to create your Voluntr account.</p>
-        <br />
-        <form action="/org/signup" method="post" id="signup-form">
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <label for="orgName">
-                <h3>Organization Name</h3>
-              </label>
+        <div class="well">          
+          <form action="/org/signup" method="post" id="signup-form">
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="orgName">
+                  <h3>Organization Name</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="orgName" name="orgName" type="text" maxlength="120" required="required">
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-8">
-              <input class="form-control" id="orgName" name="orgName" type="text" maxlength="120" required="required">
-              
-            </div>
-          </div>
-          <br />
-          <br class="hidden-xs" />
+            <br />
+            <br class="hidden-xs" />
 
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <label for="url">
-                <h3>Organization Website</h3>
-              </label>
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="url">
+                  <h3>Organization Website</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="url" name="url" type="text" maxlength="200" required="required">
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-8">
-              <input class="form-control" id="url" name="url" type="text" maxlength="200" required="required">
-            </div>
-          </div>
-          <br />
-          <br class="hidden-xs" />
+            <br />
+            <br class="hidden-xs" />
 
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <label for="contactName">
-                <h3>Contact Name</h3>
-              </label>
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="contactName">
+                  <h3>Contact Name</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required">
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-8">
-              <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required">
-            </div>
-          </div>
-          <br />
-          <br class="hidden-xs" />
+            <br />
+            <br class="hidden-xs" />
 
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <label for="email">
-                <h3>Contact Email</h3>
-              </label>
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="email">
+                  <h3>Contact Email</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required">
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-8">
-              <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required">
+            <br />
+            <br class="hidden-xs" />
+            
+            <!-- JavaScript will add the OAuth token to this hidden input: -->
+            <input type="hidden" id="token" name="token">
+            <div class="text-center">
+              <button type="submit" form="signup-form" value="Sign Up" class="btn btn-primary">Sign Up</button>
             </div>
-          </div>
-          <br />
-          <br class="hidden-xs" />
-          
-          <!-- JavaScript will add the OAuth token to this hidden input: -->
-          <input type="hidden" id="token" name="token">
-          <div class="text-center">
-            <button type="submit" form="signup-form" value="Sign Up" class="btn btn-primary">Sign Up</button>
-          </div>
-        </form>
+          </form>
+          <a href="/" class="signOutLink">Switch Google accounts</a>
+        </div>
       </div>
     </div>
     
