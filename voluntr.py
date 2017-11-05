@@ -163,20 +163,22 @@ def signup():
 def manage_opportunities():
     '''displays all volunteer opportunities associated with an organization, with options to create
      new opportunities, or view an individual opportunity'''
-    # TODO: hard coding a single org id here for now. Eventually, this information will be passed to 
-    # this route by Oauth  
-    org_userid = 4
 
-    org = Organization.query.filter_by(userid=org_userid).first()
-    # define variables to pass into the template
-    org_name = org.orgName
-    opps = Opportunity.query.filter_by(owner_id = org_userid).all()
-    # format datetime into more readable strings
-    for opp in opps:
-        opp.startDateTime = readable_date(opp.startDateTime)
-    
-    return render_template('organization/opportunities.html', title='Voluntr | Opportunities', headerName = org_name, opportunities = opps)
+    if 'token' in request.cookies:
 
+        org = process_org_token(request.cookies.get('token'))
+
+        # define variables to pass into the template
+        org_name = org.orgName
+        opps = Opportunity.query.filter_by(owner_id = org.userid).all()
+        # format datetime into more readable strings
+        for opp in opps:
+            opp.startDateTime = readable_date(opp.startDateTime)
+        
+        return render_template('organization/opportunities.html', title='Voluntr | Opportunities', headerName = org_name, opportunities = opps)
+    # just in case cookie isn't there for some reason
+    # this should probably lead to an error page, or at least somewhere else.. so i just did this instead
+    return  redirect("/")
 
 @app.route("/org/add", methods=['GET', 'POST'])
 def new_opportunity():
@@ -203,17 +205,18 @@ def new_opportunity():
         # get duration as an int
         duration = get_duration(start_time, end_time)
 
-        # temporary hard-coded owner ID - to be removed when Oauth signin/sessions are completed 
-        org_userid = 4
+        # user is obtained by taking an ouath token from a cookie and using a function that grabs the id and queries th DB
+        org = process_org_token(request.cookies.get('token'))
 
         # TODO: server-side validation will be added here soon. 
-        if validate_opp_data() == True:
+        if validate_opp_data():
             # save new, opportunity to db.
             new_opp = Opportunity(title, address, city, 
                                     state, zip_code, description,
                                     start_date_time, duration, 
                                     category_class, category, 
-                                    next_steps, org_userid)
+                                    next_steps, org.userid)
+
             db.session.add(new_opp)
             db.session.commit()
 
@@ -231,9 +234,7 @@ def view_profile():
     
     if request.method == 'POST':
         
-        # TODO: Stop hard-coding org_userid
-        org_userid = 4
-        org = Organization.query.filter_by(userid=org_userid).first()
+        org = process_org_token(request.cookies.get('token'))
 
         # update org data with form data
         org.contactName = request.form["contactName"]
@@ -248,9 +249,7 @@ def view_profile():
 
             return redirect('/org/opportunities')
 
-    # TODO: Stop hard-coding org_userid
-    org_userid = 4
-    org = Organization.query.filter_by(userid=org_userid).first()
+    org = process_org_token(request.cookies.get('token'))
 
     return render_template('organization/profile.html', org=org, title='Voluntr | Account Profile')
 
