@@ -1,9 +1,8 @@
-{% extends "layouts/org-layout.html" %}
-
-{% block contentInner %}
+{% extends "layouts/org-layout.html" %} {% block contentInner %}
 <div class="container-outer">
   <div class="container">
-    <h2>{{headerName}} | Home</h2>
+
+    <h2 data-step="1" data-intro="Welcome to your Voluntr Organization Account!" class=" introjs-showElement introjs-relativePosition">{{headerName}} | Home</h2>
 
     {% if opportunities|length == 0 %}
     <hr>
@@ -13,9 +12,15 @@
 
     <div class="text-center">
       <a class="btn btn-primary btn-lg" href="javascript:void(0);" onclick="introJs().setOption('showProgress', true).start()">Account Intro</a>
-      <a class="btn btn-primary btn-lg" href="./add" role="button">Post a New Opportunity</a>
+      <a data-step="2" data-intro="Need volunteers? Go here to give us the details and we'll handle the rest" class="btn btn-primary btn-lg introjs-showElement introjs-relativePosition"
+        href="./add" role="button">Post a New Opportunity</a>
     </div>
 
+    <br>
+    <div data-step="3" data-intro="When you post opportunities they will show up here" class=" introjs-showElement introjs-relativePosition">
+      <br>
+      <br>
+    </div>
     {% if opportunities|length > 0 %} {% for opp in opportunities %}
     <br>
     <div class="panel panel-default">
@@ -39,5 +44,4 @@
   </div>
 </div>
 </div>
-<script type="text/javascript" src="../../intro.js"></script> 
-{% endblock %}
+<script type="text/javascript" src="../../intro.js"></script> {% endblock %}
