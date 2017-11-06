@@ -44,46 +44,126 @@
               </div>
             </div>
             <br />
-            <br class="hidden-xs" />
 
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <label for="date">
-                  <h3>Date</h3>
-                </label>
+            {% if event_date == "2100-01-01" %}
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="date">
+                    <h3>Flexible Schedule?</h3>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="checkbox checkbox-opp-form">
+                    <label>
+                      <input id="flexible" name="flexible" type="checkbox" value="on" checked>
+                      Yes, please display "Flexible schedule" for this post instead of a specific date and time.
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div class="col-xs-12 col-sm-8">
-                <input class="form-control" id="date" name="date" type="date" required value="{{event_date}}">
-              </div>
-            </div>
-            <br />
-            <br class="hidden-xs" />
+              <br />
+              <br class="hidden-xs" />
 
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <label for="startTime">
-                  <h3>Start Time</h3>
-                </label>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="date" class="schedule-label">
+                    <h3>Date</h3>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input class="form-control schedule-input" id="date" name="date" type="date" disabled>
+                </div>
               </div>
-              <div class="col-xs-12 col-sm-8">
-                <input class="form-control" id="startTime" type="time" name="startTime" value="{{time_start}}" required>
-              </div>
-            </div>
-            <br />
-            <br class="hidden-xs" />
+              <br />
+              <br class="hidden-xs" />
 
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <label for="endTime">
-                  <h3>End Time</h3>
-                </label>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="startTime" class="schedule-label">
+                    <h3>Start Time</h3>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input class="form-control schedule-input" id="startTime" type="time" name="startTime" disabled>
+                </div>
               </div>
-              <div class="col-xs-12 col-sm-8">
-                <input class="form-control" id="endTime" type="time" name="endTime" value="{{time_end}}" required>
+              <br />
+              <br class="hidden-xs" />
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="endTime" class="schedule-label">
+                    <h3>End Time</h3>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input class="form-control schedule-input" id="endTime" type="time" name="endTime" disabled>
+                </div>
               </div>
-            </div>
-            <br />
-            <br class="hidden-xs" />
+              <br />
+              <br class="hidden-xs" />
+            {% endif %}
+
+            {% if event_date != "2100-01-01" %}
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="date">
+                    <h3>Flexible Schedule?</h3>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="checkbox checkbox-opp-form">
+                    <label>
+                      <input id="flexible" name="flexible" type="checkbox" value="on">
+                      Yes, please display "Flexible schedule" for this post instead of a specific date and time.
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br class="hidden-xs" />
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="date" class="schedule-label">
+                    <h3>Date</h3>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input class="form-control schedule-input" id="date" name="date" type="date" required value="{{event_date}}">
+                </div>
+              </div>
+              <br />
+              <br class="hidden-xs" />
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="startTime" class="schedule-label">
+                    <h3>Start Time</h3>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input class="form-control schedule-input" id="startTime" type="time" name="startTime" value="{{time_start}}" required>
+                </div>
+              </div>
+              <br />
+              <br class="hidden-xs" />
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="endTime" class="schedule-label">
+                    <h3>End Time</h3>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input class="form-control schedule-input" id="endTime" type="time" name="endTime" value="{{time_end}}" required>
+                </div>
+              </div>
+              <br />
+              <br class="hidden-xs" />
+            {% endif %}
+
+            
 
             <div class="row">
               <div class="col-xs-12 col-sm-4">

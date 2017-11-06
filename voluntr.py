@@ -187,9 +187,6 @@ def new_opportunity():
     if request.method == 'POST':
         # get all form data
         title = validate_title(request.form["title"])
-        date = request.form["date"]
-        start_time = request.form["startTime"]
-        end_time = request.form["endTime"]
         address = request.form["address"]
         city = request.form["city"]
         state = request.form["state"]
@@ -198,6 +195,16 @@ def new_opportunity():
         category = get_category(category_class)
         description = validate_description(request.form["description"])
         next_steps = validate_next_steps(request.form["nextsteps"])
+
+        # Either get the form's date/times, or add the date/times we've chosen to signify "flexible schedule"
+        if request.form.get("flexible"):
+            date = "2100-01-01"
+            start_time = "23:30"
+            end_time = "23:30"
+        else:
+            date = request.form["date"]
+            start_time = request.form["startTime"]
+            end_time = request.form["endTime"]
         
         # format dateStartTime
         start_date_time = create_datetime(date, start_time)
@@ -275,10 +282,17 @@ def edit_opportunity():
         opp.zipcode = request.form["zipcode"]
         opp.description = validate_description(request.form["description"])
         
+        # Either get the form's date/times, or add the date/times we've chosen to signify "flexible schedule"
+        if request.form.get("flexible"):
+            date = "2100-01-01"
+            start_time = "23:30"
+            end_time = "23:30"
+        else:
+            date = request.form["date"]
+            start_time = request.form["startTime"]
+            end_time = request.form["endTime"]
+
         # format dateStartTime and duration
-        date = request.form["date"]
-        start_time = request.form["startTime"]
-        end_time = request.form["endTime"]
         opp.startDateTime = create_datetime(date, start_time)
         opp.duration = get_duration(start_time, end_time)
         
