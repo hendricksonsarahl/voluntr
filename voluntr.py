@@ -170,7 +170,7 @@ def manage_opportunities():
 
         # define variables to pass into the template
         org_name = org.orgName
-        opps = Opportunity.query.filter_by(owner_id = org.userid).all()
+        opps = db.session.query(Opportunity).filter_by(owner_id = org.userid, display = 1).all()
         # format datetime into more readable strings
         for opp in opps:
             opp.startDateTime = readable_date(opp.startDateTime)
