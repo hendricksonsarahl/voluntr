@@ -282,10 +282,17 @@ def edit_opportunity():
         opp.zipcode = request.form["zipcode"]
         opp.description = validate_description(request.form["description"])
         
+        # Either get the form's date/times, or add the date/times we've chosen to signify "flexible schedule"
+        if request.form.get("flexible"):
+            date = "2100-01-01"
+            start_time = "23:30"
+            end_time = "23:30"
+        else:
+            date = request.form["date"]
+            start_time = request.form["startTime"]
+            end_time = request.form["endTime"]
+
         # format dateStartTime and duration
-        date = request.form["date"]
-        start_time = request.form["startTime"]
-        end_time = request.form["endTime"]
         opp.startDateTime = create_datetime(date, start_time)
         opp.duration = get_duration(start_time, end_time)
         
