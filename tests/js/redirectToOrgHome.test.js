@@ -3,7 +3,7 @@ var jsdom = require("jsdom");
 var JSDOM = jsdom.JSDOM;
 
 // import browser code to be tested
-var frontEndCode = require("../../static/js/auth.js");
+var frontEndCode = require("../../static/js/org.js");
 var sourceUrl = "http://localhost:5000/org/login";
 
 //collect tests that require DOM access here:

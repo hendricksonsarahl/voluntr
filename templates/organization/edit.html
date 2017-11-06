@@ -5,88 +5,183 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2 centered-form">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="row">
-                <h2>Edit Opportunity Post</h2>
+          <h2>Edit Opportunity Post</h2>
+          <hr />
+          <form action="./edit?id={{opp.id}}" method="post">
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="title">
+                  <h3>Title</h3>
+                </label>
               </div>
-              <div class="row">
-                <form action="./edit?id={{opp.id}}" method="post">
-                  <div class="form-group">
-                    <label for="title">Title</label>
-                    <input class="form-control" id="title" type="text" maxlength="120" name="title" value="{{opp.title}}">
-                  </div>
-                  <div class="form-group">
-                    <label for="date">Date</label>
-                    <input class="form-control" id="date" type="date" name="date" value="{{event_date}}">
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label for="startTime">Start Time</label>
-                        <input class="form-control" id="startTime" type="time" name="startTime" value="{{time_start}}">
-                      </div>
-                    </div>
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label for="endTime">End Time</label>
-                        <input class="form-control" id="endTime" type="time" name="endTime" value="{{time_end}}">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="address">Street Address</label>
-                    <input class="form-control" id="address" type="text" maxlength="120" name="address" value="{{opp.address}}">
-                <div class="row">
-                  <div class="col-xs-4">
-                    <label for="city">City</label>
-                    <input class="form-control" id="city" type="text" maxlength="120" name="city" value="{{opp.city}}">
-                  </div>
-                  <div class="col-xs-4">
-                    <label for="state">State</label>
-                    <input class="form-control" id="state" type="text" maxlength="2" name="state" value="{{opp.state}}">
-                  </div>
-                  <div class="col-xs-4">
-                    <label for="zipCode">Zip Code</label>
-                    <input class="form-control" id="zipCode" type="text" maxlength="5" name="zipcode" value="{{opp.zipcode}}">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="category">Category</label>
-                <p class="help-block">Choose the one category that best fits this opportunity.</p>
-                  {% for key, value in categories.items() %}
-                  <div class="radio">
-                    <label>
-                      {% if key != opp.category_class %}
-                      <input id="{{key}}" type="radio" name="category" value="{{key}}">{{value}}
-                      {% endif %}
-                      {% if key == opp.category_class %}
-                      <input id="{{key}}" type="radio" name="category" value="{{key}}" checked="">{{value}}
-                      {% endif %}
-                    </label>
-                  </div>
-                  {% endfor %}
-                </div>
-                <div class="form-group">
-                  <label for="description">Description</label>
-                  <textarea class="form-control" id="description" maxlength="1000" rows="5" name="description" value="{{opp.description}}">{{opp.description}}</textarea>
-                </div>
-                <div class="form-group">
-                  <label for="nextSteps">Next Steps</label>
-                  <textarea class="form-control" id="nextSteps" maxlength="1000" rows="5" name= "nextSteps" value="{{opp.nextSteps}}">{{opp.nextSteps}}</textarea>
-                </div>
-                <div class="text-center">
-                  <input type="submit" class="btn btn-primary" role="button" value="Update"></a>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-                    Delete&nbsp;<span class="glyphicon glyphicon-remove-sign"></span>
-                  </button>
-                </div>
-
-                </form>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="title" type="text" name="title" maxlength="120" required value="{{opp.title}}">
               </div>
             </div>
-          </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="category" >
+                  <h3>Category</h3>
+                </label>
+                <p class="help-block">Choose the one category that best fits this opportunity.</p>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                {% for key, value in categories.items() %}
+                <div class="radio">
+                  <label>
+                    {% if key != opp.category_class %}
+                    <input id="{{key}}" type="radio" name="category" value="{{key}}">{{value}}
+                    {% endif %}
+                    {% if key == opp.category_class %}
+                    <input id="{{key}}" type="radio" name="category" value="{{key}}" checked="">{{value}}
+                    {% endif %}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="date">
+                  <h3>Date</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="date" name="date" type="date" required value="{{event_date}}">
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="startTime">
+                  <h3>Start Time</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="startTime" type="time" name="startTime" value="{{time_start}}" required>
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="endTime">
+                  <h3>End Time</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="endTime" type="time" name="endTime" value="{{time_end}}" required>
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="address">
+                  <h3>Street Address</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="address" type="text" name="address" maxlength="120" value="{{opp.address}}" required>
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="city">
+                  <h3>City</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="city" type="text" name="city" maxlength="120" value="{{opp.city}}" required>
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="state">
+                  <h3>State</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <select class="form-control" id="state" name="state">
+                  {% for state in states %}
+                    {% if state.abbreviation == opp.state %}
+                      <option value="{{state.abbreviation}}" selected="selected">{{state.name}}</option>
+                    {% endif %}
+                    {% if state.abbreviation != opp.state %}
+                      <option value="{{state.abbreviation}}">{{state.name}}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="zipCode">
+                  <h3>Zip Code (5 Digits)</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="zipCode" type="text" name="zipcode" maxlength="5" value={{opp.zipcode}} required pattern="[0-9]{5}" title="Please enter exactly 5 numerical digits.">
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="description">
+                  <h3>Description</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <textarea class="form-control" id="description" name="description" maxlength="1000" rows="6" value="{{opp.description}}" required>{{opp.description}}</textarea>
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="nextSteps">
+                  <h3>Next Steps</h3>
+                </label>
+                <p class="help-block">What should an interested volunteer do to help with this opportunity?</p>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <textarea class="form-control" id="nextSteps" name="nextsteps" maxlength="1000" rows="6" value="{{opp.nextSteps}}" required>{{opp.nextSteps}}</textarea>
+              </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="row">
+              <div class="text-center">
+                <input type="submit" class="btn btn-primary" role="button" value="Update"></a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                  Delete&nbsp;<span class="glyphicon glyphicon-remove-sign"></span>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
