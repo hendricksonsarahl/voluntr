@@ -28,11 +28,11 @@ class Filters():
 
     def filter_by_categories(self):
         if self.categories[0] == "all" or len(self.categories) == len(get_categories()):
-            opps = Opportunity.query.all()
+            opps = Opportunity.query.filter_by(display = 1).all()
         else:
             opps = []
             for i in range(len(self.categories)):
-                opps = opps + Opportunity.query.filter_by(category_class=self.categories[i]).all()
+                opps = opps + Opportunity.query.filter_by(category_class=self.categories[i], display = 1).all()
 
         return opps
 
