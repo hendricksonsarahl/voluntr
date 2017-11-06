@@ -26,6 +26,40 @@ function deleteCookie(name) {
   document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
+// ~~~~~~~~~~~~~~~~~Add/Edit Opp form~~~~~~~~~~~~~~~~~
+
+// Update form to require/not allow date and times, based on Flexible Schedule checkbox
+function toggleFlexible(e) {
+  var scheduleInputs = document.querySelectorAll('.schedule-input');
+  var scheduleLabels = document.querySelectorAll('.schedule-label');
+  var addressInput = document.getElementById('address');
+
+  if(e.target.checked) {
+
+    // Dim labels and inputs, stop requiring them, mark input disabled
+    scheduleLabels.forEach(function(label){
+      label.classList.add('text-muted');
+    });
+    scheduleInputs.forEach(function(input){
+      input.removeAttribute("required");
+      input.setAttribute("disabled", true);
+    });
+
+    // Focus the address input
+    addressInput.focus();
+  } else {
+
+    // Reset labels and inputs to initial state
+    scheduleLabels.forEach(function(label){
+      label.classList.remove('text-muted');
+    });
+    scheduleInputs.forEach(function(input){
+      input.setAttribute("required", true);
+      input.removeAttribute("disabled");
+    });
+  }
+}
+
 
 // ~~~~~~~~~~~~~~~~User account authorization:~~~~~~~~~~~~~~~~~~~
 // Callback function for Google API's sign-in event
@@ -143,11 +177,16 @@ if (typeof window !== "undefined") {
 
     //when the sign-out link is clicked, the signOut function is executed
     var signOutLink = document.querySelectorAll(".signOutLink");
+    var flexibleCheckbox = document.getElementById("flexible");
 
     if (signOutLink) {
       signOutLink.forEach(function(link){
         link.addEventListener("click", signOut);
       });
+    }
+
+    if (flexibleCheckbox) {
+      flexibleCheckbox.addEventListener("click", toggleFlexible);
     }
     
   })();
