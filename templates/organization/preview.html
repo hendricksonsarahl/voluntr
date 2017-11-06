@@ -13,57 +13,65 @@
                 <a class="btn btn-primary" href="./edit?id={{opp.id}}" role="button">Edit&nbsp;
                   <div class="glyphicon glyphicon-pencil"></div>
                 </a>
-                <a class="btn btn-danger" href="./opportunities" role="button">Delete&nbsp;
-                  <div class="glyphicon glyphicon-remove-sign"></div>
-                </a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                  Delete&nbsp;<span class="glyphicon glyphicon-remove-sign"></span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row opp-header opp-header--{{ opp.category_class }}">
-        <div class="opp-header__top">
-          <h1 class="text-center">{{ opp.title }}</h1>
-          <h3 class="text-center">{{ opp.owner.orgName }}</h3>
-        </div>
-        <div class="opp-header__bottom">
-          <div class="opp-header__bottom-left">
-            <h4 class="text-center">{{ opp.address }}</h4>
-            <h4 class="text-center">{{ opp.city }},&nbsp;{{ opp.state }}</h4>
-          </div>
-          <div class="opp-header__bottom-right">
-            <h4 class="text-center">{{event_date}}</h4>
-            <h4 class="text-center">{{event_time}}</h4>
-          </div> 
-        </div>
-      </div>      
       <div class="row">
-        <div class="text-center">
-          <div class="btn-group opp-nav-buttons" role="group" aria-label="Navigate opportunity pages">
-            <div class="btn-group" role="group">
-              <button id="save-button" class="btn btn-default">Save&nbsp;
-                <span class="glyphicon glyphicon-pushpin"></span>
-              </button>
+        <div class="col-xs-12">
+          <div class="opp-header opp-header--{{ opp.category_class }}">
+            <div class="opp-header__top">
+              <h1 class="text-center">{{ opp.title }}</h1>
+              <h3 class="text-center">{{ opp.owner.orgName }}</h3>
             </div>
-            <a class="btn btn-default" href="#" role="button">Filters&nbsp;
-              <div class="glyphicon glyphicon-search"></div>
-            </a>
-            <a class="btn btn-default" href="#" role="button">Next&nbsp;
-              <div class="glyphicon glyphicon-play"></div>
-            </a>
-          </div>
+            <div class="opp-header__bottom">
+              <div class="opp-header__bottom-left">
+                <h4 class="text-center">{{ opp.address }}</h4>
+                <h4 class="text-center">{{ opp.city }},&nbsp;{{ opp.state }}</h4>
+              </div>
+              <div class="opp-header__bottom-right">
+                <h4 class="text-center">{{event_date}}</h4>
+                <h4 class="text-center">{{event_time}}</h4>
+              </div> 
+            </div>
+          </div>  
+        </div>
+      </div>    
+      <br />
+
+      <div class="row">
+        <div class="col-xs-12">
+          <p><strong>Location:&nbsp;</strong>{{ opp.address }}, {{ opp.city }},&nbsp;{{ opp.state }}&nbsp;{{ opp.zipcode }}</p>
+          <p><strong>Website:&nbsp;</strong><a href={{opp.owner.url}}>{{opp.owner.url}}</a></p>
+          {% if event_time %}
+              <p><strong>When:&nbsp;</strong>{{event_date}}, {{event_time}}</p>
+          {% else %}
+              <p><strong>When:&nbsp;</strong>{{event_date}}</p>
+          {% endif %}
+          <p> <strong>About:&nbsp;</strong>{{ opp.description }}</p>
+          <p><strong>Next steps:&nbsp;</strong>{{ opp.nextSteps }}</p>
         </div>
       </div>
-      <div class="row">
-        <p><strong>Location:&nbsp;</strong>{{ opp.address }}, {{ opp.city }},&nbsp;{{ opp.state }}&nbsp;{{ opp.zipcode }}</p>
-        <p><strong>Website:&nbsp;</strong><a href={{opp.owner.url}}>{{opp.owner.url}}</a></p>
-        {% if event_time %}
-            <p><strong>When:&nbsp;</strong>{{event_date}}, {{event_time}}</p>
-        {% else %}
-            <p><strong>When:&nbsp;</strong>{{event_date}}</p>
-        {% endif %}
-        <p> <strong>About:&nbsp;</strong>{{ opp.description }}</p>
-        <p><strong>Next steps:&nbsp;</strong>{{ opp.nextSteps }}</p>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p class="lead"> Are you sure you want to delete your post for "{{opp.title}}"?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No, keep it</button>
+          <a class="btn btn-danger" href="./opportunities" role="button">Yes, delete it&nbsp;
+            <div class="glyphicon glyphicon-remove-sign"></div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
