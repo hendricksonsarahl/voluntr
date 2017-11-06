@@ -1,6 +1,6 @@
 # Voluntr
 
-## Current Version: 0.37.0
+## Current Version: 0.38.0
 
 
 <b> A web app that provides a simple platform for nonprofits to connect with potential volunteers</b>
@@ -88,7 +88,7 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 | --- | --- |--- |
 | register my organization on Voluntr | MVP | Passing :white_check_mark: |
 | easily submit open volunteer opportunities | MVP | Passing :white_check_mark: |
-| edit or remove a posted opportunity  | MVP  | Not Passing :red_circle: |
+| edit or remove a posted opportunity  | MVP  | Passing :white_check_mark: |
 | view the list of posted opportunities that are open  | MVP | Passing :white_check_mark: |
 | view and edit profile settings for my organization, including name, contact email, and any other profile data  | MVP | Passing :white_check_mark: |
 | log in to my existing account and logout when I'm done  | MVP | Passing :white_check_mark: |

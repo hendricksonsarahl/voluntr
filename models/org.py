@@ -34,6 +34,7 @@ class Opportunity(db.Model):
     category = db.Column(db.String(35))
     nextSteps = db.Column(db.String(1000))
     owner_id = db.Column(db.String(200), db.ForeignKey('organization.userid'))
+    display = db.Column(db.Boolean, unique = False, default=True)
 
     def __init__(self, title, address, city, state, zipcode, description, startDateTime, duration, category_class, category, nextSteps, owner):
         self.title = title
@@ -48,6 +49,7 @@ class Opportunity(db.Model):
         self.category = category
         self.nextSteps = nextSteps
         self.owner_id = owner
+        self.display = True
 
     def __repr__(self):
         return '<Opportunity %r>' % self.title

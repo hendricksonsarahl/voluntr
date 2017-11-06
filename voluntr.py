@@ -170,7 +170,18 @@ def manage_opportunities():
 
         # define variables to pass into the template
         org_name = org.orgName
-        opps = Opportunity.query.filter_by(owner_id = org.userid).all()
+
+        # check for deleted opportunities:
+        opp_id = request.args.get("del")
+        if opp_id:
+            hide_opp = get_opp_by_id(opp_id)
+            hide_opp.display = False
+            if validate_opp_data() == True:
+                db.session.commit()
+
+        # display all active opportunities on the org homepage
+        opps = db.session.query(Opportunity).filter_by(owner_id = org.userid, display = 1).all()
+        
         # format datetime into more readable strings
         for opp in opps:
             opp.startDateTime = readable_date(opp.startDateTime)
