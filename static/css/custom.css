@@ -102,6 +102,7 @@ p.help-block {
 
 .centered-form h3, h4 {
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .categories-group > .checkbox:first-child {
