@@ -330,3 +330,12 @@ def process_distance(form):
         distance = "all" # if no distance in form data, set to "all"
     
     return distance
+
+def check_opps(opps):
+    if type(opps) == type("String"):
+        return opps
+
+    if len(opps) == 0:
+        return "Sorry, No results were founnd. Try a less refined search."
+
+    return False
