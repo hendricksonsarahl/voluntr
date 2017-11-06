@@ -224,8 +224,9 @@ def new_opportunity():
     
     # response for GET requests:
     categories = get_categories()
+    states = get_states()
 
-    return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories)
+    return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories, states = states)
   
 
 @app.route("/org/profile", methods=['GET', 'POST'])
@@ -299,9 +300,10 @@ def edit_opportunity():
     time_start = get_start_time(opp.startDateTime)
     time_end = get_end_time(opp.startDateTime, opp.duration)  
     categories = get_categories()
+    states = get_states()
     return render_template('organization/edit.html', title='Voluntr | Edit Opportunity', opp=opp, 
                                 event_date = event_date, time_start = time_start, time_end = time_end,
-                                categories=categories)
+                                categories=categories, states=states)
 
 
 @app.route("/org/opportunity", methods=['GET'])
