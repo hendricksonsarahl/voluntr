@@ -12,3 +12,4 @@ protobuf==3.4.0
 requests==2.18.4
 pyzipcode3==2.0
 gunicorn==19.7.1
+intro.js==2.8.0-alpha.1

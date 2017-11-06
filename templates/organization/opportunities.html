@@ -1,44 +1,40 @@
-{% extends "layouts/org-layout.html" %}
+{% extends "layouts/org-layout.html" %} {% block contentInner %}
+<div class="container-outer">
+  <div class="container">
+    <h2>{{headerName}} | Home</h2>
 
-{% block contentInner %}
-  <div class="container-outer">
-    <div class="container">
-      <h2>{{headerName}} | Home</h2>
-      
-      {% if opportunities|length == 0 %}
-      <hr>
-        <p class="text-center"> {{headerName}} has no open opportunities</a></p>
-      <hr>
-      {% endif %}
+    {% if opportunities|length == 0 %}
+    <hr>
+    <p class="text-center"> {{headerName}} has no open opportunities</a>
+    </p>
+    <hr> {% endif %}
 
-      <div class="text-center">
-        <a class="btn btn-primary btn-lg" href="./add" role="button">Post a New Opportunity</a>
-      </div>
-    
-    {% if opportunities|length > 0 %}
-      
-      {% for opp in opportunities %}
-      <br>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>
-              {{opp.title}}
-              <br/>
-              <small>{{opp.startDateTime}}</small>
-            </h4>
-            <div class="pull-right">
-              <a class="btn btn-primary" href="./edit?id={{opp.id}}" role="button">Edit&nbsp;
-                <div class="glyphicon glyphicon-pencil"></div>
-              </a>
-              <a class="btn btn-primary" href="./opportunity?id={{opp.id}}" role="button">View&nbsp;
-                <div class="glyphicon glyphicon-search"></div>
-              </a>
-            </div>
-          </div>
+    <div class="text-center">
+      <a class="btn btn-primary btn-lg" href="javascript:void(0);" onclick="introJs().start()">Account Intro</a>
+      <a class="btn btn-primary btn-lg" href="./add" role="button">Post a New Opportunity</a>
+    </div>
+
+    {% if opportunities|length > 0 %} {% for opp in opportunities %}
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>
+          {{opp.title}}
+          <br/>
+          <small>{{opp.startDateTime}}</small>
+        </h4>
+        <div class="pull-right">
+          <a class="btn btn-primary" href="./edit?id={{opp.id}}" role="button">Edit&nbsp;
+            <div class="glyphicon glyphicon-pencil"></div>
+          </a>
+          <a class="btn btn-primary" href="./opportunity?id={{opp.id}}" role="button">View&nbsp;
+            <div class="glyphicon glyphicon-search"></div>
+          </a>
         </div>
-      {% endfor %}
-    {% endif %}
       </div>
     </div>
+    {% endfor %} {% endif %}
   </div>
-{% endblock %} 
+</div>
+</div>
+<script type="text/javascript" src="../../intro.js"></script> {% endblock %}
