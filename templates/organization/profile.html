@@ -11,32 +11,6 @@
           <form action="/org/profile" id="update-profile" method="POST">
             <div class="row">
               <div class="col-xs-12 col-sm-4">
-                <label for="contactName">
-                  <h3>Contact Name</h3>
-                </label>
-              </div>
-              <div class="col-xs-12 col-sm-8">
-                <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required" value="{{org.contactName}}">
-              </div>
-            </div>
-            <br />
-            <br class="hidden-xs" />
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
-                <label for="email">
-                  <h3>Contact Email</h3>
-                </label>
-              </div>
-              <div class="col-xs-12 col-sm-8">
-                <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required" value="{{org.email}}">
-              </div>
-            </div>
-            <br />
-            <br class="hidden-xs" />
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-4">
                 <label for="orgName">
                   <h3>Organization Name</h3>
                 </label>
@@ -62,6 +36,32 @@
             <br />
             <br class="hidden-xs" />
 
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="contactName">
+                  <h3>Contact Name</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="contactName" name="contactName" type="text" maxlength="120" required="required" value="{{org.contactName}}">
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <label for="email">
+                  <h3>Contact Email</h3>
+                </label>
+              </div>
+              <div class="col-xs-12 col-sm-8">
+                <input class="form-control" id="email" name="email" type="text" maxlength="200" required="required" value="{{org.email}}">
+              </div>
+            </div>
+            <br />
+            <br class="hidden-xs" />
+            
             <div class="text-center">
               <button type="submit" form="update-profile" value="Update" class="btn btn-primary">Save Changes</button>
             </div>

@@ -51,6 +51,7 @@ function onSignIn(googleUser) {
 // Executed after successful Google sign-in, with no existing Voluntr account:
 function showSignUpForm(contactName, email, token) {
   var signUpForm = document.querySelector('.signup-row');
+  var googleDiv = document.querySelector('.g-signin2');
   var contactNameInput = document.getElementById('contactName');
   var emailInput = document.getElementById('email');
   var tokenInput = document.getElementById('token');
@@ -60,14 +61,19 @@ function showSignUpForm(contactName, email, token) {
   emailInput.value = email;
   tokenInput.value = token;
 
-  //display the form
+  //display the form, hide the Google sign-in button
   signUpForm.classList.remove("hidden");
+  googleDiv.classList.add("hidden");
 }
 
 // Executed after successful Google sign-in to an existing Voluntr account:
 function redirectToOrgHome() {
   var redirectRow = document.querySelector('.redirect-row');
+  var googleDiv = document.querySelector('.g-signin2');
+
   redirectRow.classList.remove("hidden");
+  googleDiv.classList.add("hidden");
+  
   setTimeout(function() {
     window.location.href="/org/opportunities";    
   }, 1200);
