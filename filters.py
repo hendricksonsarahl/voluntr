@@ -57,7 +57,7 @@ class Filters():
                         filtered = filtered + [opps[i]]
             return filtered
         except ZipNotFoundException:
-            error = "Zip code not found. Please check your zipcode and try again. If it still does not work we appologize (your zipcode may not be supported yet)"
+            error = "Zip code not found. Please check your zipcode and try again. If it still does not work we apologize (your zipcode may not be supported yet)"
             return error
             
                 

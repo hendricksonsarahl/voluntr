@@ -336,6 +336,6 @@ def check_opps(opps):
         return opps
 
     if len(opps) == 0:
-        return "Sorry, No results were founnd. Try a less refined search."
+        return "Sorry, No results were found. Try a less refined search."
 
     return False
