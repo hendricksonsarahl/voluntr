@@ -4,18 +4,21 @@
   <div class="container-outer">
     <div class="container">
       <h2>{{headerName}} | Home</h2>
+      
+      {% if opportunities|length == 0 %}
       <hr>
+        <p class="text-center"> {{headerName}} has no open opportunities</a></p>
+      <hr>
+      {% endif %}
+
       <div class="text-center">
         <a class="btn btn-primary btn-lg" href="./add" role="button">Post a New Opportunity</a>
       </div>
-      <hr>
-    {% if opportunities|length == 0 %}
-      <p> To add your volunteer opportunity, click <a href='./add'> here!</a></p>
-    {% endif %}
     
     {% if opportunities|length > 0 %}
       
       {% for opp in opportunities %}
+      <br>
         <div class="panel panel-default">
           <div class="panel-body">
             <h4>
