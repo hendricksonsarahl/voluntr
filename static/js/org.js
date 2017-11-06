@@ -32,6 +32,7 @@ function deleteCookie(name) {
 function toggleFlexible(e) {
   var scheduleInputs = document.querySelectorAll('.schedule-input');
   var scheduleLabels = document.querySelectorAll('.schedule-label');
+  var addressInput = document.getElementById('address');
 
   if(e.target.checked) {
 
@@ -43,6 +44,9 @@ function toggleFlexible(e) {
       input.removeAttribute("required");
       input.setAttribute("disabled", true);
     });
+
+    // Focus the address input
+    addressInput.focus();
   } else {
 
     // Reset labels and inputs to initial state

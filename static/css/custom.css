@@ -73,6 +73,10 @@ p.help-block {
   margin-top: 20px;
 }
 
+.checkbox-opp-form {
+  margin-top: 3px;
+}
+
 /*Uses code from Bootstrap's btn-justified class, only on small screens:*/
 @media (max-width: 768px) {
   .opp-nav-buttons {
