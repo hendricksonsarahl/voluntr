@@ -343,3 +343,12 @@ p.help-block {
 .g-signin2 > div{
   margin: 0 auto;
 }
+
+/*~~~~~~~~~~~ Intro.js styling on Opportunities page ~~~~~~~~~~~*/
+
+/*Make tooltips responsive: */
+
+.introjs-tooltip {
+  min-width: 100%; 
+  max-width: 100%;
+}

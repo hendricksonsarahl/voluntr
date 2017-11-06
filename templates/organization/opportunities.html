@@ -1,4 +1,6 @@
-{% extends "layouts/org-layout.html" %} {% block contentInner %}
+{% extends "layouts/org-layout.html" %}
+
+{% block contentInner %}
 <div class="container-outer">
   <div class="container">
     <h2>{{headerName}} | Home</h2>
@@ -10,7 +12,7 @@
     <hr> {% endif %}
 
     <div class="text-center">
-      <a class="btn btn-primary btn-lg" href="javascript:void(0);" onclick="introJs().start()">Account Intro</a>
+      <a class="btn btn-primary btn-lg" href="javascript:void(0);" onclick="introJs().setOption('showProgress', true).start()">Account Intro</a>
       <a class="btn btn-primary btn-lg" href="./add" role="button">Post a New Opportunity</a>
     </div>
 
@@ -37,4 +39,5 @@
   </div>
 </div>
 </div>
-<script type="text/javascript" src="../../intro.js"></script> {% endblock %}
+<script type="text/javascript" src="../../intro.js"></script> 
+{% endblock %}
