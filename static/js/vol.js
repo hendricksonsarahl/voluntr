@@ -1,3 +1,5 @@
+// ~~~~~~~~~~~~~~~Pure functions:~~~~~~~~~~~~~~~~
+
 // returns true iff target object's ID matches the ID of an element in the provided array
 function idInArray(arr, target) {
   function checkId(obj) {
@@ -8,6 +10,9 @@ function idInArray(arr, target) {
 
   return arr.findIndex(checkId) > -1
 }
+
+
+// ~~~~~~~~~~~~localStorage manipulation:~~~~~~~~~~
 
 // return the savedOpps value in localStorage. if it doesn't exist yet, create an empty array first
 function loadStore() {
@@ -21,6 +26,31 @@ function loadStore() {
 
   return store;
 }
+
+// add opportunities to a JSON-encoded localStorage array
+function saveOpportunity(store, opp){
+
+    //add the page's currentOpp to the provided store, then save it to localStorage
+    store.push(opp);
+    localStorage.setItem("savedOpps", JSON.stringify(store));
+}
+
+// Remove an opportunity from localStorage
+function removeOppFromStore(oppId) {
+  var oppList = loadStore();
+
+  // Find the index of the target opportunity in the store:
+  var indexToRemove = oppList.findIndex(function(opp) {
+    return opp.id == oppId;
+  });
+
+  // Remove the opportunity from the store and save to localStorage
+  oppList.splice(indexToRemove, 1);
+  localStorage.setItem("savedOpps", JSON.stringify(oppList));
+}
+
+
+// ~~~~~~~~~~~~~~DOM manipulation~~~~~~~~~~~~~~~~~~~~
 
 // map the opportunities found in localStorage to HTML panels, then append them to a container
 function showOpps(store, parentElt) {
@@ -61,14 +91,6 @@ function showNoOppsMessage(parentElt) {
     '<h2>Nothing Saved Yet</h2><p><a href="/opportunities">Continue browsing opportunities</a></p>';
 }
 
-// add opportunities to a JSON-encoded localStorage array
-function saveOpportunity(store, opp){
-
-    //add the page's currentOpp to the provided store, then save it to localStorage
-    store.push(opp);
-    localStorage.setItem("savedOpps", JSON.stringify(store));
-}
-
 // change the appearance and text of the save button when an opp is saved or removed
 function updateSaveButton(isSaved) {
   if (isSaved) {
@@ -80,20 +102,6 @@ function updateSaveButton(isSaved) {
     this.classList.remove('btn-success');
     this.innerHTML = 'Save&nbsp;<span class="glyphicon glyphicon-pushpin"></span>';  
   }
-}
-
-// Remove an opportunity from localStorage
-function removeOppFromStore(oppId) {
-  var oppList = loadStore();
-
-  // Find the index of the target opportunity in the store:
-  var indexToRemove = oppList.findIndex(function(opp) {
-    return opp.id == oppId;
-  });
-
-  // Remove the opportunity from the store and save to localStorage
-  oppList.splice(indexToRemove, 1);
-  localStorage.setItem("savedOpps", JSON.stringify(oppList));
 }
 
 // Remove an opportunity's panel from the page
@@ -116,6 +124,9 @@ function render(store, parentElt) {
     showNoOppsMessage(parentElt);
   }
 }
+
+
+//~~~~~~~~~~~~~Filters form:~~~~~~~~~~~~~~~~~
 
 // On filters form, check all category boxes
 function selectAllCategories() {
@@ -164,6 +175,7 @@ if (typeof window !== "undefined") {
     var saveButton = document.getElementById('save-button');
     var oppListParent = document.getElementById("opp-container");
 
+    // set up Filters page:
     if (selectAllButton) {
       selectAllButton.addEventListener('change', selectAllCategories);
       categoryInputs.forEach(function(cat) {
