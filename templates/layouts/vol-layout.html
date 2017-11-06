@@ -32,7 +32,20 @@
       </div>
     </div>
   </nav>
-  <div class="alert-container"></div>
+  <div class="alert-container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class=flashes>
+          {% for message in messages %}
+          <h5 class="alert alert-info text-center" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            {{ message }}
+          </h5>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
   
   {% block contentInner %}
   

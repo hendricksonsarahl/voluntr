@@ -12,5 +12,6 @@ app = Flask(__name__)
 app.config['DEBUG'] = True      # displays runtime errors in the browser, too
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_ECHO'] = True
+app.secret_key = 'ZAj08N/$3m]XHjHy!rX R/~?X,9RW@UL'
 
 db = SQLAlchemy(app)
