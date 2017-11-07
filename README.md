@@ -1,9 +1,10 @@
 # Voluntr
 
-## Current Version: 0.40.0
+## Current Version: 1.0.0
 
 
-<b> A web app that provides a simple platform for nonprofits to connect with potential volunteers</b>
+<h4> A web app that provides a simple platform for nonprofits to connect with potential volunteers. <br>
+<b><a href="https://voluntr-demo.herokuapp.com/">Currently deployed on Heroku!</a></b></h4>
 
 # Table of Contents
 1. [Elevator Pitch](#elevator-pitch)
