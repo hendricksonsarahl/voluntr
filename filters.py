@@ -28,11 +28,11 @@ class Filters():
 
     def filter_by_categories(self):
         if self.categories[0] == "all" or len(self.categories) == len(get_categories()):
-            opps = Opportunity.query.all()
+            opps = Opportunity.query.filter_by(display = 1).all()
         else:
             opps = []
             for i in range(len(self.categories)):
-                opps = opps + Opportunity.query.filter_by(category_class=self.categories[i]).all()
+                opps = opps + Opportunity.query.filter_by(category_class=self.categories[i], display = 1).all()
 
         return opps
 
@@ -57,9 +57,8 @@ class Filters():
                         filtered = filtered + [opps[i]]
             return filtered
         except ZipNotFoundException:
-            #TODO Send meaningful feedback to browser. For now, it's just ignoring the location filter
-            print('Zip code not found.')
-            return opps
+            error = "Zip code not found. Please check your zipcode and try again. If it still does not work we apologize (your zipcode may not be supported yet)"
+            return error
             
                 
         
