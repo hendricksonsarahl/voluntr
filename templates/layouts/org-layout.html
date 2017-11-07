@@ -4,6 +4,7 @@
   <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id" content="649609603099-g73psa76kgviat4mdh2ctt1pk8he11bb.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 {% endblock %}
 
 {% block content %}
@@ -11,7 +12,7 @@
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./opportunities">
+        <a class="navbar-brand introjs-showElement introjs-relativePosition" href="./opportunities" data-step="5" data-intro="And lastly, our logo will get you back to your homepage. We're glad you're here!">
           <img src="/static/images/voluntr_logo_small.png" />
           Voluntr
         </a>
@@ -39,14 +40,17 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown hidden-xs">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+          <li class="dropdown hidden-xs"> 
+            <a href="#" class="dropdown-toggle introjs-showElement introjs-relativePosition" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-step="4" data-intro="You can locate settings to edit your profile and sign out of your account here">Account <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li>
                 <a href="/org/profile">Profile</a>
               </li>
               <li>
                 <a href="/" class="signOutLink">Sign Out</a>
+              </li>
+              <li>
+                <a href="javascript:void(0);" onclick="introJs().setOption('showProgress', true).start()">Tutorial</a>
               </li>
             </ul>
           </li>

@@ -1,6 +1,6 @@
 # Voluntr
 
-## Current Version: 0.39.0
+## Current Version: 0.40.0
 
 
 <b> A web app that provides a simple platform for nonprofits to connect with potential volunteers</b>
@@ -32,7 +32,7 @@
   </ul>
 
 We are targetting both Nonprofit Organizations and potential volunteers. 
-<p> Our <b>Nonprofit audience</b> includes any category of nonprofit organization which is in need of volunteers in any capacity: long term, short term, part time, full time, single event and recurring events. Examples of nonprofits that can find value in our platform: animal shelters and services, food banks, civic organizations, religious organizations and churches, shelters and services for houseless persons, donation drives, fundraising events and more.</p>
+<p> Our <b>Nonprofit audience</b> includes any category of nonprofit organization which is in need of volunteers in any capacity: long term, short term, part time, full time, single event and recurring events. Examples of nonprofits that can find value in our platform: animal shelters and services, food banks, civic organizations, religious organizations and churches, shelters and services for homeless persons, donation drives, fundraising events and more.</p>
 
 <p>Our <b>Volunteer audience</b> includes teens and adults of any socioeconomic class, age, race, ability level and skill level who have access to a mobile device or computer. The demographic location will depend on what nonprofits sign up for the platform. We will first release the app in the Portland, Oregon region with a stretch goal of expanding to have local options available in all metropolitan areas in the United States. </p>
 

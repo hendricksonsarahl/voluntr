@@ -1,44 +1,46 @@
-{% extends "layouts/org-layout.html" %}
+{% extends "layouts/org-layout.html" %} {% block contentInner %}
+<div class="container-outer">
+  <div class="container">
 
-{% block contentInner %}
-  <div class="container-outer">
-    <div class="container">
-      <h2>{{headerName}} | Home</h2>
-      
-      {% if opportunities|length == 0 %}
-      <hr>
-        <p class="text-center"> {{headerName}} has no open opportunities</a></p>
-      <hr>
-      {% endif %}
+    <h2 data-step="1" data-intro="Welcome to your Voluntr Organization Account!" class=" introjs-showElement introjs-relativePosition">{{headerName}} | Home</h2>
 
-      <div class="text-center">
-        <a class="btn btn-primary btn-lg" href="./add" role="button">Post a New Opportunity</a>
-      </div>
-    
-    {% if opportunities|length > 0 %}
-      
-      {% for opp in opportunities %}
+    {% if opportunities|length == 0 %}
+    <hr>
+    <p class="text-center"> {{headerName}} has no open opportunities</a>
+    </p>
+    <hr> {% endif %}
+
+    <div class="text-center">
+      <a data-step="2" data-intro="Need volunteers? Go here to give us the details and we'll handle the rest" class="btn btn-primary btn-lg introjs-showElement introjs-relativePosition"
+        href="./add" role="button">Post a New Opportunity</a>
+    </div>
+
+    <br>
+    <div data-step="3" data-intro="When you post opportunities they will show up here" class=" introjs-showElement introjs-relativePosition">
       <br>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h4>
-              {{opp.title}}
-              <br/>
-              <small>{{opp.startDateTime}}</small>
-            </h4>
-            <div class="pull-right">
-              <a class="btn btn-primary" href="./edit?id={{opp.id}}" role="button">Edit&nbsp;
-                <div class="glyphicon glyphicon-pencil"></div>
-              </a>
-              <a class="btn btn-primary" href="./opportunity?id={{opp.id}}" role="button">View&nbsp;
-                <div class="glyphicon glyphicon-search"></div>
-              </a>
-            </div>
-          </div>
+      <br>
+    </div>
+    {% if opportunities|length > 0 %} {% for opp in opportunities %}
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>
+          {{opp.title}}
+          <br/>
+          <small>{{opp.startDateTime}}</small>
+        </h4>
+        <div class="pull-right">
+          <a class="btn btn-primary" href="./edit?id={{opp.id}}" role="button">Edit&nbsp;
+            <div class="glyphicon glyphicon-pencil"></div>
+          </a>
+          <a class="btn btn-primary" href="./opportunity?id={{opp.id}}" role="button">View&nbsp;
+            <div class="glyphicon glyphicon-search"></div>
+          </a>
         </div>
-      {% endfor %}
-    {% endif %}
       </div>
     </div>
+    {% endfor %} {% endif %}
   </div>
-{% endblock %} 
+</div>
+</div>
+{% endblock %}
