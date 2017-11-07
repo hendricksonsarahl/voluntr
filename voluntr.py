@@ -211,7 +211,7 @@ def new_opportunity():
         category_class = request.form["category"]
         category = get_category(category_class)
         description = validate_description(request.form["description"])
-        next_steps = validate_next_steps(request.form["nextsteps"])
+        next_steps = validate_next_steps(request.form["nextSteps"])
 
         # Either get the form's date/times, or add the date/times we've chosen to signify "flexible schedule"
         if request.form.get("flexible"):
