@@ -1,3 +1,2 @@
-const name = 'me';
-
-console.log(`hello ${name}`);
+require('./org.js');
+require('./vol.js');
