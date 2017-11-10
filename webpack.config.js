@@ -1,11 +1,12 @@
 const path = require("path");
 const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: "./src/js/main.js",
   entry: {
     bundle: "./src/js/main.js",
-    vendor: "./src/js/vendor.js"
+    vendor: "./src/js/vendor.js",
+    css: "./src/css/main.css"
   },
   output: {
     path: path.resolve(__dirname, "static/build"),
@@ -28,6 +29,17 @@ module.exports = {
         query: {
           presets: ["es2015"]
         }
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
       }
     ]
   },
@@ -37,8 +49,10 @@ module.exports = {
       name: "vendor",
       filename: "vendor.js"
     }),
+    new ExtractTextPlugin("bundle.css"),
 
-    // Minify JS Code (reduces file size by ~60-70%)
+
+    // Minify JS Code (reduces file size by ~60-70%, but makes it unreadable)
     // new webpack.optimize.UglifyJsPlugin()
   ]
 };

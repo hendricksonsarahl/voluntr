@@ -18,6 +18,7 @@
   "homepage": "https://github.com/hendricksonsarahl/voluntr#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "bootswatch": "^3.3.7",
     "intro.js": "^2.8.0-alpha.1",
     "jquery": "^3.2.1"
   },
@@ -32,10 +33,12 @@
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.8.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
     "jsdom": "^11.3.0",
     "style-loader": "^0.19.0",
     "tap": "^10.7.2",
     "tap-mocha-reporter": "^3.0.6",
+    "url-loader": "^0.6.2",
     "webpack": "^3.8.1"
   }
 }

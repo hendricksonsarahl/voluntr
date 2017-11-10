@@ -1,0 +1,273 @@
+/*@import '../../node_modules/bootswatch/cosmo/bootstrap.min.css';*/
+
+@import './opp-headers.css';
+
+body {
+  padding-bottom: 50px;
+}
+
+h2 {
+  margin-top: 10px;
+}
+
+p.help-block {
+  margin-top: 0;
+}
+
+.navbar .navbar-brand {
+  position: relative;
+  bottom: 3px;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-family: 'Autour One',Calibri,Candara,Arial,sans-serif;
+  color: #eee;
+}
+
+.navbar-brand img {
+  height: 30px;
+  display: inline;
+  margin-right: 5px;
+  position: relative;
+  bottom: 3px;
+}
+
+.panel .btn {
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    margin-bottom: 10px;
+  }
+
+  .navbar-brand {
+    font-size: 18px;
+  }
+
+  .container-outer {
+    margin: 0 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+}
+
+.alert-container .alert {
+  margin: 10px;
+}
+
+.opp-nav-buttons {
+  margin: 5px 0;
+}
+
+.g-signin2 {
+  margin-top: 20px;
+}
+
+.checkbox-opp-form {
+  margin-top: 3px;
+}
+
+/*Uses code from Bootstrap's btn-justified class, only on small screens:*/
+@media (max-width: 768px) {
+  .opp-nav-buttons {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+  }
+  .opp-nav-buttons > .btn,
+  .opp-nav-buttons > .btn-group {
+    display: table-cell;
+    float: none;
+    width: 1%;
+  }
+  .opp-nav-buttons > .btn-group .btn {
+    width: 100%;
+  }
+  .opp-nav-buttons > .btn-group .dropdown-menu {
+    left: auto;
+  }
+}
+
+.days-table {
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+
+.centered-form h3, h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.categories-group > .checkbox:first-child {
+  margin-top: 0;
+}
+
+/*Tweaks to fit things onto very small screens:*/
+@media (max-width: 400px) {
+  table.table.days-table thead td {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  select.form-control {
+    padding: 0px;
+  }
+}
+
+/*~~~~~~~~Flexbox layout for Opp Headers:~~~~~~~~~~~*/
+
+.opp-header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.opp-header__top {
+  order: 0;
+  flex: 2 2 auto;
+  align-self: stretch;
+}
+
+.opp-header__bottom {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.opp-header__bottom-left, .opp-header__bottom-right {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: flex-start;
+}
+
+.opp-header__bottom-left {
+  margin-right: 8px;
+}
+
+.opp-header__bottom-right {
+  margin-left: 8px;
+}
+
+/*~~~~~~~~~~~End flexbox for Opp Headers~~~~~~~~~~~*/
+
+/*Index splash image styling:*/
+
+.jumbotron-index {
+  background: url("../images/splash_800x.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  height: 450px;
+  padding: 15px 15px;
+}
+
+@media (max-width: 768px) {
+  .jumbotron-index {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jumbotron-index {
+    height: 200px;
+  }
+}
+
+/*Index and Login icon styling:*/
+
+.icon-search {
+  background: url("../images/search-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-save {
+  background: url("../images/save-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-voluntr {
+  background: url("../images/voluntr_logo_small.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-signup {
+  background: url("../images/signup-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.icon-form {
+  background: url("../images/form-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px 10px;
+}
+
+/*~~~~~~~~~~~ Google Sign-In ~~~~~~~~~~~*/
+
+/*Centering button placement: */
+
+.g-signin2{
+  width: 100%;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+}
+
+/*~~~~~~~~~~~ Intro.js styling on Opportunities page ~~~~~~~~~~~*/
+
+/*Make tooltips responsive: */
+
+.introjs-tooltip {
+  min-width: 100%; 
+  max-width: 100%;
+}
