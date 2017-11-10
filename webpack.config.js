@@ -16,6 +16,13 @@ module.exports = {
         options: {
           fix: false
         }
+      },
+      {
+        test: /\.js$/,
+        loader: "babel-loader",
+        query: {
+          presets: ["es2015"]
+        }
       }
     ]
   }
