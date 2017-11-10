@@ -36,6 +36,9 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
       filename: "vendor.js"
-    })
+    }),
+
+    // Minify JS Code (reduces file size by ~60-70%)
+    // new webpack.optimize.UglifyJsPlugin()
   ]
 };
