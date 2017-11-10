@@ -5,7 +5,7 @@ module.exports = {
   entry: "./src/js/main.js",
   entry: {
     bundle: "./src/js/main.js",
-    vendor: ["jquery", "bootstrap", "intro.js"]
+    vendor: "./src/js/vendor.js"
   },
   output: {
     path: path.resolve(__dirname, "static/build"),
@@ -32,13 +32,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.introJs": "intro.js"
+    // Prevent vendor code from being duplicated in other bundles:
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      filename: "vendor.js"
     })
   ]
-  // plugins: [
-  //   new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' })
-  // ]
 };

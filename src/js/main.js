@@ -11,9 +11,6 @@ if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
   (()=> {
   
-    // Give the onSignIn callback function a global scope, so it can be accessed by Google's gapi script
-    window.onSignIn = onSignIn
-
     // get data from localStorage:  
     let store = loadStore();
 
@@ -26,6 +23,9 @@ if (typeof window !== "undefined") {
     const saveButton = document.getElementById("save-button");
     const oppListParent = document.getElementById("opp-container");
     const tutorialButton = document.getElementById("tutorial-button");
+
+    // Give the onSignIn callback function a global scope, so it can be accessed by Google's gapi script
+    window.onSignIn = onSignIn;
 
     // start the Intro JS tour when Tutorial button is clicked
     if (tutorialButton) {
