@@ -25,6 +25,14 @@ if (typeof window !== "undefined") {
     const categoryInputs = document.querySelectorAll("input[name=category]");
     const saveButton = document.getElementById("save-button");
     const oppListParent = document.getElementById("opp-container");
+    const tutorialButton = document.getElementById("tutorial-button");
+
+    // start the Intro JS tour when Tutorial button is clicked
+    if (tutorialButton) {
+      tutorialButton.addEventListener('click', () => {
+        window.introJs.introJs().setOption('showProgress', true).start();
+      });
+    }
 
     // when the sign-out link is clicked, the signOut function is executed
     if (signOutLink) {
