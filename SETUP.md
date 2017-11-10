@@ -143,7 +143,7 @@ To run the JavaScript unit tests,
 
 ### Python Testing
 
-To run the python unittests, 
+To run the python unit tests, 
 
 1. Make sure you have installed the requirements.txt file to your virtual environment.  You will need the pytest-flask library to run the tests.
 
