@@ -1,3 +1,5 @@
+// Collects all account/authorization functions
+
 import {displayError, deleteCookie} from './helpers';
 
 // Executed after successful Google sign-in, with no existing Voluntr account:

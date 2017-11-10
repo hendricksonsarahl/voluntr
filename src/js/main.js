@@ -1,4 +1,4 @@
-import {signOut} from './org/auth';
+import {onSignIn, signOut} from './org/auth';
 import {toggleFlexible} from './org/opp-forms';
 import {idInArray} from './vol/helpers';
 import {loadStore, saveOpportunity, removeOppFromStore} from './vol/local-storage';
@@ -11,6 +11,9 @@ if (typeof window !== "undefined") {
   // Code in this anonymous function is immediately invoked once this script loads:
   (()=> {
   
+    // Give the onSignIn callback function a global scope, so it can be accessed by Google's gapi script
+    window.onSignIn = onSignIn
+
     // get data from localStorage:  
     let store = loadStore();
 
@@ -53,15 +56,15 @@ if (typeof window !== "undefined") {
       }
 
       // on Save Button click, add the opp to localStorage and change button appearance
-      saveButton.addEventListener("click", () => {
+      saveButton.addEventListener("click", (e) => {
         // depending on if the opportunity has already been saved, either save or remove it:
         if (!idInArray(store, currentOpp)) {
           saveOpportunity(store, currentOpp);
-          updateSaveButton.bind(this)(true);
+          updateSaveButton.bind(e.target)(true);
           store = loadStore();
         } else {
           removeOppFromStore(currentOpp.id);
-          updateSaveButton.bind(this)(false);
+          updateSaveButton.bind(e.target)(false);
           store = loadStore();
         }
       });

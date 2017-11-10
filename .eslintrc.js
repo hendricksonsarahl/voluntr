@@ -6,6 +6,7 @@ module.exports = {
       "quotes": 0,
       "no-plusplus": 0,
       "no-param-reassign": 0,
+      "no-unused-vars": 1,
       "import/prefer-default-export": 0
     },
     "env": {
