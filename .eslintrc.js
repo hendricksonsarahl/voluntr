@@ -5,7 +5,8 @@ module.exports = {
       "comma-dangle": 0,
       "quotes": 0,
       "no-plusplus": 0,
-      "no-param-reassign": 0
+      "no-param-reassign": 0,
+      "import/prefer-default-export": 0
     },
     "env": {
       "browser": true,

@@ -1,66 +1,7 @@
-// ~~~~~~~~~~~~~~~~~~~Misc helper functions~~~~~~~~~~~~~~~~~~
-
-// display error messages as Bootstrap alert elements in browser
-// Bootstrap will handle closing them
-function displayError(err) {
-  // allow for direct input of error objects:
-  if (err instanceof Error) {
-    err = err.message;
-  }
-
-  // select a container for the alert
-  const alertContainer = document.querySelector(".alert-container");
-
-  // build a new DOM element
-  const alert = document.createElement("div");
-  alert.className = `alert alert-danger alert-dismissible fade in`;
-  alert.innerHTML = `<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Error: </strong>${err}`;
-
-  // append the new DOM element to the container
-  alertContainer.appendChild(alert);
-}
-
-// delete a cookie by setting its expiration date in the past
-function deleteCookie(name) {
-  document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
-}
-
-// ~~~~~~~~~~~~~~~~~Add/Edit Opp form~~~~~~~~~~~~~~~~~
-
-// Update form to require/not allow date and times, based on Flexible Schedule checkbox
-function toggleFlexible(e) {
-  const scheduleInputs = document.querySelectorAll(".schedule-input");
-  const scheduleLabels = document.querySelectorAll(".schedule-label");
-  const addressInput = document.getElementById("address");
-
-  if (e.target.checked) {
-    // Dim labels and inputs, stop requiring them, mark input disabled
-    scheduleLabels.forEach(label => {
-      label.classList.add("text-muted");
-    });
-    scheduleInputs.forEach(input => {
-      input.removeAttribute("required");
-      input.setAttribute("disabled", true);
-    });
-
-    // Focus the address input
-    addressInput.focus();
-  } else {
-    // Reset labels and inputs to initial state
-    scheduleLabels.forEach((label)=> {
-      label.classList.remove("text-muted");
-    });
-    scheduleInputs.forEach((input)=> {
-      input.setAttribute("required", true);
-      input.removeAttribute("disabled");
-    });
-  }
-}
-
-// ~~~~~~~~~~~~~~~~User account authorization:~~~~~~~~~~~~~~~~~~~
+import {displayError, deleteCookie} from './helpers';
 
 // Executed after successful Google sign-in, with no existing Voluntr account:
-function showSignUpForm(contactName, email, token) {
+export function showSignUpForm(contactName, email, token) {
   const signUpForm = document.querySelector(".signup-row");
   const googleDiv = document.querySelector(".g-signin2");
   const contactNameInput = document.getElementById("contactName");
@@ -78,7 +19,7 @@ function showSignUpForm(contactName, email, token) {
 }
 
 // Executed after successful Google sign-in to an existing Voluntr account:
-function redirectToOrgHome() {
+export function redirectToOrgHome() {
   const redirectRow = document.querySelector(".redirect-row");
   const googleDiv = document.querySelector(".g-signin2");
 
@@ -91,7 +32,7 @@ function redirectToOrgHome() {
 }
 
 // Callback function for Google API's sign-in event
-function onSignIn(googleUser) {
+export function onSignIn(googleUser) {
   // Only proceed if called from login page:
   if (window.location.pathname !== "/org/login") {
     return false;
@@ -149,7 +90,7 @@ function onSignIn(googleUser) {
 }
 
 // Sign out of Google connection, delete token cookie, then redirect to "/"
-function signOut(event) {
+export function signOut(event) {
   // don't immediately redirect the user
   event.preventDefault();
 
@@ -163,36 +104,4 @@ function signOut(event) {
     // redirect user after confirmation of sign-out received
     window.location.href = "/";
   });
-}
-
-// don't run this outside of a browser environment (e.g., when testing in Node)
-if (typeof window !== "undefined") {
-  // Code in this anonymous function is immediately invoked once this script loads:
-  (()=> {
-    // when the sign-out link is clicked, the signOut function is executed
-    const signOutLink = document.querySelectorAll(".signOutLink");
-    const flexibleCheckbox = document.getElementById("flexible");
-
-    if (signOutLink) {
-      signOutLink.forEach(link => {
-        link.addEventListener("click", signOut);
-      });
-    }
-
-    if (flexibleCheckbox) {
-      flexibleCheckbox.addEventListener("click", toggleFlexible);
-    }
-  })();
-}
-
-// Export all named, top-level functions for use in unit tests.
-// The leading if statement should prevent this block from running in the browser.
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = {
-    displayError,
-    signOut,
-    onSignIn,
-    showSignUpForm,
-    redirectToOrgHome
-  };
 }
