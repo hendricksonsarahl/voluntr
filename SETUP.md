@@ -111,8 +111,27 @@ Follow these steps to successfully run this app on your machine!
     - Once the app is running, first visit the /drop_create route to load sample data.
     - <b>Important: You must be running 'localhost' and not '127.0.0.1' in your browser for Organization sign in to function properly.</b>
 
+## 5. Building JavaScript Files
 
-## 5. Testing.
+Our JavaScript source code files are found in `src/js`. These are the only JavaScript files that should be directly edited. They are processed and bundled by Webpack, with the resulting files produced in `static/build`. These are the files that will be directly loaded by the browser.
+
+To generate JavaScript files,
+
+1. Install Node.js. Installer files are available for many platforms at [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+2. Install the Webpack command-line application with:	```npm install -g webpack``` 
+3. From the `voluntr` project directory, locally install the project dependencies with:
+
+	```
+	npm install
+	```
+4. Compile updated bundles with:
+
+	```
+	npm run build
+	```
+	This command will generate updated bundles, and then start watching for changes to source files, which then trigger a new build. **Whenever you plan to work with JavaScript code, you should begin by running this command and leaving its terminal window open and running in the background.**
+
+## 6. Testing.
 ### JavaScript
 
 To run the JavaScript unit tests, 
