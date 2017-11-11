@@ -1,22 +1,27 @@
-import {onSignIn, signOut} from './org/auth';
-import {toggleFlexible} from './org/opp-forms';
-import {idInArray} from './vol/helpers';
-import {loadStore, saveOpportunity, removeOppFromStore} from './vol/local-storage';
-import {selectAllCategories, toggleSelectAllCheckbox} from './vol/filters-form';
-import {updateSaveButton, renderSavedOpps} from './vol/dom-saved-opps';
+import { onSignIn, signOut } from "./org/auth";
+import { toggleFlexible } from "./org/opp-forms";
+import { idInArray } from "./vol/helpers";
+import {
+  loadStore,
+  saveOpportunity,
+  removeOppFromStore
+} from "./vol/local-storage";
+import {
+  selectAllCategories,
+  toggleSelectAllCheckbox
+} from "./vol/filters-form";
+import { updateSaveButton, renderSavedOpps } from "./vol/dom-saved-opps";
 
 // Webpack checks uses file as entry point for bundling CSS assets
-import '../../node_modules/bootswatch/cosmo/bootstrap.min.css';
-import '../../node_modules/intro.js/introjs.css';
-import '../css/main.css';
+import "../../node_modules/bootswatch/cosmo/bootstrap.min.css";
+import "../../node_modules/intro.js/introjs.css";
+import "../css/main.css";
 
 // don't run this outside of a browser environment (e.g., when testing in Node)
 if (typeof window !== "undefined") {
-
   // Code in this anonymous function is immediately invoked once this script loads:
-  (()=> {
-  
-    // get data from localStorage:  
+  (() => {
+    // get data from localStorage:
     let store = loadStore();
 
     // create variables from DOM elements
@@ -34,8 +39,8 @@ if (typeof window !== "undefined") {
 
     // start the Intro JS tour when Tutorial button is clicked
     if (tutorialButton) {
-      tutorialButton.addEventListener('click', () => {
-        window.introJs.introJs().setOption('showProgress', true).start();
+      tutorialButton.addEventListener("click", () => {
+        window.introJs.introJs().setOption("showProgress", true).start();
       });
     }
 
@@ -69,7 +74,7 @@ if (typeof window !== "undefined") {
       }
 
       // on Save Button click, add the opp to localStorage and change button appearance
-      saveButton.addEventListener("click", (e) => {
+      saveButton.addEventListener("click", e => {
         // depending on if the opportunity has already been saved, either save or remove it:
         if (!idInArray(store, currentOpp)) {
           saveOpportunity(store, currentOpp);

@@ -4,7 +4,8 @@
   "description": "A web app that provides a simple platform for nonprofits to connect with potential volunteers",
   "scripts": {
     "test": "tap 'tests/**/*.test.js' --cov | tap-mocha-reporter spec",
-    "build": "webpack --watch --progress --hide-modules true"
+    "build": "webpack --watch --progress --hide-modules true",
+    "heroku-postbuild": "webpack --progress"
   },
   "repository": {
     "type": "git",
