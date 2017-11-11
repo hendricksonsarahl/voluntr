@@ -1,5 +1,3 @@
-@import './opp-headers.css';
-
 body {
   padding-bottom: 50px;
 }
@@ -131,8 +129,7 @@ p.help-block {
 
 .opp-header {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  flex-flow: column nowrap;
   justify-content: space-between;
   align-content: stretch;
   align-items: center;
@@ -150,8 +147,7 @@ p.help-block {
   align-self: stretch;
 
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-content: stretch;
   align-items: center;
@@ -182,7 +178,7 @@ p.help-block {
   background-position: center center;
   color: #fff;
   height: 450px;
-  padding: 15px 15px;
+  padding: 15px;
 }
 
 @media (max-width: 768px) {
@@ -206,7 +202,7 @@ p.help-block {
   background-position: center center;
   color: #fff;
   height: 100px;
-  padding: 10px 10px;
+  padding: 10px;
 }
 
 .icon-save {
@@ -216,7 +212,7 @@ p.help-block {
   background-position: center center;
   color: #fff;
   height: 100px;
-  padding: 10px 10px;
+  padding: 10px;
 }
 
 .icon-voluntr {
@@ -226,7 +222,7 @@ p.help-block {
   background-position: center center;
   color: #fff;
   height: 100px;
-  padding: 10px 10px;
+  padding: 10px;
 }
 
 .icon-signup {
@@ -236,7 +232,7 @@ p.help-block {
   background-position: center center;
   color: #fff;
   height: 100px;
-  padding: 10px 10px;
+  padding: 10px;
 }
 
 .icon-form {
@@ -246,7 +242,7 @@ p.help-block {
   background-position: center center;
   color: #fff;
   height: 100px;
-  padding: 10px 10px;
+  padding: 10px;
 }
 
 /*~~~~~~~~~~~ Google Sign-In ~~~~~~~~~~~*/
@@ -261,12 +257,5 @@ p.help-block {
   margin: 0 auto;
 }
 
-/*~~~~~~~~~~~ Intro.js styling on Opportunities page ~~~~~~~~~~~*/
-
-/*Make tooltips responsive: */
-
-/*.introjs-tooltip {
-  min-width: 100%; 
-  max-width: 100%;
-}*/
-
+/*Import other modules:*/
+@import './opp-headers.css';
