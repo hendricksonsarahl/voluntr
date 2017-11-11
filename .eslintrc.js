@@ -7,7 +7,8 @@ module.exports = {
       "no-plusplus": 0,
       "no-param-reassign": 0,
       "no-unused-vars": 1,
-      "import/prefer-default-export": 0
+      "import/prefer-default-export": 0,
+      "import/extensions": 0
     },
     "env": {
       "browser": true,

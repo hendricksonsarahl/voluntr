@@ -12,10 +12,8 @@ import {
 } from "./vol/filters-form";
 import { updateSaveButton, renderSavedOpps } from "./vol/dom-saved-opps";
 
-// Webpack checks uses file as entry point for bundling CSS assets
-import "../../node_modules/bootswatch/cosmo/bootstrap.min.css";
-import "../../node_modules/intro.js/introjs.css";
-import "../css/main.css";
+// Webpack uses this file as entry point for bundling CSS assets
+import "../css/index.js";
 
 // don't run this outside of a browser environment (e.g., when testing in Node)
 if (typeof window !== "undefined") {
