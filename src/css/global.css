@@ -1,0 +1,44 @@
+/*Global (site-wide) styles. 
+Either styling HTML elements or overriding styles for Bootstrap classes*/
+
+body {
+  padding-bottom: 50px;
+}
+
+h2 {
+  margin-top: 10px;
+}
+
+p.help-block {
+  margin-top: 0;
+}
+
+.panel .btn {
+  margin-right: 5px;
+}
+
+/*XS windows only:*/
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+}
+
+/*XXS:*/
+@media (max-width: 400px) {
+  select.form-control {
+    padding: 0px;
+  }
+}

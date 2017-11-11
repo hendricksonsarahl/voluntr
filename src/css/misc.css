@@ -1,0 +1,47 @@
+@media (max-width: 768px) {
+  .container-outer {
+    margin: 0 10px;
+  }
+}
+
+.alert-container .alert {
+  margin: 10px;
+}
+
+.checkbox-opp-form {
+  margin-top: 3px;
+}
+
+.centered-form h3, h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.categories-group > .checkbox:first-child {
+  margin-top: 0;
+}
+
+.days-table {
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+
+/*Tweaks to fit things onto very small screens:*/
+@media (max-width: 400px) {
+  table.table.days-table thead td {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/*~~~~~~~~~~~ Google Sign-In Div ~~~~~~~~~~~*/
+
+.g-signin2 {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/*Centering button placement: */
+.g-signin2 > div{
+  margin: 0 auto;
+}

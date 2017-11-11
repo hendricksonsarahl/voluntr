@@ -17,6 +17,48 @@
   margin-bottom: 0;
 }
 
+/*~~~~~~~~Flexbox layout for Opp Headers:~~~~~~~~~~~*/
+
+.opp-header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.opp-header__top {
+  order: 0;
+  flex: 2 2 auto;
+  align-self: stretch;
+}
+
+.opp-header__bottom {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.opp-header__bottom-left, .opp-header__bottom-right {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: flex-start;
+}
+
+.opp-header__bottom-left {
+  margin-right: 8px;
+}
+
+.opp-header__bottom-right {
+  margin-left: 8px;
+}
+
 /*Custom backgrounds for different categories:*/
 
 .opp-header--animals {
