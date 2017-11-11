@@ -5,8 +5,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     bundle: "./src/js/main.js",
-    vendor: "./src/js/vendor.js",
-    css: "./src/css/main.css"
+    vendor: "./src/js/vendor.js"
   },
   output: {
     path: path.resolve(__dirname, "static/build"),
@@ -34,11 +33,21 @@ module.exports = {
         test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
         loader: 'file-loader'
       },
+      // Don't use PostCSS on vendor code
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: ["css-loader","postcss-loader"]
+        })
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ["css-loader"]
         })
       }
     ]
