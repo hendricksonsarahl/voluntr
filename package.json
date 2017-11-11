@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A web app that provides a simple platform for nonprofits to connect with potential volunteers",
   "scripts": {
-    "test": "jest --watch --verbose",
+    "test": "jest --watch --coverage",
     "build": "webpack --watch --progress --hide-modules true",
     "heroku-postbuild": "webpack --config webpack.config.prod.js --progress --hide-modules true"
   },
@@ -44,9 +44,15 @@
     "eslint-config-prettier": "^2.7.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.8.0",
-    "jest": "^21.2.1"
+    "jest": "^21.2.1",
+    "jest-localstorage-mock": "^2.1.0"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
+  },
+  "jest": {
+    "setupFiles": ["jest-localstorage-mock"]
   }
 }
