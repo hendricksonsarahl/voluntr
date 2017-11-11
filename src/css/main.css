@@ -176,7 +176,7 @@ p.help-block {
 /*Index splash image styling:*/
 
 .jumbotron-index {
-  background: url("../images/splash_800x.jpg");
+  background: url("/static/images/splash_800x.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -200,7 +200,7 @@ p.help-block {
 /*Index and Login icon styling:*/
 
 .icon-search {
-  background: url("../images/search-icon.png");
+  background: url("/static/images/search-icon.png");
   background-repeat: no-repeat;
   background-size: 100px;
   background-position: center center;
@@ -210,7 +210,7 @@ p.help-block {
 }
 
 .icon-save {
-  background: url("../images/save-icon.png");
+  background: url("/static/images/save-icon.png");
   background-repeat: no-repeat;
   background-size: 100px;
   background-position: center center;
@@ -220,7 +220,7 @@ p.help-block {
 }
 
 .icon-voluntr {
-  background: url("../images/voluntr_logo_small.png");
+  background: url("/static/images/voluntr_logo_small.png");
   background-repeat: no-repeat;
   background-size: 100px;
   background-position: center center;
@@ -230,7 +230,7 @@ p.help-block {
 }
 
 .icon-signup {
-  background: url("../images/signup-icon.png");
+  background: url("/static/images/signup-icon.png");
   background-repeat: no-repeat;
   background-size: 100px;
   background-position: center center;
@@ -240,7 +240,7 @@ p.help-block {
 }
 
 .icon-form {
-  background: url("../images/form-icon.png");
+  background: url("/static/images/form-icon.png");
   background-repeat: no-repeat;
   background-size: 100px;
   background-position: center center;
