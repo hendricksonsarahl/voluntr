@@ -33,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
-        loader: 'file-loader'
+        loader: "file-loader"
       },
       // Don't use PostCSS on vendor code
       {
@@ -41,7 +41,10 @@ module.exports = {
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader","postcss-loader"]
+          use: [
+            "css-loader",
+            "postcss-loader"
+          ]
         })
       },
       {
@@ -61,7 +64,6 @@ module.exports = {
       filename: "vendor.js"
     }),
     new ExtractTextPlugin("bundle.css")
-
 
     // Minify JS Code (reduces file size by ~60-70%, but makes it unreadable)
     // new webpack.optimize.UglifyJsPlugin()

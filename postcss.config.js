@@ -1,9 +1,11 @@
-module.exports = ({ file, options, env }) => ({
+module.exports = () => ({
   plugins: {
-    stylelint: env == 'production' ? false: {
-      config: { extends: "stylelint-config-recommended" }
-    },
-    'autoprefixer': env == 'production' ? options.autoprefixer : false,
-    'cssnano': env === 'production' ? options.cssnano : false
+    stylelint: process.env.NODE_ENV === "development"
+      ? {
+          config: { extends: "stylelint-config-recommended" }
+        }
+      : false,
+    autoprefixer: process.env.NODE_ENV === "production" ? {} : false,
+    cssnano: process.env.NODE_ENV === "production" ? {} : false
   }
-})
+});

@@ -24,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
-        loader: 'file-loader'
+        loader: "file-loader"
       },
       // Don't use PostCSS on vendor code
       {
@@ -32,7 +32,10 @@ module.exports = {
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader","postcss-loader"]
+          use: [
+            "css-loader",
+            "postcss-loader"
+          ]
         })
       },
       {

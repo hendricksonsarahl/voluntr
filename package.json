@@ -5,7 +5,7 @@
   "scripts": {
     "test": "tap 'tests/**/*.test.js' --cov | tap-mocha-reporter spec",
     "build": "webpack --watch --progress --hide-modules true",
-    "heroku-postbuild": "webpack --config webpack.config.prod.js --progress"
+    "heroku-postbuild": "webpack --config webpack.config.prod.js --progress --hide-modules true"
   },
   "repository": {
     "type": "git",
@@ -44,7 +44,6 @@
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.8.0",
     "jsdom": "^11.3.0",
-    
     "tap": "^10.7.2",
     "tap-mocha-reporter": "^3.0.6"
   }
