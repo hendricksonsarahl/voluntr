@@ -1,4 +1,4 @@
-// Should only run in a development environment (e.g., locally)
+// Should only run in a production environment (e.g., Heroku)
 
 const path = require("path");
 const webpack = require("webpack");
@@ -15,15 +15,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        enforce: "pre",
-        loader: "eslint-loader",
-        options: {
-          fix: false
-        }
-      },
       {
         test: /\.js$/,
         loader: "babel-loader",
@@ -60,10 +51,9 @@ module.exports = {
       name: "vendor",
       filename: "vendor.js"
     }),
-    new ExtractTextPlugin("bundle.css")
-
+    new ExtractTextPlugin("bundle.css"),
 
     // Minify JS Code (reduces file size by ~60-70%, but makes it unreadable)
-    // new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin()
   ]
 };
