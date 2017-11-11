@@ -31,7 +31,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
         loader: 'file-loader'
       },
       {
@@ -49,7 +49,7 @@ module.exports = {
       name: "vendor",
       filename: "vendor.js"
     }),
-    new ExtractTextPlugin("bundle.css"),
+    new ExtractTextPlugin("bundle.css")
 
 
     // Minify JS Code (reduces file size by ~60-70%, but makes it unreadable)

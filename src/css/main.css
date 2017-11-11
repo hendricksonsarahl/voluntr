@@ -1,5 +1,3 @@
-/*@import '../../node_modules/bootswatch/cosmo/bootstrap.min.css';*/
-
 @import './opp-headers.css';
 
 body {
@@ -267,7 +265,8 @@ p.help-block {
 
 /*Make tooltips responsive: */
 
-.introjs-tooltip {
+/*.introjs-tooltip {
   min-width: 100%; 
   max-width: 100%;
-}
+}*/
+
