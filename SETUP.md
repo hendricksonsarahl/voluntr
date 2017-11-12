@@ -155,7 +155,14 @@ To run the python unit tests,
 
     Note: You can run a subset of tests by using `py.test tests/pytest/<subfolder_or_file_name>`
 
-3. Write new test files in the `tests/pytest` folder.  
+3. Write new test files in the `tests/pytest` folder. 
+
+    In order for the `py.test` command to find your tests, name your test files using the following format:
+
+    ```
+    test_*.py OR 
+    *_test.py
+    ```  
 
 ### Once you are ready to code, please see our [guidelines for contributing](https://github.com/hendricksonsarahl/voluntr/blob/master/CONTRIBUTING.md)
 
