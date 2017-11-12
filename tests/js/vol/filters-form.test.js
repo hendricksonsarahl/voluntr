@@ -3,7 +3,7 @@ import {
   toggleSelectAllCheckbox
 } from "../../../src/js/vol/filters-form.js";
 
-let categoryInputs, selectAllButton;
+let categoryInputs, selectAllCheckbox;
 const setUpDOM = () => {
   document.body.innerHTML = `
     <div class="checkbox" id="selectAll">
@@ -13,11 +13,10 @@ const setUpDOM = () => {
     </div>                
     <input id="animals" type="checkbox" name="category" value="animals">Animals
     <input id="arts_culture" type="checkbox" name="category" value="arts_culture">Arts &amp; Culture
-    <input id="kids_youth" type="checkbox" name="category" value="kids_youth">Children &amp; Youth
   `;
 
   categoryInputs = document.querySelectorAll("input[name=category]");
-  selectAllButton = document.querySelector("#selectAll input");
+  selectAllCheckbox = document.querySelector("#selectAll input");
 };
 
 beforeEach(setUpDOM);
@@ -31,7 +30,7 @@ describe("selectAllCategories", () => {
   });
 
   it("Should check all category checkboxes if selectAll not previously checked", () => {
-    selectAllButton.checked = true;
+    selectAllCheckbox.checked = true;
     selectAllCategories();
     categoryInputs.forEach(input => {
       expect(input.checked).toBe(true);
@@ -39,8 +38,42 @@ describe("selectAllCategories", () => {
   });
 });
 
-describe('toggleSelectAllCheckbox', () => {
-  it ("Should", () => {
-    toggleSelectAllCheckbox();
-  })
+describe("toggleSelectAllCheckbox", () => {
+  it("Should un-check selectAllCheckbox when another box is un-checked", () => {
+    // set it to checked to begin with:
+    selectAllCheckbox.checked = true;
+
+    // un-check a different box:
+    let animalsCheckbox = document.getElementById("animals");
+    animalsCheckbox.checked = false;
+    toggleSelectAllCheckbox.bind(animalsCheckbox)();
+
+    expect(selectAllCheckbox.checked).toBe(false);
+  });
+
+  it("Should leave selectAllCheckbox checked when one (but not all) other box is checked", () => {
+    // set it to checked to begin with:
+    selectAllCheckbox.checked = false;
+
+    // check a different box:
+    let animalsCheckbox = document.getElementById("animals");
+    animalsCheckbox.checked = true;
+    toggleSelectAllCheckbox.bind(animalsCheckbox)();
+
+    expect(selectAllCheckbox.checked).toBe(false);
+  });
+
+  it("Should leave selectAllCheckbox checked when one (but not all) other box is checked", () => {
+    // set it to checked to begin with:
+    selectAllCheckbox.checked = false;
+
+    // check a different box, after all other boxes checked:
+    categoryInputs.forEach(input => {
+      input.checked = true;
+    });
+    let animalsCheckbox = document.getElementById("animals");
+    toggleSelectAllCheckbox.bind(animalsCheckbox)();
+
+    expect(selectAllCheckbox.checked).toBe(true);
+  });
 });
