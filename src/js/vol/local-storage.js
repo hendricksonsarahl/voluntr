@@ -28,6 +28,8 @@ export function removeOppFromStore(oppId) {
   const indexToRemove = oppList.findIndex(opp => opp.id === parseInt(oppId, 10));
 
   // Remove the opportunity from the store and save to localStorage
-  oppList.splice(indexToRemove, 1);
-  localStorage.setItem("savedOpps", JSON.stringify(oppList));
+  if (indexToRemove > -1) {
+    oppList.splice(indexToRemove, 1);
+    localStorage.setItem("savedOpps", JSON.stringify(oppList));
+  }
 }
