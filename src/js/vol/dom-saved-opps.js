@@ -1,7 +1,7 @@
 // Collects all DOM Manipulation for the opp-saving feature
 
 // map the opportunities found in localStorage to HTML panels, then append them to a container
-function showOpps(store, parentElt) {
+export function showOpps(store, parentElt) {
   const headerElt = document.createElement("h2");
   headerElt.textContent = "My Saved Posts";
   parentElt.appendChild(headerElt);
@@ -34,7 +34,7 @@ function showOpps(store, parentElt) {
 }
 
 // Display message if no opportunities have been saved yet
-function showNoOppsMessage(parentElt) {
+export function showNoOppsMessage(parentElt) {
   parentElt.innerHTML =
     '<h2>Nothing Saved Yet</h2><p><a href="/opportunities">Continue browsing opportunities</a></p>';
 }
