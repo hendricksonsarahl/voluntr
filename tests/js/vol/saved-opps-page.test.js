@@ -2,7 +2,7 @@ import {
   showOpps,
   showNoOppsMessage,
   renderSavedOpps
-} from "../../../src/js/vol/dom-saved-opps.js";
+} from "../../../src/js/vol/saved-opps-page.js";
 
 let parentElt;
 const fullStore = [

@@ -10,7 +10,7 @@ import {
   selectAllCategories,
   toggleSelectAllCheckbox
 } from "./vol/filters-form";
-import { renderSavedOpps } from "./vol/dom-saved-opps";
+import { renderSavedOpps } from "./vol/saved-opps-page";
 import { updateSaveButton } from "./vol/save-button";
 
 // Webpack uses this file as entry point for bundling CSS assets
