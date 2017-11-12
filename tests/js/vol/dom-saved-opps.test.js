@@ -35,13 +35,13 @@ describe("renderSavedOpps", () => {
 
   it("Rendered HTML matches snapshot for store with content", () => {
     renderSavedOpps(fullStore, parentElt);
-    const renderHTML = parentElt.innerHTML;
-    expect(renderHTML).toMatchSnapshot();
+    const renderedHTML = parentElt.innerHTML;
+    expect(renderedHTML).toMatchSnapshot();
   });
 
   it("Rendered HTML matches snapshot for empty store", () => {
     renderSavedOpps(emptyStore, parentElt);
-    const renderHTML = parentElt.innerHTML;
-    expect(renderHTML).toMatchSnapshot();
+    const renderedHTML = parentElt.innerHTML;
+    expect(renderedHTML).toMatchSnapshot();
   });
 });
