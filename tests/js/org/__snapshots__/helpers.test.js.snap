@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displayError Rendered alert matches snapshot for error argument 1`] = `"<div class=\\"alert-container\\"><div class=\\"alert alert-danger alert-dismissible fade in\\"><button type=\\"button\\" class=\\"close\\" data-dismiss=\\"alert\\" aria-label=\\"Close\\"><span aria-hidden=\\"true\\">×</span></button><strong>Error: </strong>message in error object</div></div>"`;
+
+exports[`displayError Rendered alert matches snapshot for string argument 1`] = `"<div class=\\"alert-container\\"><div class=\\"alert alert-danger alert-dismissible fade in\\"><button type=\\"button\\" class=\\"close\\" data-dismiss=\\"alert\\" aria-label=\\"Close\\"><span aria-hidden=\\"true\\">×</span></button><strong>Error: </strong>message in string</div></div>"`;
