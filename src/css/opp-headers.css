@@ -1,0 +1,132 @@
+/*Background overlay effect for text on photos:*/
+
+.opp-header {
+  color: #fff;
+  min-height: 300px;
+  padding: 0px 15px;
+  position: relative;
+}
+
+.opp-header * {
+  font-weight: bold;
+}
+
+.opp-header h4 {
+  text-transform: uppercase;
+  margin-top: 3px;
+  margin-bottom: 0;
+}
+
+/*~~~~~~~~Flexbox layout for Opp Headers:~~~~~~~~~~~*/
+
+.opp-header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.opp-header__top {
+  order: 0;
+  flex: 2 2 auto;
+  align-self: stretch;
+}
+
+.opp-header__bottom {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
+}
+
+.opp-header__bottom-left, .opp-header__bottom-right {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: flex-start;
+}
+
+.opp-header__bottom-left {
+  margin-right: 8px;
+}
+
+.opp-header__bottom-right {
+  margin-left: 8px;
+}
+
+/*Custom backgrounds for different categories:*/
+
+.opp-header--animals {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/animals.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--arts_culture {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/arts_culture.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--community {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/community.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--disabilities {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/disabilities.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--education_lit {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/education_lit.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--environment {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/environment.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--health_med {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/health_med.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--houseless {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/houseless.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--hunger {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/hunger.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.opp-header--kids_youth {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/kids_youth.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}

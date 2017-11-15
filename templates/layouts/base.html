@@ -3,12 +3,8 @@
   <head>
     <title>{{title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--     <link rel="stylesheet" href="/static/vendor/bootstrap-3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/vendor/bootstrap-3.3.7/css/bootstrap-theme.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Autour+One" rel="stylesheet">
-    <link rel="stylesheet" href="/static/vendor/bootswatch/cosmo/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/custom.css">
-    <link rel="stylesheet" href="/static/css/introjs.css">
+    <link rel="stylesheet" href="/static/build/bundle.css">
 
     {% block headContent %}
 
@@ -20,11 +16,8 @@
     
     {% endblock %}
 
-    <script src="/static/vendor/jquery-3.2.1/jquery-3.2.1.min.js"></script>
-    <script src="/static/vendor/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script src="/static/js/org.js"></script>
-    <script src="/static/js/intro.js"></script>
-    
+    <script src="/static/build/vendor.js"></script>
+    <script src="/static/build/bundle.js"></script>    
 
     {% block scriptContent %}
     

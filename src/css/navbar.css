@@ -1,0 +1,26 @@
+.navbar .navbar-brand {
+  position: relative;
+  bottom: 3px;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-family: 'Autour One',Calibri,Candara,Arial,sans-serif;
+  color: #eee;
+}
+
+.navbar-brand img {
+  height: 30px;
+  display: inline;
+  margin-right: 5px;
+  position: relative;
+  bottom: 3px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    margin-bottom: 10px;
+  }
+
+  .navbar-brand {
+    font-size: 18px;
+  }
+}

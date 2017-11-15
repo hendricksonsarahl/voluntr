@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "A web app that provides a simple platform for nonprofits to connect with potential volunteers",
   "scripts": {
-    "test": "tap 'tests/**/*.test.js' --cov | tap-mocha-reporter spec"
+    "test": "tap 'tests/**/*.test.js' --cov | tap-mocha-reporter spec",
+    "build": "webpack --watch --progress --hide-modules true",
+    "heroku-postbuild": "webpack --config webpack.config.prod.js --progress --hide-modules true"
   },
   "repository": {
     "type": "git",
@@ -15,12 +17,34 @@
     "url": "https://github.com/hendricksonsarahl/voluntr/issues"
   },
   "homepage": "https://github.com/hendricksonsarahl/voluntr#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "cssnano": "^3.10.0",
+    "autoprefixer": "^7.1.6",
+    "bootstrap": "^3.3.7",
+    "bootswatch": "^3.3.7",
+    "intro.js": "^2.8.0-alpha.1",
+    "jquery": "^3.2.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "postcss-loader": "^2.0.8",
+    "style-loader": "^0.19.0",
+    "stylelint": "^8.2.0",
+    "stylelint-config-recommended": "^1.0.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.8.1"
+  },
   "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
     "jsdom": "^11.3.0",
     "tap": "^10.7.2",
     "tap-mocha-reporter": "^3.0.6"
-  },
-  "dependencies": {
-    "intro.js": "^2.8.0-alpha.1"
   }
 }

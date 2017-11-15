@@ -1,0 +1,51 @@
+/*Index and Login icon styling:*/
+
+.icon-search {
+  background: url("/static/images/search-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px;
+}
+
+.icon-save {
+  background: url("/static/images/save-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px;
+}
+
+.icon-voluntr {
+  background: url("/static/images/voluntr_logo_small.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px;
+}
+
+.icon-signup {
+  background: url("/static/images/signup-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px;
+}
+
+.icon-form {
+  background: url("/static/images/form-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center center;
+  color: #fff;
+  height: 100px;
+  padding: 10px;
+}
