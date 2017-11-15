@@ -2,7 +2,6 @@
 
 ## Current Version: 1.0.5
 
-
 <h4> A web app that provides a simple platform for nonprofits to connect with potential volunteers. <br>
 <b><a href="https://voluntr-demo.herokuapp.com/">Currently deployed on Heroku!</a></b></h4>
 
