@@ -78,6 +78,8 @@ Follow these steps to successfully run this app on your machine!
     source venv/bin/activate
     ```
 
+    Note: for Windows users, the path to activate your virtual environment will likely be `source venv/Scripts/activate`
+
 2. Install dependencies from the Voluntr requirements.txt file
 
     ```sh
@@ -158,6 +160,28 @@ To run the JavaScript unit tests,
 
 5.  Write new test files in the `tests/js` folder.	
 
+### Python Testing
+
+To run the python unit tests, 
+
+1. Make sure you have installed the requirements.txt file to your virtual environment.  You will need the pytest-flask library to run the tests.
+
+2. Run all existing unit tests from the command line with:
+
+    ```
+    py.test
+    ```
+
+    Note: You can run a subset of tests by using `py.test tests/pytest/<subfolder_or_file_name>`
+
+3. Write new test files in the `tests/pytest` folder. 
+
+    In order for the `py.test` command to find your tests, name your test files using the following format:
+
+    ```
+    test_*.py OR 
+    *_test.py
+    ```  
 
 ### Once you are ready to code, please see our [guidelines for contributing](https://github.com/hendricksonsarahl/voluntr/blob/master/CONTRIBUTING.md)
 
