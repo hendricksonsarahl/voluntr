@@ -7,7 +7,6 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     bundle: "./src/js/main.js",
-    vendor: "./src/js/vendor.js"
   },
   output: {
     path: path.resolve(__dirname, "static/build"),
@@ -50,10 +49,10 @@ module.exports = {
   },
   plugins: [
     // Prevent vendor code from being duplicated in other bundles:
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      filename: "vendor.js"
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: "vendor",
+    //   filename: "vendor.js"
+    // }),
     new ExtractTextPlugin("bundle.css"),
 
     // Minify JS Code (reduces file size by ~60-70%, but makes it unreadable)
