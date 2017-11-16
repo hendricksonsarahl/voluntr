@@ -4,7 +4,7 @@ from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
 from csvdata.oppscsv import add_opportunities
 from filters import Filters
-import datetime
+import datetime, os
 from helpers import *
 
 # TODO - post methods to handle form data are needed on the following routes: 
@@ -351,10 +351,12 @@ def show_opportunity():
 # Run this route upon app startup to load sample data
 @app.route("/drop_create", methods=['GET'])
 def dropCreate():
-    db.drop_all()
-    db.create_all()
-    add_orgs()
-    add_opportunities()
+    # disable this route for production in environment
+    if 'IS_PRODUCTION' not in os.environ:
+        db.drop_all()
+        db.create_all()
+        add_orgs()
+        add_opportunities()
     
     return redirect('/')
 
