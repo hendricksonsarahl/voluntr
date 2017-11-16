@@ -1,3 +1,4 @@
+// import app code from modules:
 import { onSignIn, signOut } from "./org/auth";
 import { toggleFlexible } from "./org/opp-forms";
 import { idInArray } from "./vol/helpers";
@@ -14,6 +15,9 @@ import { updateSaveButton, renderSavedOpps } from "./vol/dom-saved-opps";
 
 // Webpack uses this file as entry point for bundling CSS assets
 import "../css/index.js";
+
+// import intro.js package, attach to global scope:
+window.introJs = require("intro.js");
 
 // don't run this outside of a browser environment (e.g., when testing in Node)
 if (typeof window !== "undefined") {

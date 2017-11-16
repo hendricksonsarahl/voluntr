@@ -20,4 +20,3 @@ require('bootstrap/js/dropdown.js')
 // require('../../js/tab.js')
 // require('../../js/affix.js')
 
-window.introJs = require("intro.js");
