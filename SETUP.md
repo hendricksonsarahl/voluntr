@@ -53,7 +53,7 @@ Follow these steps to successfully run this app on your machine!
       We are using Flask 0.12.2, so check that your version matches.
 
 
-## 2. Download the project.
+## 2. Download the project
 
 1. [Fork this repository](https://github.com/hendricksonsarahl/voluntr)
 
@@ -69,7 +69,7 @@ Follow these steps to successfully run this app on your machine!
       cd voluntr
       ```
 
-## 3. Set up development environment:
+## 3. Set up development environment
 
 1. Set up a [Python Virtual Environment (venv)](https://docs.python.org/3/library/venv.html):
 
@@ -101,7 +101,7 @@ Follow these steps to successfully run this app on your machine!
       - username: voluntr
       - password: voluntr
 
-## 4. Run the app.
+## 4. Run the app
 
 1. Run:
 
@@ -115,7 +115,7 @@ Follow these steps to successfully run this app on your machine!
 
 ## 5. Compiling JavaScript and CSS
 
-Our JavaScript and CSS source code files are found in `src/js` and `src/css`, respectively. These are the only JavaScript and CSS files that should be directly edited. They are processed and bundled by Webpack, with the resulting files produced in `static/build`. These are the files that will be directly loaded by the browser.
+Our JavaScript and CSS source code files are found in `src/js` and `src/css`, respectively. These are the only JavaScript and CSS files that should be directly edited. They are processed and bundled by Webpack, with the resulting files produced in `static/build`.
 
 To compile JavaScript and CSS files,
 
@@ -133,34 +133,8 @@ To compile JavaScript and CSS files,
 	```
 	This command will generate updated bundles, and then start watching for changes to source files, which then trigger a new build. **Whenever you plan to work with JavaScript or CSS code, you should begin by running this command and leaving its terminal window open and running in the background.**
 
-## 6. Testing.
-### JavaScript
-
-To run the JavaScript unit tests, 
-
-1. Install Node.js. Installer files are available for many platforms at [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
-
-2. From the `voluntr` project directory, locally install the project dependencies with:
-
-	```
-	npm install
-	```
-
-3. If it isn't already running, run the app with: 
-
-  ```sh
-  python voluntr.py
-  ```
-
-4.  Run the existing unit tests with:
-
-	```
-	npm test
-	```
-
-5.  Write new test files in the `tests/js` folder.	
-
-### Python Testing
+## 6. Testing
+### Python
 
 To run the python unit tests, 
 
@@ -182,6 +156,28 @@ To run the python unit tests,
     test_*.py OR 
     *_test.py
     ```  
+    
+### JavaScript
+
+To run the JavaScript unit tests, 
+
+1. Install Node.js. Installer files are available for many platforms at [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+
+2. From the `voluntr` project directory, locally install the project dependencies with:
+
+	```
+	npm install
+	```
+
+3. Run the existing tests with:
+
+	```
+	npm test
+	```
+
+4. Write new test files in the `tests/js` folder. The directory structure of this folder should match that of `src/js`, with filenames of the form `[file-being-tested].test.js`.
+
+
 
 ### Once you are ready to code, please see our [guidelines for contributing](https://github.com/hendricksonsarahl/voluntr/blob/master/CONTRIBUTING.md)
 
