@@ -48,6 +48,7 @@ coverage.xml
 coverage/
 *.cover
 .hypothesis/
+coverage/
 
 # Translations
 *.mo
