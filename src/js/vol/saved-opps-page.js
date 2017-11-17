@@ -1,7 +1,7 @@
 // Collects all DOM Manipulation for the opp-saving feature
 
 // map the opportunities found in localStorage to HTML panels, then append them to a container
-function showOpps(store, parentElt) {
+export function showOpps(store, parentElt) {
   const headerElt = document.createElement("h2");
   headerElt.textContent = "My Saved Posts";
   parentElt.appendChild(headerElt);
@@ -34,23 +34,9 @@ function showOpps(store, parentElt) {
 }
 
 // Display message if no opportunities have been saved yet
-function showNoOppsMessage(parentElt) {
+export function showNoOppsMessage(parentElt) {
   parentElt.innerHTML =
     '<h2>Nothing Saved Yet</h2><p><a href="/opportunities">Continue browsing opportunities</a></p>';
-}
-
-// change the appearance and text of the save button when an opp is saved or removed
-export function updateSaveButton(isSaved) {
-  if (isSaved) {
-    this.classList.remove("btn-default");
-    this.classList.add("btn-success");
-    this.innerHTML = 'Saved!&nbsp;<span class="glyphicon glyphicon-ok"></span>';
-  } else {
-    this.classList.add("btn-default");
-    this.classList.remove("btn-success");
-    this.innerHTML =
-      'Save&nbsp;<span class="glyphicon glyphicon-pushpin"></span>';
-  }
 }
 
 // Update the display

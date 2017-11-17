@@ -12,7 +12,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -49,6 +48,7 @@ coverage.xml
 coverage/
 *.cover
 .hypothesis/
+coverage/
 
 # Translations
 *.mo

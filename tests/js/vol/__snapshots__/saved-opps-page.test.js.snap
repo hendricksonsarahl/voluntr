@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderSavedOpps Rendered HTML matches snapshot for empty store 1`] = `"<h2>Nothing Saved Yet</h2><p><a href=\\"/opportunities\\">Continue browsing opportunities</a></p>"`;
+
+exports[`renderSavedOpps Rendered HTML matches snapshot for store with content 1`] = `
+"<h2>My Saved Posts</h2><div>
+    <div class=\\"panel panel-default\\" data-id=\\"1\\">
+      <div class=\\"panel-body\\">
+        <h4>One
+          <br>
+          <small>Thursday, October 26, 2017</small>
+        </h4>
+        <div class=\\"pull-right\\">
+          <form action=\\"/match\\" method=\\"post\\">
+            <input type=\\"hidden\\" name=\\"oppId\\" value=\\"1\\">
+            <button type=\\"submit\\" class=\\"btn btn-primary\\">View&nbsp;
+              <span class=\\"glyphicon glyphicon-play\\"></span>
+            </button>
+            <a class=\\"btn btn-danger remove-button\\" href=\\"#\\" role=\\"button\\">Remove&nbsp;
+            <div class=\\"glyphicon glyphicon-remove\\"></div>
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div><div>
+    <div class=\\"panel panel-default\\" data-id=\\"2\\">
+      <div class=\\"panel-body\\">
+        <h4>Two
+          <br>
+          <small>Thursday, October 26, 2017</small>
+        </h4>
+        <div class=\\"pull-right\\">
+          <form action=\\"/match\\" method=\\"post\\">
+            <input type=\\"hidden\\" name=\\"oppId\\" value=\\"2\\">
+            <button type=\\"submit\\" class=\\"btn btn-primary\\">View&nbsp;
+              <span class=\\"glyphicon glyphicon-play\\"></span>
+            </button>
+            <a class=\\"btn btn-danger remove-button\\" href=\\"#\\" role=\\"button\\">Remove&nbsp;
+            <div class=\\"glyphicon glyphicon-remove\\"></div>
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div><div>
+    <div class=\\"panel panel-default\\" data-id=\\"3\\">
+      <div class=\\"panel-body\\">
+        <h4>Three
+          <br>
+          <small>Thursday, October 26, 2017</small>
+        </h4>
+        <div class=\\"pull-right\\">
+          <form action=\\"/match\\" method=\\"post\\">
+            <input type=\\"hidden\\" name=\\"oppId\\" value=\\"3\\">
+            <button type=\\"submit\\" class=\\"btn btn-primary\\">View&nbsp;
+              <span class=\\"glyphicon glyphicon-play\\"></span>
+            </button>
+            <a class=\\"btn btn-danger remove-button\\" href=\\"#\\" role=\\"button\\">Remove&nbsp;
+            <div class=\\"glyphicon glyphicon-remove\\"></div>
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>"
+`;

@@ -72,7 +72,7 @@ def opportunities():
 
         resp = make_response(render_template('volunteer/opportunities.html', 
                                             opp=opp, event_date = event_date, event_time=event_time, 
-                                            json=json, title="Voluntr | Browse Opportunities"), is_production=is_production
+                                            json=json, title="Voluntr | Browse Opportunities",is_production=is_production)
                                             ) # tells the cookie what to load while it sets itself
 
         resp.set_cookie('filters', str(index) + "/" + cat + "/" + avail + "/" + zipcode + "/" + distance ) #preps cookie for setting
