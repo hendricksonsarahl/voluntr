@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`updateSaveButton Rendered button HTML matches snapshot for 'false' argument 1`] = `"<button id=\\"save-button\\" class=\\"btn btn-default\\">Save&nbsp;<span class=\\"glyphicon glyphicon-pushpin\\"></span></button>"`;
+
+exports[`updateSaveButton Rendered button HTML matches snapshot for 'true' argument 1`] = `"<button id=\\"save-button\\" class=\\"btn btn-success\\">Saved!&nbsp;<span class=\\"glyphicon glyphicon-ok\\"></span></button>"`;

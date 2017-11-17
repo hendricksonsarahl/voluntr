@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A web app that provides a simple platform for nonprofits to connect with potential volunteers",
   "scripts": {
-    "test": "tap 'tests/**/*.test.js' --cov | tap-mocha-reporter spec",
+    "test": "jest --watch --coverage",
     "build": "webpack --watch --progress --hide-modules true",
     "heroku-postbuild": "webpack --config webpack.config.prod.js --progress --hide-modules true"
   },
@@ -38,13 +38,21 @@
     "webpack": "^3.8.1"
   },
   "devDependencies": {
+    "babel-jest": "^21.2.0",
     "eslint": "^4.10.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.7.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.8.0",
-    "jsdom": "^11.3.0",
-    "tap": "^10.7.2",
-    "tap-mocha-reporter": "^3.0.6"
+    "jest": "^21.2.1",
+    "jest-localstorage-mock": "^2.1.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "jest": {
+    "setupFiles": ["jest-localstorage-mock"]
   }
 }
