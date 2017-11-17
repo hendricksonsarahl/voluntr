@@ -4,11 +4,10 @@ from models.org import Organization, Opportunity
 from csvdata.orgcsv import add_orgs
 from csvdata.oppscsv import add_opportunities
 from filters import Filters
-import datetime
+import datetime, os
 from helpers import *
 
-# TODO - post methods to handle form data are needed on the following routes: 
-# /org/edit
+is_production = 'IS_PRODUCTION' in os.environ
 
 # Voluntr landing page - accessed at localhost:5000 for now
 @app.route("/", methods=['GET'])
@@ -16,7 +15,7 @@ def index():
     ''' displays a landing page that invites the user to interact 
     with the app as either a individual volunteer or an organization/non-profit 
     representative '''
-    return render_template('index.html', title="Voluntr")
+    return render_template('index.html', title="Voluntr", is_production=is_production)
 
 
 @app.route("/filters", methods=['GET', 'POST'])
@@ -37,7 +36,7 @@ def set_filters():
 
     categories = get_categories()
 
-    return render_template('volunteer/filters.html', title="Voluntr | Filters", categories = categories)
+    return render_template('volunteer/filters.html', title="Voluntr | Filters", categories = categories, is_production=is_production)
 
 
 @app.route("/opportunities", methods=['GET'])
@@ -73,7 +72,7 @@ def opportunities():
 
         resp = make_response(render_template('volunteer/opportunities.html', 
                                             opp=opp, event_date = event_date, event_time=event_time, 
-                                            json=json, title="Voluntr | Browse Opportunities")
+                                            json=json, title="Voluntr | Browse Opportunities",is_production=is_production)
                                             ) # tells the cookie what to load while it sets itself
 
         resp.set_cookie('filters', str(index) + "/" + cat + "/" + avail + "/" + zipcode + "/" + distance ) #preps cookie for setting
@@ -86,7 +85,7 @@ def opportunities():
 @app.route("/matches", methods=['GET'])
 def display_matches():
     '''lists all opportunities that a volunteer user saved'''
-    return render_template('volunteer/matches.html', title="Voluntr | Saved Opportunities")
+    return render_template('volunteer/matches.html', title="Voluntr | Saved Opportunities", is_production=is_production)
 
 @app.route("/match", methods=['POST'])
 def display_match():
@@ -97,12 +96,12 @@ def display_match():
     event_date = readable_date(opp.startDateTime)
     event_time = readable_times(opp.startDateTime, opp.duration)
     return render_template('volunteer/single_opp.html', title="Voluntr | Saved Opportunity", 
-                                opp=opp, event_date = event_date, event_time=event_time)
+                                opp=opp, event_date = event_date, event_time=event_time, is_production=is_production)
 
 @app.route("/org/login", methods=['GET'])
 def org_login():
     '''displays a form for organizations to signup or login to Voluntr'''
-    return render_template('organization/login.html', title="Voluntr | Log In")
+    return render_template('organization/login.html', title="Voluntr | Log In", is_production=is_production)
         
 @app.route("/org/login", methods=['POST'])
 def login():
@@ -192,7 +191,7 @@ def manage_opportunities():
         for opp in opps:
             opp.startDateTime = readable_date(opp.startDateTime)
         
-        return render_template('organization/opportunities.html', title='Voluntr | Opportunities', headerName = org_name, opportunities = opps)
+        return render_template('organization/opportunities.html', title='Voluntr | Opportunities', headerName = org_name, opportunities = opps, is_production=is_production)
     # just in case cookie isn't there for some reason
     # this should probably lead to an error page, or at least somewhere else.. so i just did this instead
     return  redirect("/")
@@ -250,7 +249,7 @@ def new_opportunity():
     categories = get_categories()
     states = get_states()
 
-    return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories, states = states)
+    return render_template('organization/add.html', title='Voluntr | Add Opportunity', categories = categories, states = states, is_production=is_production)
   
 
 @app.route("/org/profile", methods=['GET', 'POST'])
@@ -276,7 +275,7 @@ def view_profile():
 
     org = process_org_token(request.cookies.get('token'))
 
-    return render_template('organization/profile.html', org=org, title='Voluntr | Account Profile')
+    return render_template('organization/profile.html', org=org, title='Voluntr | Account Profile', is_production=is_production)
 
    
 @app.route("/org/edit", methods=['GET', 'POST'])
@@ -334,7 +333,7 @@ def edit_opportunity():
     states = get_states()
     return render_template('organization/edit.html', title='Voluntr | Edit Opportunity', opp=opp, 
                                 event_date = event_date, time_start = time_start, time_end = time_end,
-                                categories=categories, states=states)
+                                categories=categories, states=states, is_production=is_production)
 
 
 @app.route("/org/opportunity", methods=['GET'])
@@ -345,16 +344,18 @@ def show_opportunity():
     event_date = readable_date(opp.startDateTime)
     event_time = readable_times(opp.startDateTime, opp.duration)
     return render_template('organization/preview.html', title="Voluntr | Preview Post", opp=opp, 
-                                event_date = event_date, event_time = event_time)
+                                event_date = event_date, event_time = event_time, is_production=is_production)
 
 
 # Run this route upon app startup to load sample data
 @app.route("/drop_create", methods=['GET'])
 def dropCreate():
-    db.drop_all()
-    db.create_all()
-    add_orgs()
-    add_opportunities()
+    # disable this route for production environment
+    if not is_production:
+        db.drop_all()
+        db.create_all()
+        add_orgs()
+        add_opportunities()
     
     return redirect('/')
 
