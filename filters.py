@@ -1,6 +1,7 @@
 from app import db
 from models.org import Opportunity
-from helpers import get_day, get_categories
+from helpers.datetime_helpers import get_day
+from helpers.category_helpers import get_categories
 from pyzipcode import ZipCodeDatabase, ZipNotFoundException
 
 zcdb = ZipCodeDatabase()
