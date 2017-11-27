@@ -1,7 +1,5 @@
 import datetime
-# only datetime needed for this file?
-# from app import db
-# TODO: test these in morning
+
 def get_day(opp_date):
     """takes in a datetime and returns the day of the week"""
     if opp_date == datetime.datetime(2100,1,1,23,30):

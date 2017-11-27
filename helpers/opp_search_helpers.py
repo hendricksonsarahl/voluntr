@@ -1,6 +1,5 @@
 from helpers.category_helpers import get_categories
 
-
 # Route helpers
 ##########################
 def increment(index, length):

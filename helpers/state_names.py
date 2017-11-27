@@ -1,6 +1,3 @@
-# no imports needed?
-# TODO: test in morning
-
 # State name and abbreviation data
 ######################################
 def get_states():

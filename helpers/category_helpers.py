@@ -1,6 +1,3 @@
-# no imports needed?  
-# TODO: test in morning
-
 # Category helpers
 ##############################3
 def get_categories():
