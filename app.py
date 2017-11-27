@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_compress import Compress
 import os
 
 # Check env variables to determine Heroku vs. local database
@@ -9,6 +10,7 @@ else:
   db_uri = 'mysql+pymysql://voluntr:voluntr@localhost:8889/voluntr'
 
 app = Flask(__name__)
+Compress(app)
 
 # Settings for both production and development environments:
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
