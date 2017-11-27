@@ -16,15 +16,15 @@ var _localStorage = __webpack_require__(6);
 
 var _filtersForm = __webpack_require__(7);
 
-var _savedOppsPage = __webpack_require__(43);
+var _savedOppsPage = __webpack_require__(8);
 
-var _saveButton = __webpack_require__(44);
+var _saveButton = __webpack_require__(9);
 
-__webpack_require__(9);
+__webpack_require__(10);
 
 // import intro.js package, attach to global scope:
 // import app code from modules:
-window.introJs = __webpack_require__(19);
+window.introJs = __webpack_require__(20);
 
 // don't run this outside of a browser environment (e.g., when testing in Node)
 
@@ -441,14 +441,81 @@ function toggleSelectAllCheckbox() {
 }
 
 /***/ }),
-/* 8 */,
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showOpps = showOpps;
+exports.showNoOppsMessage = showNoOppsMessage;
+exports.renderSavedOpps = renderSavedOpps;
+// Collects all DOM Manipulation for the opp-saving feature
+
+// map the opportunities found in localStorage to HTML panels, then append them to a container
+function showOpps(store, parentElt) {
+  var headerElt = document.createElement("h2");
+  headerElt.textContent = "My Saved Posts";
+  parentElt.appendChild(headerElt);
+
+  store.forEach(function (opp) {
+    var oppElt = document.createElement("div");
+    oppElt.innerHTML = "\n    <div class=\"panel panel-default\" data-id=\"" + opp.id + "\">\n      <div class=\"panel-body\">\n        <h4>" + opp.title + "\n          <br />\n          <small>" + opp.event_date + "</small>\n        </h4>\n        <div class=\"pull-right\">\n          <form action=\"/match\" method=\"post\">\n            <input type=\"hidden\" name=\"oppId\" value=\"" + opp.id + "\"/>\n            <button type=\"submit\" class=\"btn btn-primary\">View&nbsp;\n              <span class=\"glyphicon glyphicon-play\"></span>\n            </button>\n            <a class=\"btn btn-danger remove-button\" href=\"#\" role=\"button\">Remove&nbsp;\n            <div class=\"glyphicon glyphicon-remove\"></div>\n            </a>\n          </form>\n        </div>\n      </div>\n    </div>\n    ";
+    parentElt.appendChild(oppElt);
+  });
+}
+
+// Display message if no opportunities have been saved yet
+function showNoOppsMessage(parentElt) {
+  parentElt.innerHTML = '<h2>Nothing Saved Yet</h2><p><a href="/opportunities">Continue browsing opportunities</a></p>';
+}
+
+// Update the display
+function renderSavedOpps(store, parentElt) {
+  // Remove everything currently in parentElt
+  parentElt.innerHTML = "";
+
+  // Show saved opps as panels if they exist; otherwise show a message
+  if (store.length > 0) {
+    showOpps(store, parentElt);
+  } else {
+    showNoOppsMessage(parentElt);
+  }
+}
+
+/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(10);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.updateSaveButton = updateSaveButton;
+// change the appearance and text of the save button when an opp is saved or removed
+function updateSaveButton(isSaved) {
+  if (isSaved) {
+    this.classList.remove("btn-default");
+    this.classList.add("btn-success");
+    this.innerHTML = 'Saved!&nbsp;<span class="glyphicon glyphicon-ok"></span>';
+  } else {
+    this.classList.add("btn-default");
+    this.classList.remove("btn-success");
+    this.innerHTML = 'Save&nbsp;<span class="glyphicon glyphicon-pushpin"></span>';
+  }
+}
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 __webpack_require__(11);
 
@@ -466,11 +533,7 @@ __webpack_require__(17);
 
 __webpack_require__(18);
 
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
+__webpack_require__(19);
 
 /***/ }),
 /* 11 */
@@ -522,6 +585,12 @@ __webpack_require__(18);
 
 /***/ }),
 /* 19 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2683,99 +2752,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   exports.introJs = introJs;
   return introJs;
 });
-
-/***/ }),
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.showOpps = showOpps;
-exports.showNoOppsMessage = showNoOppsMessage;
-exports.renderSavedOpps = renderSavedOpps;
-// Collects all DOM Manipulation for the opp-saving feature
-
-// map the opportunities found in localStorage to HTML panels, then append them to a container
-function showOpps(store, parentElt) {
-  var headerElt = document.createElement("h2");
-  headerElt.textContent = "My Saved Posts";
-  parentElt.appendChild(headerElt);
-
-  store.forEach(function (opp) {
-    var oppElt = document.createElement("div");
-    oppElt.innerHTML = "\n    <div class=\"panel panel-default\" data-id=\"" + opp.id + "\">\n      <div class=\"panel-body\">\n        <h4>" + opp.title + "\n          <br />\n          <small>" + opp.event_date + "</small>\n        </h4>\n        <div class=\"pull-right\">\n          <form action=\"/match\" method=\"post\">\n            <input type=\"hidden\" name=\"oppId\" value=\"" + opp.id + "\"/>\n            <button type=\"submit\" class=\"btn btn-primary\">View&nbsp;\n              <span class=\"glyphicon glyphicon-play\"></span>\n            </button>\n            <a class=\"btn btn-danger remove-button\" href=\"#\" role=\"button\">Remove&nbsp;\n            <div class=\"glyphicon glyphicon-remove\"></div>\n            </a>\n          </form>\n        </div>\n      </div>\n    </div>\n    ";
-    parentElt.appendChild(oppElt);
-  });
-}
-
-// Display message if no opportunities have been saved yet
-function showNoOppsMessage(parentElt) {
-  parentElt.innerHTML = '<h2>Nothing Saved Yet</h2><p><a href="/opportunities">Continue browsing opportunities</a></p>';
-}
-
-// Update the display
-function renderSavedOpps(store, parentElt) {
-  // Remove everything currently in parentElt
-  parentElt.innerHTML = "";
-
-  // Show saved opps as panels if they exist; otherwise show a message
-  if (store.length > 0) {
-    showOpps(store, parentElt);
-  } else {
-    showNoOppsMessage(parentElt);
-  }
-}
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateSaveButton = updateSaveButton;
-// change the appearance and text of the save button when an opp is saved or removed
-function updateSaveButton(isSaved) {
-  if (isSaved) {
-    this.classList.remove("btn-default");
-    this.classList.add("btn-success");
-    this.innerHTML = 'Saved!&nbsp;<span class="glyphicon glyphicon-ok"></span>';
-  } else {
-    this.classList.add("btn-default");
-    this.classList.remove("btn-success");
-    this.innerHTML = 'Save&nbsp;<span class="glyphicon glyphicon-pushpin"></span>';
-  }
-}
 
 /***/ })
 ],[1]);
