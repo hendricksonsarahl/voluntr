@@ -48,12 +48,16 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 </div>
 
 ## Wireframes
-<div>
-<b>Current Prototype Wireframes</b>
-</div>
+
+
+### Organization-Side Wireframe
 
 ![Organization-Side Wireframe](./assets/wireframes-org.png)
+
+### Volunteer-Side Wireframe
+
 ![Volunteer-Side Wireframe](./assets/wireframes-volunteer.png)
+
 
 ## Pageflow Diagrams
 
