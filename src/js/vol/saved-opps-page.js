@@ -12,7 +12,7 @@ export function showOpps(store, parentElt) {
     oppElt.innerHTML = `
     <div class="panel panel-default" data-id="${opp.id}">
       <div class="panel-body">
-        <h4 id="${opp.id}-title">
+        <h4 id="opp-${opp.id}-title">
           <br />
           <small>${opp.event_date}</small>
         </h4>
@@ -33,8 +33,8 @@ export function showOpps(store, parentElt) {
     parentElt.appendChild(oppElt);
 
     const titleTextNode = document.createTextNode(opp.title);
-    const titleNode = document.getElementById(`${opp.id}-title`);
-    titleNode.prepend(titleTextNode);
+    const titleNode = document.getElementById(`opp-${opp.id}-title`);
+    titleNode.insertBefore(titleTextNode, titleNode.firstChild);
   });
 }
 
