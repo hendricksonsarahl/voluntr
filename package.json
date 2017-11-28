@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A web app that provides a simple platform for nonprofits to connect with potential volunteers",
   "scripts": {
+    "start": "source venv/bin/activate; concurrently \"python voluntr.py\" \"npm run build\" --names \"🐍 ,📦 \" --prefix name --kill-others-on-fail",
     "test": "jest --watch --coverage",
     "build": "webpack --watch --progress --hide-modules true",
     "heroku-postbuild": "webpack --config webpack.config.prod.js --progress --hide-modules true"
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "babel-jest": "^21.2.0",
+    "concurrently": "^3.5.1",
     "eslint": "^4.10.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.7.0",
@@ -53,6 +55,8 @@
     ]
   },
   "jest": {
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   }
 }

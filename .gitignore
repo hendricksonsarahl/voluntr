@@ -114,3 +114,5 @@ ENV/
 #node stuff
 node_modules/
 .nyc_output/
+static/build/
+package-lock.json

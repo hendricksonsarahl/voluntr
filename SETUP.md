@@ -71,10 +71,14 @@ Follow these steps to successfully run this app on your machine!
 
 ## 3. Set up development environment
 
-1. Set up a [Python Virtual Environment (venv)](https://docs.python.org/3/library/venv.html):
+1. Create a [Python Virtual Environment (venv)](https://docs.python.org/3/library/venv.html):
 
     ```sh
     python3 -m venv venv
+    ```
+    Enter the newly created virtual environment:
+    
+    ```sh
     source venv/bin/activate
     ```
 
@@ -103,7 +107,14 @@ Follow these steps to successfully run this app on your machine!
 
 ## 4. Run the app
 
-1. Run:
+> **Shortcut:** You can enter the virtual environment, start the development server, and compile front-end code with the single command:
+>  	
+>  	```
+>  	npm start
+>  	```
+
+
+1. From the virtual environment created in step 3, run:
 
     ```sh
     python voluntr.py
@@ -131,7 +142,8 @@ To compile JavaScript and CSS files,
 	```
 	npm run build
 	```
-	This command will generate updated bundles, and then start watching for changes to source files, which then trigger a new build. **Whenever you plan to work with JavaScript or CSS code, you should begin by running this command and leaving its terminal window open and running in the background.**
+	This command will generate updated bundles, and then start watching for changes to source files, which then trigger a new build. **Important:** Whenever you plan to work with JavaScript or CSS code, you should begin by running this command and leaving its terminal window open and running in the background.
+	
 
 ## 6. Testing
 ### Python
