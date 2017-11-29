@@ -49,7 +49,15 @@ We are targetting both Nonprofit Organizations and potential volunteers.
 
 ## Wireframes
 
-![First Sprint Wireframe](./assets/voluntr_wireframe.jpg)
+
+### Organization-Side Wireframe
+
+![Organization-Side Wireframe](./assets/wireframes-org.png)
+
+### Volunteer-Side Wireframe
+
+![Volunteer-Side Wireframe](./assets/wireframes-volunteer.png)
+
 
 ## Pageflow Diagrams
 
