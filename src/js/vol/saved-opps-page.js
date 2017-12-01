@@ -8,10 +8,11 @@ export function showOpps(store, parentElt) {
 
   store.forEach(opp => {
     const oppElt = document.createElement("div");
+    
     oppElt.innerHTML = `
     <div class="panel panel-default" data-id="${opp.id}">
       <div class="panel-body">
-        <h4>${opp.title}
+        <h4 id="opp-${opp.id}-title">
           <br />
           <small>${opp.event_date}</small>
         </h4>
@@ -30,6 +31,10 @@ export function showOpps(store, parentElt) {
     </div>
     `;
     parentElt.appendChild(oppElt);
+
+    const titleTextNode = document.createTextNode(opp.title);
+    const titleNode = document.getElementById(`opp-${opp.id}-title`);
+    titleNode.insertBefore(titleTextNode, titleNode.firstChild);
   });
 }
 

@@ -6,7 +6,7 @@ exports[`renderSavedOpps Rendered HTML matches snapshot for store with content 1
 "<h2>My Saved Posts</h2><div>
     <div class=\\"panel panel-default\\" data-id=\\"1\\">
       <div class=\\"panel-body\\">
-        <h4>One
+        <h4 id=\\"opp-1-title\\">One
           <br>
           <small>Thursday, October 26, 2017</small>
         </h4>
@@ -26,7 +26,7 @@ exports[`renderSavedOpps Rendered HTML matches snapshot for store with content 1
     </div><div>
     <div class=\\"panel panel-default\\" data-id=\\"2\\">
       <div class=\\"panel-body\\">
-        <h4>Two
+        <h4 id=\\"opp-2-title\\">Two
           <br>
           <small>Thursday, October 26, 2017</small>
         </h4>
@@ -46,7 +46,7 @@ exports[`renderSavedOpps Rendered HTML matches snapshot for store with content 1
     </div><div>
     <div class=\\"panel panel-default\\" data-id=\\"3\\">
       <div class=\\"panel-body\\">
-        <h4>Three
+        <h4 id=\\"opp-3-title\\">Three
           <br>
           <small>Thursday, October 26, 2017</small>
         </h4>
