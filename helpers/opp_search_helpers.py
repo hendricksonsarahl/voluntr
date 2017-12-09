@@ -1,6 +1,7 @@
 from helpers.category_helpers import get_categories
+from pyzipcode import ZipCodeDatabase, ZipNotFoundException
 
-# Route helpers
+# Opp search helpers
 ##########################
 def increment(index, length):
     if length > (index + 1): 
@@ -10,15 +11,12 @@ def increment(index, length):
     return index
 
 def list_to_string(theList):
-    string = ""
-    for i in range(len(theList)):
-        string = string + theList[i] + "-"
-    return string
+    return "-".join(theList)
 
 def process_category(form):
     if 'category' in form.keys(): # if category was in form sent. assign it to var
         category = form.getlist('category')   
-        if len(category) == len(get_categories()):
+        if len(category) in [0, len(get_categories())]:
             category = ["all"] # if all category in form data, set to "all"
     else:
         category = ["all"] # if no category in form data, set to "all"
@@ -64,3 +62,18 @@ def check_opps(opps):
         return "Sorry, No results were found. Try a less refined search."
 
     return False
+
+def get_zips_list(center_zipcode, distance):
+    # use the ZipCodeDatabase package to get a list of zipcodes within the provided radius
+    try:
+        zcdb = ZipCodeDatabase()
+        zip_objects = zcdb.get_zipcodes_around_radius(center_zipcode, distance)
+    except ZipNotFoundException:
+        error = "Zip code not found. Please check your zip code and try again."
+        return error
+
+    # grab the .zip property from each returned zipcode object
+    def get_zip(zipObj):
+        return zipObj.zip
+
+    return list(map(get_zip, zip_objects))
