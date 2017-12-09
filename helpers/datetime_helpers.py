@@ -2,10 +2,10 @@ import datetime
 
 def get_day(opp_date):
     """takes in a datetime and returns the day of the week"""
+    print ('\n\n Date: ', opp_date)
     if opp_date == datetime.datetime(2100,1,1,23,30):
         return "all"
     return opp_date.strftime('%A')
-
 
 def readable_date(opp_date):
     ''' takes a single datetime input and returns a string to display along with opportunities '''
