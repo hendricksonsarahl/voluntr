@@ -30,5 +30,5 @@ class Filters():
             included_zips = get_zips_list(self.zipcode, self.distance)
             query = query.filter(Opportunity.zipcode.in_(included_zips))
 
-        # return opps that match query
+        # execute query and return matching opps
         return query.all()
