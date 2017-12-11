@@ -12,6 +12,11 @@ class TestReadableDate():
     test_input = datetime.datetime(2017,1,1,12,30)
     assert readable_date(test_input) == "Sunday, January 01, 2017"
 
+  # properly formats an easy datetime object from the past
+  def test_readable_date_basic(self):
+    test_input = datetime.datetime(2015,1,1,12,30)
+    assert readable_date(test_input) == "Thursday, January 01, 2015"
+
   # properly translates 1/1/2100 to "Flexible schedule"
   def test_readable_date_flexible(self):
     test_input = datetime.datetime(2100,1,1,23,30)
