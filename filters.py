@@ -1,10 +1,7 @@
-from app import db
+from datetime import datetime
 from models.org import Opportunity
-from helpers.datetime_helpers import get_day
-from helpers.category_helpers import get_categories
-from pyzipcode import ZipCodeDatabase, ZipNotFoundException
-
-zcdb = ZipCodeDatabase()
+from helpers.opp_search_helpers import get_zips_list
+from sqlalchemy import func
 
 class Filters():
 
@@ -17,49 +14,21 @@ class Filters():
 
     def search(self):
 
-        opps = self.filter_by_categories()
-        
-        if self.availability[0] != "all" and len(self.availability) != 7:
-            opps = self.filter_by_days(opps)
+        #begin constructing the SQLAlchemy query
+        query = Opportunity.query.filter_by(display = 1)
 
+        # if needed, filter by categories
+        if self.categories[0] != "all":
+            query = query.filter(Opportunity.category_class.in_(self.categories))
+
+        # if needed, filter by day
+        if self.availability[0] != "all":
+            query = query.filter((func.dayofweek(Opportunity.startDateTime).in_(self.availability)) | (func.year(Opportunity.startDateTime) == 2100))
+        
+        # if needed, filter by zip code
         if self.zipcode != "all" and self.distance != "all":
-            opps = self.filter_by_location(opps)
+            included_zips = get_zips_list(self.zipcode, self.distance)
+            query = query.filter(Opportunity.zipcode.in_(included_zips))
 
-        return opps
-
-    def filter_by_categories(self):
-        if self.categories[0] == "all" or len(self.categories) == len(get_categories()):
-            opps = Opportunity.query.filter_by(display = 1).all()
-        else:
-            opps = []
-            for i in range(len(self.categories)):
-                opps = opps + Opportunity.query.filter_by(category_class=self.categories[i], display = 1).all()
-
-        return opps
-
-    def filter_by_days(self, opps):
-        filtered = []
-
-        for i in range(len(opps)):
-            if get_day(opps[i].startDateTime) == "all":
-                filtered = filtered + [opps[i]]
-            elif get_day(opps[i].startDateTime) in self.availability:
-                filtered = filtered + [opps[i]]
-
-        return filtered
-
-    def filter_by_location(self, opps):
-        try:
-            filtered = []
-            zips = zcdb.get_zipcodes_around_radius(self.zipcode, self.distance)
-            for i in range(len(opps)):
-                for j in range (len(zips)):
-                    if opps[i].zipcode == zips[j].zip:
-                        filtered = filtered + [opps[i]]
-            return filtered
-        except ZipNotFoundException:
-            error = "Zip code not found. Please check your zipcode and try again. If it still does not work we apologize (your zipcode may not be supported yet)"
-            return error
-            
-                
-        
+        # execute query and return matching opps
+        return query.all()
